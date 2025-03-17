@@ -1,0 +1,20 @@
+[
+  {
+    "id": "beginner",
+    "title": "Python Basics",
+    "description": "Learn the fundamentals of Python programming, from variables to control flow.",
+    "icon": "code"
+  },
+  {
+    "id": "intermediate",
+    "title": "Intermediate Python",
+    "description": "Deepen your Python skills with functions, data structures, and more.",
+    "icon": "code-slash"
+  },
+  {
+    "id": "advanced",
+    "title": "Advanced Python",
+    "description": "Master advanced Python concepts like OOP, decorators, and generators.",
+    "icon": "braces"
+  }
+]

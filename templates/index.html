@@ -1,0 +1,179 @@
+{% extends 'base.html' %}
+
+{% block title %}Python Learning Hub - Learn Python from Basic to Advanced{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8 mx-auto text-center">
+        <h1 class="display-4 mb-4">Learn Python Programming</h1>
+        <p class="lead mb-4">
+            Master Python programming with our comprehensive, interactive tutorials 
+            and problem sets designed for all skill levels.
+        </p>
+        <p class="mb-5">
+            Whether you're just starting out or looking to deepen your Python knowledge,
+            our learning platform provides the perfect path for you.
+        </p>
+    </div>
+</div>
+
+<div class="row mb-5">
+    <div class="col-lg-8 mx-auto">
+        <div class="card bg-dark border-0 shadow-sm">
+            <div class="card-body p-4">
+                <h5 class="card-title mb-3">Try Python Right Now</h5>
+                <textarea id="home-editor" class="form-control mb-3">print("Hello, Python Learning Hub!")</textarea>
+                <div class="d-grid">
+                    <button id="home-run-btn" class="btn btn-primary">
+                        <i class="bi bi-play-fill me-2"></i>Run Code
+                    </button>
+                </div>
+                <div id="home-output" class="mt-3"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-12">
+        <h2 class="text-center mb-4">Learning Tracks</h2>
+    </div>
+</div>
+
+<div class="row g-4 mb-5">
+    {% for track in tracks %}
+    <div class="col-md-4">
+        <div class="card h-100 track-card bg-dark border-0 shadow-sm">
+            <div class="card-body p-4">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="bg-info bg-opacity-25 rounded-circle p-2 me-3">
+                        <i class="bi bi-{{ track.icon }} fs-3 text-info"></i>
+                    </div>
+                    <h3 class="card-title mb-0">{{ track.title }}</h3>
+                </div>
+                <p class="card-text">{{ track.description }}</p>
+            </div>
+            <div class="card-footer bg-transparent border-0 p-4 pt-0">
+                <a href="/track/{{ track.id }}" class="btn btn-outline-info w-100">
+                    Start Learning
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="row mb-4">
+    <div class="col-12">
+        <h2 class="text-center mb-4">Why Learn Python?</h2>
+    </div>
+</div>
+
+<div class="row g-4 mb-5">
+    <div class="col-md-4">
+        <div class="card h-100 bg-dark border-0 shadow-sm">
+            <div class="card-body p-4">
+                <div class="text-center mb-3">
+                    <i class="bi bi-graph-up text-success fs-1"></i>
+                </div>
+                <h4 class="card-title text-center">High Demand</h4>
+                <p class="card-text">
+                    Python developers are among the most sought-after professionals in the tech industry,
+                    with competitive salaries and abundant job opportunities.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 bg-dark border-0 shadow-sm">
+            <div class="card-body p-4">
+                <div class="text-center mb-3">
+                    <i class="bi bi-tools text-warning fs-1"></i>
+                </div>
+                <h4 class="card-title text-center">Versatility</h4>
+                <p class="card-text">
+                    Python is used in web development, data science, AI, machine learning, automation,
+                    scientific computing, and many other fields.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 bg-dark border-0 shadow-sm">
+            <div class="card-body p-4">
+                <div class="text-center mb-3">
+                    <i class="bi bi-book text-info fs-1"></i>
+                </div>
+                <h4 class="card-title text-center">Easy to Learn</h4>
+                <p class="card-text">
+                    Python's simple, readable syntax makes it an ideal first programming language,
+                    while still offering powerful features for advanced developers.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-12">
+        <h2 class="text-center mb-4">How Our Platform Works</h2>
+    </div>
+</div>
+
+<div class="row mb-5">
+    <div class="col-md-4 mb-4 mb-md-0">
+        <div class="text-center">
+            <div class="bg-info bg-opacity-25 rounded-circle d-inline-flex p-3 mb-3">
+                <i class="bi bi-book fs-1 text-info"></i>
+            </div>
+            <h4>Learn</h4>
+            <p>Study Python concepts through our comprehensive, easy-to-follow tutorials</p>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4 mb-md-0">
+        <div class="text-center">
+            <div class="bg-success bg-opacity-25 rounded-circle d-inline-flex p-3 mb-3">
+                <i class="bi bi-code-slash fs-1 text-success"></i>
+            </div>
+            <h4>Practice</h4>
+            <p>Strengthen your understanding by solving interactive coding challenges</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="text-center">
+            <div class="bg-warning bg-opacity-25 rounded-circle d-inline-flex p-3 mb-3">
+                <i class="bi bi-award fs-1 text-warning"></i>
+            </div>
+            <h4>Master</h4>
+            <p>Build confidence and expertise by solving increasingly complex problems</p>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-8 mx-auto text-center">
+        <h2 class="mb-4">Ready to Start Your Python Journey?</h2>
+        <p class="lead mb-4">Choose a learning track that matches your current skill level</p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+            <a href="/track/beginner" class="btn btn-lg btn-outline-success">
+                Start with Basics
+            </a>
+            <a href="/track/intermediate" class="btn btn-lg btn-outline-warning">
+                Intermediate Level
+            </a>
+            <a href="/track/advanced" class="btn btn-lg btn-outline-danger">
+                Advanced Topics
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize the editor on the homepage
+    const homeEditor = initializeEditor('home-editor', 'home-output', 'home-run-btn');
+});
+</script>
+{% endblock %}

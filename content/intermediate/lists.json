@@ -1,0 +1,194 @@
+{
+  "id": "lists",
+  "title": "Python Lists in Depth",
+  "description": "Master Python lists with advanced techniques and operations.",
+  "order": 3,
+  "duration": "40 minutes",
+  "overview": "Lists are one of Python's most versatile and commonly used data structures. In this lesson, we'll dive deep into Python lists, exploring advanced operations, memory management, and performance considerations. You'll learn how to manipulate lists efficiently, use list comprehensions for complex transformations, and understand the internal workings of lists.",
+  "tutorial": "<h3>Lists in Python</h3><p>A list in Python is an ordered collection of items that can be of different types. Lists are mutable, meaning they can be changed after creation, and they can contain duplicate values.</p><h3>Creating Lists</h3><p>There are several ways to create lists in Python:</p><pre><code class=\"language-python\"># Empty list\nempty_list = []\n\n# List with elements\nnumbers = [1, 2, 3, 4, 5]\nfruits = ['apple', 'banana', 'cherry']\n\n# Mixed types in a list\nmixed = [1, 'hello', True, 3.14]\n\n# Nested lists\nmatrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]\n\n# Using the list() constructor\ncharacters = list('Python')  # Creates ['P', 'y', 't', 'h', 'o', 'n']\nrange_list = list(range(1, 6))  # Creates [1, 2, 3, 4, 5]</code></pre><h3>Accessing List Elements</h3><p>You can access list elements using indexing and slicing:</p><pre><code class=\"language-python\"># Basic indexing (zero-based)\nfruits = ['apple', 'banana', 'cherry', 'date', 'elderberry']\nprint(fruits[0])  # 'apple' - first element\nprint(fruits[2])  # 'cherry' - third element\n\n# Negative indexing (counts from the end)\nprint(fruits[-1])  # 'elderberry' - last element\nprint(fruits[-2])  # 'date' - second-to-last element\n\n# Slicing [start:end:step] - end is exclusive\nprint(fruits[1:4])    # ['banana', 'cherry', 'date'] - elements at index 1, 2, and 3\nprint(fruits[1:4:2])  # ['banana', 'date'] - every 2nd element from index 1 to 3\nprint(fruits[:3])     # ['apple', 'banana', 'cherry'] - first three elements\nprint(fruits[2:])     # ['cherry', 'date', 'elderberry'] - from third element to end\nprint(fruits[:])      # Makes a copy of the entire list\nprint(fruits[::-1])   # Reverses the list</code></pre><h3>Modifying Lists</h3><p>Lists are mutable, so you can change their contents:</p><pre><code class=\"language-python\"># Changing elements\nfruits = ['apple', 'banana', 'cherry']\nfruits[1] = 'blueberry'  # Replace 'banana' with 'blueberry'\nprint(fruits)  # ['apple', 'blueberry', 'cherry']\n\n# Adding elements\nfruits.append('date')  # Add to the end\nprint(fruits)  # ['apple', 'blueberry', 'cherry', 'date']\n\nfruits.insert(1, 'apricot')  # Insert at position 1\nprint(fruits)  # ['apple', 'apricot', 'blueberry', 'cherry', 'date']\n\nmore_fruits = ['fig', 'grape']\nfruits.extend(more_fruits)  # Add multiple items from another iterable\nprint(fruits)  # ['apple', 'apricot', 'blueberry', 'cherry', 'date', 'fig', 'grape']\n\n# Removing elements\nfruits.remove('cherry')  # Remove first occurrence of value\nprint(fruits)  # ['apple', 'apricot', 'blueberry', 'date', 'fig', 'grape']\n\npopped = fruits.pop()  # Remove and return last element\nprint(popped)  # 'grape'\nprint(fruits)  # ['apple', 'apricot', 'blueberry', 'date', 'fig']\n\npopped_index = fruits.pop(1)  # Remove and return element at index 1\nprint(popped_index)  # 'apricot'\nprint(fruits)  # ['apple', 'blueberry', 'date', 'fig']\n\ndel fruits[0]  # Delete element at index 0\nprint(fruits)  # ['blueberry', 'date', 'fig']\n\nfruits.clear()  # Remove all elements\nprint(fruits)  # []</code></pre><h3>List Operations</h3><p>Python provides many operations for working with lists:</p><pre><code class=\"language-python\"># Concatenation\nlist1 = [1, 2, 3]\nlist2 = [4, 5, 6]\ncombined = list1 + list2\nprint(combined)  # [1, 2, 3, 4, 5, 6]\n\n# Repetition\nrepeated = list1 * 3\nprint(repeated)  # [1, 2, 3, 1, 2, 3, 1, 2, 3]\n\n# Membership testing\nprint(3 in list1)  # True\nprint(5 in list1)  # False\n\n# Length\nprint(len(combined))  # 6\n\n# Minimum and maximum\nnumbers = [5, 2, 8, 1, 9]\nprint(min(numbers))  # 1\nprint(max(numbers))  # 9\n\n# Sum\nprint(sum(numbers))  # 25</code></pre><h3>Sorting Lists</h3><p>Python provides methods for sorting lists:</p><pre><code class=\"language-python\"># Creating a new sorted list\nnumbers = [5, 2, 8, 1, 9]\nsorted_numbers = sorted(numbers)  # Original list remains unchanged\nprint(numbers)        # [5, 2, 8, 1, 9]\nprint(sorted_numbers) # [1, 2, 5, 8, 9]\n\n# Sorting in descending order\ndesc_numbers = sorted(numbers, reverse=True)\nprint(desc_numbers)   # [9, 8, 5, 2, 1]\n\n# Sorting in place\nnumbers.sort()  # Modifies the original list\nprint(numbers)   # [1, 2, 5, 8, 9]\n\n# Reverse in place\nnumbers.reverse()\nprint(numbers)  # [9, 8, 5, 2, 1]</code></pre><h3>List Comprehensions</h3><p>List comprehensions provide a concise way to create lists:</p><pre><code class=\"language-python\"># Basic syntax: [expression for item in iterable if condition]\n\n# Creating a list of squares\nsquares = [x**2 for x in range(1, 6)]\nprint(squares)  # [1, 4, 9, 16, 25]\n\n# With a condition (only square even numbers)\neven_squares = [x**2 for x in range(1, 11) if x % 2 == 0]\nprint(even_squares)  # [4, 16, 36, 64, 100]\n\n# Nested list comprehension\nmatrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]\ntransposed = [[row[i] for row in matrix] for i in range(3)]\nprint(transposed)  # [[1, 4, 7], [2, 5, 8], [3, 6, 9]]</code></pre><h3>Advanced List Techniques</h3><h4>1. Using enumerate()</h4><pre><code class=\"language-python\"># Get both index and value when iterating\nfruits = ['apple', 'banana', 'cherry']\nfor index, fruit in enumerate(fruits):\n    print(f\"{index}: {fruit}\")\n# 0: apple\n# 1: banana\n# 2: cherry\n\n# Specify a different start index\nfor index, fruit in enumerate(fruits, 1):\n    print(f\"{index}: {fruit}\")\n# 1: apple\n# 2: banana\n# 3: cherry</code></pre><h4>2. Using zip()</h4><pre><code class=\"language-python\"># Iterate through multiple lists in parallel\nnames = ['Alice', 'Bob', 'Charlie']\nages = [25, 30, 35]\nfor name, age in zip(names, ages):\n    print(f\"{name} is {age} years old\")\n# Alice is 25 years old\n# Bob is 30 years old\n# Charlie is 35 years old</code></pre><h4>3. List Performance Considerations</h4><p>Understanding the time complexity of list operations can help you write more efficient code:</p><table class=\"table\"><thead><tr><th>Operation</th><th>Time Complexity</th><th>Notes</th></tr></thead><tbody><tr><td>Indexing (lst[i])</td><td>O(1)</td><td>Constant time</td></tr><tr><td>Append (lst.append(x))</td><td>O(1)</td><td>Amortized constant time</td></tr><tr><td>Insert (lst.insert(i, x))</td><td>O(n)</td><td>Worst case, as elements may need to shift</td></tr><tr><td>Delete (del lst[i])</td><td>O(n)</td><td>Worst case, as elements may need to shift</td></tr><tr><td>Slicing (lst[a:b])</td><td>O(b-a)</td><td>Proportional to slice size</td></tr><tr><td>Length (len(lst))</td><td>O(1)</td><td>Constant time</td></tr><tr><td>Membership (x in lst)</td><td>O(n)</td><td>Linear search</td></tr><tr><td>Sort (lst.sort())</td><td>O(n log n)</td><td>Tim sort algorithm</td></tr></tbody></table><h4>4. Memory-Efficient Methods for Large Lists</h4><p>When working with large lists, consider these techniques:</p><ul><li>Use generators instead of list comprehensions for processing large datasets without storing all results in memory</li><li>Use the array module for homogeneous numeric data to save memory</li><li>Consider third-party libraries like NumPy for efficient array operations</li><li>Use iterator functions from the itertools module for memory-efficient iteration</li></ul><h4>5. Copying Lists</h4><pre><code class=\"language-python\"># Simple copy (shallow copy)\noriginal = [1, 2, [3, 4]]\ncopy1 = original.copy()  # or list(original) or original[:]\n\n# Deep copy (for nested lists)\nimport copy\ncopy2 = copy.deepcopy(original)\n\n# Demonstrate the difference\noriginal[2][0] = 'changed'\nprint(copy1)  # [1, 2, ['changed', 4]] - shallow copy is affected\nprint(copy2)  # [1, 2, [3, 4]] - deep copy is not affected</code></pre>",
+  "examples": [
+    {
+      "title": "Advanced List Manipulation",
+      "description": "Working with nested lists and complex transformations.",
+      "code": "# Creating a 3x3 matrix (a list of lists)\nmatrix = [\n    [1, 2, 3],\n    [4, 5, 6],\n    [7, 8, 9]\n]\n\nprint(\"Original matrix:\")\nfor row in matrix:\n    print(row)\n\n# Accessing elements in a nested list\nprint(f\"\\nElement at row 1, column 2: {matrix[1][2]}\")  # 6\n\n# Modifying elements in a nested list\nmatrix[0][1] = 20\nprint(\"\\nMatrix after modification:\")\nfor row in matrix:\n    print(row)\n\n# Transposing a matrix (converting rows to columns and vice versa)\ntransposed = [[row[i] for row in matrix] for i in range(3)]\nprint(\"\\nTransposed matrix:\")\nfor row in transposed:\n    print(row)\n\n# Flattening a nested list into a single list\nflattened = [item for row in matrix for item in row]\nprint(f\"\\nFlattened matrix: {flattened}\")\n\n# Extracting a single column\ncolumn_2 = [row[1] for row in matrix]  # Extract the second column (index 1)\nprint(f\"\\nSecond column: {column_2}\")\n\n# Calculating the sum of each row\nrow_sums = [sum(row) for row in matrix]\nprint(f\"\\nRow sums: {row_sums}\")\n\n# Finding the maximum value in the matrix\nmax_value = max(max(row) for row in matrix)\nprint(f\"\\nMaximum value in the matrix: {max_value}\")",
+      "explanation": "This example demonstrates how to work with nested lists (like matrices) in Python. It shows how to create, access, and modify elements in a nested list. It then shows more advanced operations like transposing a matrix (turning rows into columns) using nested list comprehensions, flattening a nested list into a single list, extracting a specific column, calculating the sum of each row, and finding the maximum value across all elements."
+    },
+    {
+      "title": "List Filtering and Transformation",
+      "description": "Using list comprehensions for data processing tasks.",
+      "code": "# Original list of data\nstudents = [\n    {'name': 'Alice', 'age': 22, 'grade': 'A', 'courses': ['math', 'physics', 'cs']},\n    {'name': 'Bob', 'age': 19, 'grade': 'B', 'courses': ['biology', 'chemistry']},\n    {'name': 'Charlie', 'age': 20, 'grade': 'A', 'courses': ['physics', 'cs']},\n    {'name': 'David', 'age': 25, 'grade': 'C', 'courses': ['math', 'history']},\n    {'name': 'Eve', 'age': 21, 'grade': 'A', 'courses': ['biology', 'cs', 'art']}\n]\n\nprint(\"Student records:\")\nfor student in students:\n    print(student)\n\n# 1. Filtering - get all students with an 'A' grade\na_students = [student for student in students if student['grade'] == 'A']\nprint(\"\\nStudents with 'A' grade:\")\nfor student in a_students:\n    print(student['name'])\n\n# 2. Transformation - create a list of just the names\nstudent_names = [student['name'] for student in students]\nprint(f\"\\nAll student names: {student_names}\")\n\n# 3. Filtered transformation - names of students taking CS\ncs_students = [student['name'] for student in students if 'cs' in student['courses']]\nprint(f\"\\nStudents taking CS: {cs_students}\")\n\n# 4. Complex condition - students with 'A' grade and age < 22\nyoung_a_students = [student['name'] for student in students \n                   if student['grade'] == 'A' and student['age'] < 22]\nprint(f\"\\nYoung 'A' grade students: {young_a_students}\")\n\n# 5. Creating a new list of dictionaries with selected fields\nsimplified = [{'name': s['name'], 'age': s['age']} for s in students]\nprint(\"\\nSimplified student records:\")\nfor record in simplified:\n    print(record)\n\n# 6. Finding all unique courses\nall_courses = set([course for student in students for course in student['courses']])\nprint(f\"\\nAll available courses: {all_courses}\")\n\n# 7. Counting the number of courses each student is taking\ncourse_counts = [(student['name'], len(student['courses'])) for student in students]\nprint(\"\\nNumber of courses per student:\")\nfor name, count in course_counts:\n    print(f\"{name}: {count} courses\")",
+      "explanation": "This example demonstrates practical uses of list comprehensions for filtering and transforming data. It works with a list of dictionaries representing student records. It shows how to filter students by grade, extract just names, filter with multiple conditions, create new dictionaries, extract and flatten nested data (all courses), and compute derived values. These types of operations are common in data processing tasks and demonstrate how list comprehensions can make complex transformations more readable."
+    },
+    {
+      "title": "Efficient List Processing",
+      "description": "Performance techniques for working with lists.",
+      "code": "import time\nimport sys\n\n# Comparing methods for concatenating lists\ndef compare_concatenation_methods(n=100000):\n    print(\"Comparing list concatenation methods...\")\n    \n    # Method 1: Using the + operator in a loop\n    start = time.time()\n    result = []\n    for i in range(n):\n        result = result + [i]  # Creates a new list each time\n    end = time.time()\n    print(f\"+ operator: {end - start:.6f} seconds\")\n    \n    # Method 2: Using .append() in a loop\n    start = time.time()\n    result = []\n    for i in range(n):\n        result.append(i)  # Modifies in place, more efficient\n    end = time.time()\n    print(f\"append(): {end - start:.6f} seconds\")\n    \n    # Method 3: Using a list comprehension\n    start = time.time()\n    result = [i for i in range(n)]\n    end = time.time()\n    print(f\"List comprehension: {end - start:.6f} seconds\")\n    \n    # Method 4: Using the list() constructor with range\n    start = time.time()\n    result = list(range(n))\n    end = time.time()\n    print(f\"list(range()): {end - start:.6f} seconds\")\n\n# Demonstrating memory usage of different list operations\ndef compare_memory_usage():\n    print(\"\\nComparing memory usage...\")\n    \n    # A simple list of integers\n    numbers = list(range(1000000))\n    \n    # Size of the list in memory\n    print(f\"Size of original list: {sys.getsizeof(numbers)} bytes\")\n    \n    # Size of a list comprehension result (creates a new list)\n    squared = [x**2 for x in range(1000000)]\n    print(f\"Size of squared list: {sys.getsizeof(squared)} bytes\")\n    \n    # Size of a generator expression (doesn't create the full list in memory)\n    squared_generator = (x**2 for x in range(1000000))  # Note the parentheses\n    print(f\"Size of squared generator: {sys.getsizeof(squared_generator)} bytes\")\n    \n    # Memory-efficient way to compute sum\n    # Doesn't store all values, processes one at a time\n    start = time.time()\n    result = sum(x**2 for x in range(1000000))  # Uses generator\n    end = time.time()\n    print(f\"Sum using generator: {end - start:.6f} seconds\")\n    \n    # Less memory-efficient way\n    start = time.time()\n    result = sum([x**2 for x in range(1000000)])  # Creates full list first\n    end = time.time()\n    print(f\"Sum using list comprehension: {end - start:.6f} seconds\")\n\n# Run the comparisons with a smaller n for demonstration\ncompare_concatenation_methods(100000)\ncompare_memory_usage()",
+      "explanation": "This example demonstrates performance considerations when working with lists in Python. It first compares different methods for building a list: using the + operator (which creates a new list each time), using append() (which modifies in place), using a list comprehension, and using list(range()). The timing results show which methods are more efficient. The second part compares memory usage between storing a full list and using a generator expression, which is much more memory-efficient for large datasets because it doesn't store all values at once. Understanding these performance characteristics is important when working with large datasets."
+    },
+    {
+      "title": "Practical List Algorithms",
+      "description": "Common list manipulation patterns for real-world problems.",
+      "code": "# Sample data - a list of sales transactions\ntransactions = [\n    {\"id\": 1, \"product\": \"Laptop\", \"price\": 1200, \"category\": \"Electronics\"},\n    {\"id\": 2, \"product\": \"Headphones\", \"price\": 150, \"category\": \"Electronics\"},\n    {\"id\": 3, \"product\": \"Coffee Maker\", \"price\": 80, \"category\": \"Kitchen\"},\n    {\"id\": 4, \"product\": \"Running Shoes\", \"price\": 120, \"category\": \"Clothing\"},\n    {\"id\": 5, \"product\": \"Blender\", \"price\": 60, \"category\": \"Kitchen\"},\n    {\"id\": 6, \"product\": \"Smartphone\", \"price\": 900, \"category\": \"Electronics\"},\n    {\"id\": 7, \"product\": \"T-shirt\", \"price\": 25, \"category\": \"Clothing\"},\n    {\"id\": 8, \"product\": \"Microwave\", \"price\": 120, \"category\": \"Kitchen\"},\n    {\"id\": 9, \"product\": \"Socks\", \"price\": 10, \"category\": \"Clothing\"},\n    {\"id\": 10, \"product\": \"Tablet\", \"price\": 350, \"category\": \"Electronics\"}\n]\n\n# 1. Finding the most expensive product\nmost_expensive = max(transactions, key=lambda x: x['price'])\nprint(f\"Most expensive product: {most_expensive['product']} (${most_expensive['price']})\")\n\n# 2. Calculating total sales by category\ncategories = set(item['category'] for item in transactions)\ntotal_by_category = {}\n\nfor category in categories:\n    # Filter transactions by category and sum prices\n    category_sales = sum(item['price'] for item in transactions if item['category'] == category)\n    total_by_category[category] = category_sales\n\nprint(\"\\nTotal sales by category:\")\nfor category, total in total_by_category.items():\n    print(f\"{category}: ${total}\")\n\n# 3. Sorting products by price (descending order)\nsorted_by_price = sorted(transactions, key=lambda x: x['price'], reverse=True)\n\nprint(\"\\nProducts sorted by price (highest to lowest):\")\nfor item in sorted_by_price:\n    print(f\"{item['product']} - ${item['price']}\")\n\n# 4. Finding products in a price range\nmin_price = 100\nmax_price = 300\nprice_range_products = [item for item in transactions \n                       if min_price <= item['price'] <= max_price]\n\nprint(f\"\\nProducts priced between ${min_price} and ${max_price}:\")\nfor item in price_range_products:\n    print(f\"{item['product']} - ${item['price']}\")\n\n# 5. Grouping products by category\nproducts_by_category = {}\nfor item in transactions:\n    category = item['category']\n    if category not in products_by_category:\n        products_by_category[category] = []\n    products_by_category[category].append(item['product'])\n\nprint(\"\\nProducts grouped by category:\")\nfor category, products in products_by_category.items():\n    print(f\"{category}: {', '.join(products)}\")\n\n# 6. Finding the average price overall and by category\noverall_avg = sum(item['price'] for item in transactions) / len(transactions)\n\nprint(f\"\\nOverall average price: ${overall_avg:.2f}\")\n\nprint(\"Average price by category:\")\nfor category in categories:\n    category_items = [item for item in transactions if item['category'] == category]\n    avg_price = sum(item['price'] for item in category_items) / len(category_items)\n    print(f\"{category}: ${avg_price:.2f}\")",
+      "explanation": "This example demonstrates practical list manipulation patterns for analyzing sales data, which is a common real-world task. It shows how to find the most expensive product using the max() function with a custom key, calculate total sales by category, sort products by price, filter products within a price range, group products by category, and calculate average prices. These patterns are useful in data analysis and can be applied to many different types of data. Note how we use list comprehensions, sorting with custom keys, and other list manipulation techniques to solve these problems concisely."
+    }
+  ],
+  "practice_code": "# Practice with advanced list operations\n\n# 1. Create a list and perform basic operations\nfruits = ['apple', 'banana', 'cherry', 'date', 'elderberry']\nprint(f\"Original list: {fruits}\")\n\n# Add an item to the end\nfruits.append('fig')\nprint(f\"After append: {fruits}\")\n\n# Insert an item at position 2\nfruits.insert(2, 'blueberry')\nprint(f\"After insert: {fruits}\")\n\n# Remove an item\nfruits.remove('date')\nprint(f\"After remove: {fruits}\")\n\n# 2. List slicing\nprint(f\"\\nFirst two items: {fruits[:2]}\")\nprint(f\"Last three items: {fruits[-3:]}\")\nprint(f\"Alternate items: {fruits[::2]}\")\n\n# 3. List comprehension\nnumbers = list(range(1, 11))\nprint(f\"\\nNumbers 1 to 10: {numbers}\")\n\n# Create a list of squares\nsquares = [num ** 2 for num in numbers]\nprint(f\"Squares: {squares}\")\n\n# Filter for even numbers only\neven_numbers = [num for num in numbers if num % 2 == 0]\nprint(f\"Even numbers: {even_numbers}\")\n\n# 4. Working with nested lists\nmatrix = [\n    [1, 2, 3],\n    [4, 5, 6],\n    [7, 8, 9]\n]\nprint(f\"\\nMatrix:\")\nfor row in matrix:\n    print(row)\n\n# Transpose the matrix (swap rows and columns)\ntransposed = [[row[i] for row in matrix] for i in range(3)]\nprint(f\"\\nTransposed matrix:\")\nfor row in transposed:\n    print(row)\n\n# 5. Experiment with more advanced operations below\n# Try sorting a list of dictionaries, flattening a nested list,\n# or using list methods like count() and index()\n",
+  "quiz": [
+    {
+      "question": "What is the output of the following code: [1, 2, 3] + [4, 5]?",
+      "options": [
+        {"text": "[1, 2, 3, 4, 5]", "correct": true},
+        {"text": "[5, 7, 8]", "correct": false},
+        {"text": "Error: can't add lists", "correct": false},
+        {"text": "[1, 2, 3[4, 5]]", "correct": false}
+      ]
+    },
+    {
+      "question": "Which of the following creates a list of even squares from 1 to 10?",
+      "options": [
+        {"text": "[x**2 for x in range(1, 11) if x % 2 == 0]", "correct": true},
+        {"text": "[x for x in range(1, 11) if x**2 % 2 == 0]", "correct": false},
+        {"text": "[x**2 if x % 2 == 0 for x in range(1, 11)]", "correct": false},
+        {"text": "[x**2 % 2 == 0 for x in range(1, 11)]", "correct": false}
+      ]
+    },
+    {
+      "question": "What's the time complexity of checking if an element is in a list using 'x in my_list'?",
+      "options": [
+        {"text": "O(1)", "correct": false},
+        {"text": "O(log n)", "correct": false},
+        {"text": "O(n)", "correct": true},
+        {"text": "O(n²)", "correct": false}
+      ]
+    },
+    {
+      "question": "What will be the value of lst after this code: lst = [1, 2, 3]; lst.append([4, 5])?",
+      "options": [
+        {"text": "[1, 2, 3, 4, 5]", "correct": false},
+        {"text": "[1, 2, 3, [4, 5]]", "correct": true},
+        {"text": "[[1, 2, 3], [4, 5]]", "correct": false},
+        {"text": "[1, 2, 3] and [4, 5]", "correct": false}
+      ]
+    },
+    {
+      "question": "Which statement correctly creates a deep copy of a list?",
+      "options": [
+        {"text": "new_list = old_list", "correct": false},
+        {"text": "new_list = old_list[:]", "correct": false},
+        {"text": "new_list = list(old_list)", "correct": false},
+        {"text": "import copy; new_list = copy.deepcopy(old_list)", "correct": true}
+      ]
+    }
+  ],
+  "problems": [
+    {
+      "id": "flatten_nested_list",
+      "title": "Flatten a Nested List",
+      "description": "Write a function that takes a nested list as input and returns a flattened version of it. The input list can contain any number of nested lists at any level, and the output should be a single flat list with all the elements in order.",
+      "difficulty": "Medium",
+      "starter_code": "def flatten_list(nested_list):\n    # Your code here\n    pass\n\n# Test cases\nprint(flatten_list([1, 2, 3]))  # Should return [1, 2, 3]\nprint(flatten_list([1, [2, 3], 4]))  # Should return [1, 2, 3, 4]\nprint(flatten_list([1, [2, [3, 4]], 5]))  # Should return [1, 2, 3, 4, 5]\nprint(flatten_list([[1, 2], [3, 4], [5, 6]]))  # Should return [1, 2, 3, 4, 5, 6]",
+      "tests": [
+        {
+          "description": "Test with simple list",
+          "code": "assert flatten_list([1, 2, 3]) == [1, 2, 3], \"Should not change already flat list\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test with one level of nesting",
+          "code": "assert flatten_list([1, [2, 3], 4]) == [1, 2, 3, 4], \"Should flatten one level of nesting\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test with multiple levels of nesting",
+          "code": "assert flatten_list([1, [2, [3, 4]], 5]) == [1, 2, 3, 4, 5], \"Should flatten multiple levels of nesting\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test with all nested elements",
+          "code": "assert flatten_list([[1, 2], [3, 4], [5, 6]]) == [1, 2, 3, 4, 5, 6], \"Should flatten all sublist elements\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test with empty lists",
+          "code": "assert flatten_list([1, [], 2, [], 3]) == [1, 2, 3], \"Should handle empty sublists\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test with complex nested structure",
+          "code": "assert flatten_list([1, [2, [3, [4]]], 5, [6, [7, 8]]]) == [1, 2, 3, 4, 5, 6, 7, 8], \"Should handle complex nesting\"",
+          "expected_output": ""
+        }
+      ],
+      "expected_output": "[1, 2, 3]\n[1, 2, 3, 4]\n[1, 2, 3, 4, 5]\n[1, 2, 3, 4, 5, 6]\n",
+      "solution": "def flatten_list(nested_list):\n    # Initialize an empty result list\n    flattened = []\n    \n    # Iterate through each element in the nested list\n    for item in nested_list:\n        # If the item is a list, recursively flatten it and extend our result\n        if isinstance(item, list):\n            flattened.extend(flatten_list(item))\n        else:\n            # If the item is not a list, simply append it to our result\n            flattened.append(item)\n    \n    return flattened\n\n# Alternative solution using a list comprehension approach\n# def flatten_list(nested_list):\n#     return [item for sublist in nested_list \n#             for item in (flatten_list(sublist) if isinstance(sublist, list) else [sublist])]\n\n# Test cases\nprint(flatten_list([1, 2, 3]))  # Should return [1, 2, 3]\nprint(flatten_list([1, [2, 3], 4]))  # Should return [1, 2, 3, 4]\nprint(flatten_list([1, [2, [3, 4]], 5]))  # Should return [1, 2, 3, 4, 5]\nprint(flatten_list([[1, 2], [3, 4], [5, 6]]))  # Should return [1, 2, 3, 4, 5, 6]"
+    },
+    {
+      "id": "group_by_first_letter",
+      "title": "Group Words by First Letter",
+      "description": "Write a function that takes a list of words and groups them by their first letter. The function should return a dictionary where the keys are the first letters and the values are lists of words starting with that letter.",
+      "difficulty": "Medium",
+      "starter_code": "def group_by_first_letter(words):\n    # Your code here\n    pass\n\n# Test cases\nwords = [\"apple\", \"banana\", \"avocado\", \"cherry\", \"blueberry\", \"apricot\", \"carrot\"]\nresult = group_by_first_letter(words)\nfor letter in sorted(result.keys()):\n    print(f\"{letter}: {', '.join(result[letter])}\")",
+      "tests": [
+        {
+          "description": "Test with mixed word list",
+          "code": "words = [\"apple\", \"banana\", \"avocado\", \"cherry\", \"blueberry\", \"apricot\", \"carrot\"]\nresult = group_by_first_letter(words)\nassert result['a'] == ['apple', 'avocado', 'apricot'], \"Should group words starting with 'a'\"\nassert result['b'] == ['banana', 'blueberry'], \"Should group words starting with 'b'\"\nassert result['c'] == ['cherry', 'carrot'], \"Should group words starting with 'c'\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test with empty list",
+          "code": "assert group_by_first_letter([]) == {}, \"Should return empty dictionary for empty list\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test with single letter words",
+          "code": "result = group_by_first_letter(['a', 'b', 'a', 'c', 'b'])\nassert result['a'] == ['a', 'a'], \"Should group single-letter words\"\nassert result['b'] == ['b', 'b'], \"Should group single-letter words\"\nassert result['c'] == ['c'], \"Should group single-letter words\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test case sensitivity",
+          "code": "result = group_by_first_letter(['Apple', 'apple', 'Banana', 'banana'])\nassert 'A' in result and 'a' in result and 'B' in result and 'b' in result, \"Should be case sensitive\"",
+          "expected_output": ""
+        }
+      ],
+      "expected_output": "a: apple, avocado, apricot\nb: banana, blueberry\nc: cherry, carrot\n",
+      "solution": "def group_by_first_letter(words):\n    result = {}\n    \n    for word in words:\n        # Skip empty words\n        if not word:\n            continue\n            \n        # Get the first letter\n        first_letter = word[0]\n        \n        # Add the word to the appropriate group\n        if first_letter in result:\n            result[first_letter].append(word)\n        else:\n            result[first_letter] = [word]\n    \n    return result\n\n# Alternative implementation using defaultdict\n# from collections import defaultdict\n# def group_by_first_letter(words):\n#     result = defaultdict(list)\n#     for word in words:\n#         if word:  # Skip empty words\n#             result[word[0]].append(word)\n#     return dict(result)\n\n# Test cases\nwords = [\"apple\", \"banana\", \"avocado\", \"cherry\", \"blueberry\", \"apricot\", \"carrot\"]\nresult = group_by_first_letter(words)\nfor letter in sorted(result.keys()):\n    print(f\"{letter}: {', '.join(result[letter])}\")"
+    },
+    {
+      "id": "moving_average",
+      "title": "Moving Average Calculator",
+      "description": "Write a function that calculates the moving average of a list of numbers. The function should take a list of numbers and a window size as input, and return a list of averages where each average is the mean of the window_size elements up to the current position. For positions where there are less than window_size elements, calculate the average of available elements.",
+      "difficulty": "Hard",
+      "starter_code": "def moving_average(numbers, window_size):\n    # Your code here\n    pass\n\n# Test cases\nprint(moving_average([1, 2, 3, 4, 5], 3))  # Should return [1.0, 1.5, 2.0, 3.0, 4.0]\nprint(moving_average([10, 20, 30, 40, 50], 2))  # Should return [10.0, 15.0, 25.0, 35.0, 45.0]\nprint(moving_average([5, 10, 15, 20, 25, 30], 4))  # Should return [5.0, 7.5, 10.0, 12.5, 17.5, 22.5]",
+      "tests": [
+        {
+          "description": "Test with window size 3",
+          "code": "result = moving_average([1, 2, 3, 4, 5], 3)\nexpected = [1.0, 1.5, 2.0, 3.0, 4.0]\nfor i in range(len(result)):\n    assert abs(result[i] - expected[i]) < 0.001, f\"Expected {expected[i]} at position {i}, got {result[i]}\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test with window size 2",
+          "code": "result = moving_average([10, 20, 30, 40, 50], 2)\nexpected = [10.0, 15.0, 25.0, 35.0, 45.0]\nfor i in range(len(result)):\n    assert abs(result[i] - expected[i]) < 0.001, f\"Expected {expected[i]} at position {i}, got {result[i]}\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test with window size 4",
+          "code": "result = moving_average([5, 10, 15, 20, 25, 30], 4)\nexpected = [5.0, 7.5, 10.0, 12.5, 17.5, 22.5]\nfor i in range(len(result)):\n    assert abs(result[i] - expected[i]) < 0.001, f\"Expected {expected[i]} at position {i}, got {result[i]}\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test with window size 1",
+          "code": "result = moving_average([5, 10, 15], 1)\nassert result == [5.0, 10.0, 15.0], \"With window size 1, should return the original list as floats\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test with window size larger than list",
+          "code": "result = moving_average([1, 2, 3], 5)\nexpected = [1.0, 1.5, 2.0]\nfor i in range(len(result)):\n    assert abs(result[i] - expected[i]) < 0.001, f\"Expected {expected[i]} at position {i}, got {result[i]}\"",
+          "expected_output": ""
+        }
+      ],
+      "expected_output": "[1.0, 1.5, 2.0, 3.0, 4.0]\n[10.0, 15.0, 25.0, 35.0, 45.0]\n[5.0, 7.5, 10.0, 12.5, 17.5, 22.5]\n",
+      "solution": "def moving_average(numbers, window_size):\n    result = []\n    \n    for i in range(len(numbers)):\n        # Calculate the start of the window (don't go below 0)\n        start = max(0, i - window_size + 1)\n        \n        # Get the current window\n        window = numbers[start:i+1]\n        \n        # Calculate the average of the window\n        avg = sum(window) / len(window)\n        \n        # Add to results\n        result.append(avg)\n    \n    return result\n\n# Alternative solution that's more efficient for large lists\n# def moving_average(numbers, window_size):\n#     result = []\n#     window_sum = 0\n#     count = 0\n#     \n#     for i, num in enumerate(numbers):\n#         window_sum += num\n#         count += 1\n#         \n#         # If we have more than window_size elements, remove the oldest\n#         if i >= window_size:\n#             window_sum -= numbers[i - window_size]\n#             count = window_size\n#         \n#         result.append(window_sum / count)\n#     \n#     return result\n\n# Test cases\nprint(moving_average([1, 2, 3, 4, 5], 3))  # Should return [1.0, 1.5, 2.0, 3.0, 4.0]\nprint(moving_average([10, 20, 30, 40, 50], 2))  # Should return [10.0, 15.0, 25.0, 35.0, 45.0]\nprint(moving_average([5, 10, 15, 20, 25, 30], 4))  # Should return [5.0, 7.5, 10.0, 12.5, 17.5, 22.5]"
+    }
+  ],
+  "next_lesson": "dictionaries"
+}

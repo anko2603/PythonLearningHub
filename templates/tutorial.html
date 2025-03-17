@@ -1,0 +1,143 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{ tutorial.title }} - Python Tutorial{% endblock %}
+
+{% block content %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{ url_for('tutorials', level=tutorial.level) }}">{{ tutorial.level|capitalize }} Tutorials</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ tutorial.title }}</li>
+    </ol>
+</nav>
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="mb-3">{{ tutorial.title }}</h1>
+        <div class="mb-3">
+            <span class="badge bg-{{ tutorial.level == 'beginner' and 'success' or (tutorial.level == 'intermediate' and 'warning' or 'danger') }}">
+                {{ tutorial.level|capitalize }}
+            </span>
+            <span class="ms-2 text-muted"><i class="far fa-clock me-1"></i>{{ tutorial.reading_time }} min read</span>
+        </div>
+        
+        <div class="progress mb-4">
+            <div class="progress-bar" role="progressbar" style="width: {{ tutorial.progress|default(0) }}%;" 
+                 aria-valuenow="{{ tutorial.progress|default(0) }}" aria-valuemin="0" aria-valuemax="100">
+                {{ tutorial.progress|default(0) }}%
+            </div>
+        </div>
+        
+        <div class="alert alert-info">
+            <strong><i class="fas fa-info-circle me-2"></i>Learning Objective:</strong> {{ tutorial.objective }}
+        </div>
+        
+        <div class="content-section">
+            {{ tutorial.content }}
+        </div>
+        
+        {% if tutorial.examples and tutorial.examples|length > 0 %}
+        <div class="card my-4">
+            <div class="card-header">
+                <h4 class="mb-0"><i class="fas fa-code me-2"></i>Examples</h4>
+            </div>
+            <div class="card-body">
+                {% for example in tutorial.examples %}
+                <div class="example-section mb-3">
+                    <h5>{{ example.title }}</h5>
+                    <p>{{ example.description }}</p>
+                    <pre><code class="language-python">{{ example.code }}</code></pre>
+                    {% if example.output %}
+                    <div class="mt-2">
+                        <strong>Output:</strong>
+                        <pre>{{ example.output }}</pre>
+                    </div>
+                    {% endif %}
+                </div>
+                {% if not loop.last %}<hr>{% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        
+        <div class="card my-4">
+            <div class="card-header">
+                <h4 class="mb-0"><i class="fas fa-laptop-code me-2"></i>Try it yourself</h4>
+            </div>
+            <div class="card-body">
+                <p>Experiment with the concepts you've learned in this interactive editor:</p>
+                
+                <textarea id="code-editor" class="form-control">{{ tutorial.starter_code }}</textarea>
+                
+                <div class="d-flex justify-content-between mt-3">
+                    <button id="run-code" class="btn btn-primary">
+                        <i class="fas fa-play me-2"></i>Run Code
+                    </button>
+                    <div class="loader"></div>
+                </div>
+                
+                <div id="result-message" class="mt-3" style="display: none;"></div>
+                
+                <div class="mt-3">
+                    <h5>Output:</h5>
+                    <div id="code-output" class="p-3 bg-dark rounded">
+                        <em>Run your code to see the output here</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="my-4">
+            <h4>Key Takeaways</h4>
+            <ul class="list-group">
+                {% for point in tutorial.key_points %}
+                <li class="list-group-item bg-transparent">
+                    <i class="fas fa-check-circle text-success me-2"></i>{{ point }}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        
+        {% if tutorial.further_reading and tutorial.further_reading|length > 0 %}
+        <div class="my-4">
+            <h4>Further Reading</h4>
+            <ul class="list-group">
+                {% for resource in tutorial.further_reading %}
+                <li class="list-group-item bg-transparent">
+                    <i class="fas fa-external-link-alt me-2"></i>
+                    <a href="{{ resource.url }}" target="_blank">{{ resource.title }}</a>
+                    {% if resource.description %}
+                    <p class="mb-0 mt-1 text-muted">{{ resource.description }}</p>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        
+        <div class="d-flex justify-content-between mt-5">
+            {% if prev_id %}
+            <a href="{{ url_for('tutorial', tutorial_id=prev_id) }}" class="btn btn-outline-primary">
+                <i class="fas fa-arrow-left me-2"></i>Previous Tutorial
+            </a>
+            {% else %}
+            <div></div>
+            {% endif %}
+            
+            {% if next_id %}
+            <a href="{{ url_for('tutorial', tutorial_id=next_id) }}" class="btn btn-primary">
+                Next Tutorial<i class="fas fa-arrow-right ms-2"></i>
+            </a>
+            {% else %}
+            <a href="{{ url_for('tutorials') }}" class="btn btn-primary">
+                Back to All Tutorials<i class="fas fa-list ms-2"></i>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/editor.js') }}"></script>
+{% endblock %}

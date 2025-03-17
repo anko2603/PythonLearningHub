@@ -1,0 +1,94 @@
+{
+  "id": "variables",
+  "title": "Variables and Data Types",
+  "description": "Learn how to store and manipulate data using variables in Python.",
+  "order": 1,
+  "duration": "25 minutes",
+  "overview": "Variables are fundamental building blocks in programming that allow you to store and manipulate data. In this lesson, you'll learn how to create variables, assign values to them, and understand different data types in Python.",
+  "tutorial": "<h3>What are Variables?</h3><p>Variables are named containers that store data values. Think of them as labeled boxes where you can put different types of information and retrieve them later by referring to their name.</p><h3>Creating Variables in Python</h3><p>Creating a variable in Python is simple – you just need to assign a value to a name using the equals (=) sign. Python is dynamically typed, which means you don't need to specify the data type – Python will figure that out for you based on the value.</p><pre><code class=\"language-python\">name = \"John\"  # A string variable\nage = 25      # An integer variable\nheight = 5.9  # A floating-point variable</code></pre><h3>Python Data Types</h3><p>Python has several built-in data types that you'll use frequently:</p><ul><li><strong>Strings</strong>: Text enclosed in quotes (single or double)</li><li><strong>Integers</strong>: Whole numbers without a decimal point</li><li><strong>Floats</strong>: Numbers with a decimal point</li><li><strong>Booleans</strong>: True or False values</li><li><strong>Lists</strong>: Ordered collections of items</li><li><strong>Dictionaries</strong>: Key-value pairs</li><li><strong>Tuples</strong>: Immutable ordered collections</li><li><strong>Sets</strong>: Unordered collections of unique items</li></ul><h3>Variable Naming Rules</h3><p>When naming variables in Python, follow these rules:</p><ul><li>Names can contain letters, numbers, and underscores</li><li>Names cannot start with a number</li><li>Names are case-sensitive (name, Name, and NAME are three different variables)</li><li>Names cannot be Python keywords (like if, for, while, etc.)</li></ul><h3>Type Conversion</h3><p>Sometimes you need to convert between different data types. Python provides built-in functions for this:</p><pre><code class=\"language-python\">x = 10\ny = \"20\"\n\n# Convert integer to string\nstr_x = str(x)    # Results in \"10\"\n\n# Convert string to integer\nint_y = int(y)    # Results in 20\n\n# Convert to float\nfloat_x = float(x)  # Results in 10.0</code></pre>",
+  "examples": [
+    {
+      "title": "Basic Variable Usage",
+      "description": "Creating and using variables with different data types.",
+      "code": "# Creating variables\nname = \"Alice\"\nage = 30\nis_student = False\ngpa = 3.7\n\n# Printing variables\nprint(\"Name:\", name)\nprint(\"Age:\", age)\nprint(\"Is student?\", is_student)\nprint(\"GPA:\", gpa)\n\n# You can also check the type of a variable\nprint(\"\\nData types:\")\nprint(\"Type of name:\", type(name))\nprint(\"Type of age:\", type(age))\nprint(\"Type of is_student:\", type(is_student))\nprint(\"Type of gpa:\", type(gpa))",
+      "explanation": "This example shows how to create variables with different data types (string, integer, boolean, and float) and print their values. The type() function is used to check the data type of each variable."
+    },
+    {
+      "title": "Variable Reassignment",
+      "description": "Variables can be updated with new values at any time.",
+      "code": "# Initial assignment\nscore = 85\nprint(\"Initial score:\", score)\n\n# Update the value\nscore = 92\nprint(\"Updated score:\", score)\n\n# Change the data type\nscore = \"A\"\nprint(\"Final score:\", score)\nprint(\"Type of score:\", type(score))",
+      "explanation": "This example demonstrates that variables in Python can be reassigned new values at any time. You can even change the data type of a variable – first, 'score' is an integer, then it becomes a string."
+    },
+    {
+      "title": "Multiple Assignment",
+      "description": "Assign values to multiple variables in a single line.",
+      "code": "# Assign the same value to multiple variables\nx = y = z = 0\nprint(\"x =\", x, \"y =\", y, \"z =\", z)\n\n# Assign different values to multiple variables\na, b, c = 5, \"Hello\", True\nprint(\"a =\", a, \"b =\", b, \"c =\", c)\n\n# Swap values using multiple assignment\nm = 10\nn = 20\nprint(\"Before swap: m =\", m, \"n =\", n)\nm, n = n, m\nprint(\"After swap: m =\", m, \"n =\", n)",
+      "explanation": "Python allows you to assign values to multiple variables in a single line. You can assign the same value to multiple variables, assign different values to different variables, and even swap variable values easily using this syntax."
+    }
+  ],
+  "practice_code": "# Practice with variables and data types\n\n# Create variables with different data types\nname = \"Python Learner\"\nage = 25\nis_beginner = True\naverage_score = 92.5\n\n# Print the variables\nprint(\"Name:\", name)\nprint(\"Age:\", age)\nprint(\"Is beginner?\", is_beginner)\nprint(\"Average score:\", average_score)\n\n# Try converting between types\nage_as_string = str(age)\nprint(\"Age as string:\", age_as_string)\n\n# Calculate and store a new value\ntotal_score = average_score * 10\nprint(\"Total score:\", total_score)\n\n# Try adding more variables and operations below\n",
+  "quiz": [
+    {
+      "question": "Which of the following is NOT a valid variable name in Python?",
+      "options": [
+        {"text": "my_variable", "correct": false},
+        {"text": "_hidden", "correct": false},
+        {"text": "2start", "correct": true},
+        {"text": "camelCase", "correct": false}
+      ]
+    },
+    {
+      "question": "What is the data type of the variable x after running this code: x = 5.0",
+      "options": [
+        {"text": "int", "correct": false},
+        {"text": "float", "correct": true},
+        {"text": "str", "correct": false},
+        {"text": "bool", "correct": false}
+      ]
+    },
+    {
+      "question": "Which function is used to check the data type of a variable in Python?",
+      "options": [
+        {"text": "datatype()", "correct": false},
+        {"text": "typeof()", "correct": false},
+        {"text": "type()", "correct": true},
+        {"text": "checktype()", "correct": false}
+      ]
+    }
+  ],
+  "problems": [
+    {
+      "id": "variable_swap",
+      "title": "Variable Swap",
+      "description": "Write a program that swaps the values of two variables a and b without using a temporary variable.",
+      "difficulty": "Easy",
+      "starter_code": "# Initial values\na = 5\nb = 10\n\n# Your code to swap values without using a temporary variable\n# ...\n\n# Print results\nprint(\"After swap: a =\", a, \"b =\", b)",
+      "tests": [
+        {
+          "description": "Check if values are swapped correctly",
+          "code": "assert a == 10 and b == 5, \"Values were not swapped correctly\"",
+          "expected_output": ""
+        }
+      ],
+      "expected_output": "After swap: a = 10 b = 5\n",
+      "solution": "# Initial values\na = 5\nb = 10\n\n# Swap values using addition and subtraction\na = a + b  # a = 15\nb = a - b  # b = 5\na = a - b  # a = 10\n\n# Alternative solution using multiple assignment\n# a, b = b, a\n\n# Print results\nprint(\"After swap: a =\", a, \"b =\", b)"
+    },
+    {
+      "id": "temperature_converter",
+      "title": "Temperature Converter",
+      "description": "Write a program that converts a temperature from Fahrenheit to Celsius. The formula is: C = (F - 32) * 5/9",
+      "difficulty": "Easy",
+      "starter_code": "# Temperature in Fahrenheit\nfahrenheit = 98.6\n\n# Convert to Celsius\n# ...\n\n# Print the result\nprint(f\"{fahrenheit}°F is {celsius:.2f}°C\")",
+      "tests": [
+        {
+          "description": "Check if conversion is correct",
+          "code": "assert abs(celsius - 37.0) < 0.1, \"Conversion is incorrect\"",
+          "expected_output": ""
+        }
+      ],
+      "expected_output": "98.6°F is 37.00°C\n",
+      "solution": "# Temperature in Fahrenheit\nfahrenheit = 98.6\n\n# Convert to Celsius\ncelsius = (fahrenheit - 32) * 5/9\n\n# Print the result\nprint(f\"{fahrenheit}°F is {celsius:.2f}°C\")"
+    }
+  ],
+  "next_lesson": "data_types"
+}

@@ -1,0 +1,156 @@
+{% extends 'layout.html' %}
+
+{% block title %}About - Python Learning Platform{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="mb-4">About This Platform</h1>
+        
+        <div class="card mb-5">
+            <div class="card-body">
+                <h2 class="mb-3">Learn Python from Beginner to Advanced</h2>
+                <p class="lead">
+                    Welcome to our comprehensive Python learning platform designed to take you from a complete beginner to an advanced Python programmer through interactive tutorials, practice problems, and quizzes.
+                </p>
+                
+                <p>
+                    Our platform is built with a focus on practical, hands-on learning. We believe that the best way to learn programming is by doing, which is why every lesson includes interactive examples and coding exercises that let you apply what you've learned immediately.
+                </p>
+                
+                <h3 class="mt-4 mb-3">What We Offer</h3>
+                <div class="row row-cols-1 row-cols-md-3 g-4 mb-4">
+                    <div class="col">
+                        <div class="card h-100 bg-dark bg-opacity-25">
+                            <div class="card-body text-center">
+                                <i class="fas fa-book fs-1 text-primary mb-3"></i>
+                                <h4 class="card-title">Comprehensive Tutorials</h4>
+                                <p class="card-text">
+                                    Step-by-step lessons covering all aspects of Python programming, from basic syntax to advanced concepts.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100 bg-dark bg-opacity-25">
+                            <div class="card-body text-center">
+                                <i class="fas fa-code fs-1 text-primary mb-3"></i>
+                                <h4 class="card-title">Practice Problems</h4>
+                                <p class="card-text">
+                                    Challenging coding problems that test your understanding and improve your problem-solving skills.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100 bg-dark bg-opacity-25">
+                            <div class="card-body text-center">
+                                <i class="fas fa-question-circle fs-1 text-primary mb-3"></i>
+                                <h4 class="card-title">Interactive Quizzes</h4>
+                                <p class="card-text">
+                                    Test your knowledge with quizzes covering various Python concepts and techniques.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 class="mt-4 mb-3">Our Learning Path</h3>
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <div class="card mb-3">
+                            <div class="card-header bg-success text-white">
+                                <h5 class="mb-0"><i class="fas fa-baby me-2"></i>Beginner Level</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item bg-transparent">Python Basics and Syntax</li>
+                                    <li class="list-group-item bg-transparent">Data Types and Variables</li>
+                                    <li class="list-group-item bg-transparent">Control Flow (if-else, loops)</li>
+                                    <li class="list-group-item bg-transparent">Functions and Basic Input/Output</li>
+                                    <li class="list-group-item bg-transparent">Lists, Dictionaries, and Sets</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="card mb-3">
+                            <div class="card-header bg-warning">
+                                <h5 class="mb-0"><i class="fas fa-user me-2"></i>Intermediate Level</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item bg-transparent">Object-Oriented Programming</li>
+                                    <li class="list-group-item bg-transparent">Exception Handling</li>
+                                    <li class="list-group-item bg-transparent">File I/O and Data Processing</li>
+                                    <li class="list-group-item bg-transparent">Modules and Packages</li>
+                                    <li class="list-group-item bg-transparent">Regular Expressions</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="card mb-3">
+                            <div class="card-header bg-danger text-white">
+                                <h5 class="mb-0"><i class="fas fa-dragon me-2"></i>Advanced Level</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item bg-transparent">Decorators and Generators</li>
+                                    <li class="list-group-item bg-transparent">Concurrency and Parallelism</li>
+                                    <li class="list-group-item bg-transparent">Advanced Data Structures</li>
+                                    <li class="list-group-item bg-transparent">Design Patterns</li>
+                                    <li class="list-group-item bg-transparent">Testing and Debugging</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 class="mt-4 mb-3">How to Use This Platform</h3>
+                <ol class="list-group list-group-numbered mb-4">
+                    <li class="list-group-item bg-transparent d-flex">
+                        <div>
+                            <strong>Start with Your Level</strong>
+                            <p class="mb-0">Choose the level that matches your current knowledge - beginner, intermediate, or advanced.</p>
+                        </div>
+                    </li>
+                    <li class="list-group-item bg-transparent d-flex">
+                        <div>
+                            <strong>Follow the Tutorials</strong>
+                            <p class="mb-0">Read through the tutorial content and try out the examples in the interactive code editor.</p>
+                        </div>
+                    </li>
+                    <li class="list-group-item bg-transparent d-flex">
+                        <div>
+                            <strong>Solve Practice Problems</strong>
+                            <p class="mb-0">Reinforce your learning by solving coding problems of increasing difficulty.</p>
+                        </div>
+                    </li>
+                    <li class="list-group-item bg-transparent d-flex">
+                        <div>
+                            <strong>Test Your Knowledge</strong>
+                            <p class="mb-0">Take quizzes to check your understanding of Python concepts.</p>
+                        </div>
+                    </li>
+                    <li class="list-group-item bg-transparent d-flex">
+                        <div>
+                            <strong>Progress to Higher Levels</strong>
+                            <p class="mb-0">Once you're comfortable with one level, move on to the next to continue your learning journey.</p>
+                        </div>
+                    </li>
+                </ol>
+                
+                <div class="text-center mt-5">
+                    <h3 class="mb-4">Ready to Start Learning?</h3>
+                    <a href="{{ url_for('tutorials', level='beginner') }}" class="btn btn-primary btn-lg">
+                        <i class="fas fa-graduation-cap me-2"></i>Begin Your Python Journey
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

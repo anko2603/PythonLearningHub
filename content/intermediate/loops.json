@@ -1,0 +1,179 @@
+{
+  "id": "loops",
+  "title": "Loops and Iterations",
+  "description": "Learn how to repeat actions efficiently using loops in Python.",
+  "order": 1,
+  "duration": "35 minutes",
+  "overview": "Loops are a fundamental programming concept that allow you to execute a block of code repeatedly. Python provides different types of loops, each with their own use cases and advantages. In this lesson, you'll learn about for loops, while loops, and how to control loop execution with break, continue, and else clauses.",
+  "tutorial": "<h3>Introduction to Loops</h3><p>Loops allow us to execute a block of code multiple times. This is particularly useful when you need to perform repetitive tasks like processing each item in a collection, repeating an action until a condition is met, or iterating a specific number of times.</p><p>Python has two main types of loops:</p><ul><li><strong>for loops</strong>: Used for iterating over a sequence (like a list, tuple, string, or range)</li><li><strong>while loops</strong>: Used for repeating an action until a condition changes to False</li></ul><h3>For Loops</h3><p>The for loop in Python is used to iterate over a sequence (list, tuple, string) or other iterable objects.</p><pre><code class=\"language-python\"># Basic for loop syntax\nfor item in sequence:\n    # Code to execute for each item</code></pre><p>Examples of for loops:</p><pre><code class=\"language-python\"># Iterating over a list\nfruits = ['apple', 'banana', 'cherry']\nfor fruit in fruits:\n    print(fruit)\n\n# Iterating over a string\nfor char in \"Python\":\n    print(char)\n    \n# Iterating over a range of numbers\nfor i in range(5):  # 0, 1, 2, 3, 4\n    print(i)</code></pre><p>The <code>range()</code> function generates a sequence of numbers. It can take up to three arguments:</p><ul><li><code>range(stop)</code>: Generates numbers from 0 to stop-1</li><li><code>range(start, stop)</code>: Generates numbers from start to stop-1</li><li><code>range(start, stop, step)</code>: Generates numbers from start to stop-1 with the given step</li></ul><pre><code class=\"language-python\"># Different ways to use range()\nfor i in range(5):  # 0, 1, 2, 3, 4\n    print(i)\n    \nfor i in range(2, 6):  # 2, 3, 4, 5\n    print(i)\n    \nfor i in range(1, 10, 2):  # 1, 3, 5, 7, 9\n    print(i)</code></pre><h3>While Loops</h3><p>A while loop repeats as long as a certain condition is true:</p><pre><code class=\"language-python\"># Basic while loop syntax\nwhile condition:\n    # Code to execute while condition is True</code></pre><p>For example:</p><pre><code class=\"language-python\"># Counting from 1 to 5\ncount = 1\nwhile count <= 5:\n    print(count)\n    count += 1  # Increment count\n    \n# Reading input until a specific value\nuser_input = ''\nwhile user_input.lower() != 'quit':\n    user_input = input(\"Enter something (or 'quit' to exit): \")</code></pre><p><strong>Warning:</strong> Make sure your while loop's condition will eventually become False, otherwise, you'll create an infinite loop that never terminates.</p><h3>Loop Control Statements</h3><p>Python provides several statements to control the flow of loops:</p><ul><li><strong>break</strong>: Exits the loop completely</li><li><strong>continue</strong>: Skips the current iteration and moves to the next one</li><li><strong>else</strong>: Executed after the loop completes normally (not when exited with break)</li></ul><p>Examples:</p><pre><code class=\"language-python\"># Using break to exit a loop early\nfor i in range(10):\n    if i == 5:\n        break  # Exit the loop when i is 5\n    print(i)  # Prints 0, 1, 2, 3, 4\n\n# Using continue to skip some iterations\nfor i in range(10):\n    if i % 2 == 0:  # If i is even\n        continue  # Skip the rest of this iteration\n    print(i)  # Prints 1, 3, 5, 7, 9\n\n# Using else with a loop\nfor i in range(5):\n    print(i)\nelse:\n    print(\"Loop completed normally\")\n    \n# else won't execute if the loop is exited with break\nfor i in range(5):\n    if i == 3:\n        break\n    print(i)\nelse:\n    print(\"This won't be printed because the loop was exited with break\")</code></pre><h3>Nested Loops</h3><p>You can place one loop inside another. This is called a nested loop.</p><pre><code class=\"language-python\"># Nested loops example\nfor i in range(3):  # Outer loop\n    for j in range(2):  # Inner loop\n        print(f\"({i}, {j})\")</code></pre><p>This will print pairs of (0,0), (0,1), (1,0), (1,1), (2,0), (2,1).</p><h3>Loop Patterns</h3><p>Here are some common loop patterns you'll encounter:</p><h4>1. Enumerating a List</h4><pre><code class=\"language-python\">fruits = ['apple', 'banana', 'cherry']\nfor index, fruit in enumerate(fruits):\n    print(f\"{index}: {fruit}\")</code></pre><h4>2. Looping Through Multiple Lists Simultaneously</h4><pre><code class=\"language-python\">names = ['Alice', 'Bob', 'Charlie']\nages = [25, 30, 35]\nfor name, age in zip(names, ages):\n    print(f\"{name} is {age} years old\")</code></pre><h4>3. Looping Through Dictionaries</h4><pre><code class=\"language-python\">person = {'name': 'Alice', 'age': 25, 'country': 'USA'}\n\n# Looping through keys\nfor key in person:\n    print(key)\n    \n# Looping through values\nfor value in person.values():\n    print(value)\n    \n# Looping through key-value pairs\nfor key, value in person.items():\n    print(f\"{key}: {value}\")</code></pre><h4>4. List Comprehensions</h4><p>List comprehensions provide a concise way to create lists based on existing sequences:</p><pre><code class=\"language-python\"># Creating a list of squares\nsquares = [x**2 for x in range(1, 6)]\nprint(squares)  # [1, 4, 9, 16, 25]\n\n# With a condition\neven_squares = [x**2 for x in range(1, 11) if x % 2 == 0]\nprint(even_squares)  # [4, 16, 36, 64, 100]</code></pre>",
+  "examples": [
+    {
+      "title": "Basic For Loops",
+      "description": "Examples of common for loop patterns in Python.",
+      "code": "# 1. Looping through a list\nfruits = ['apple', 'banana', 'orange', 'grape']\nprint(\"Fruits in my basket:\")\nfor fruit in fruits:\n    print(f\"- {fruit}\")\n\n# 2. Looping with range()\nprint(\"\\nCounting from 1 to 5:\")\nfor i in range(1, 6):\n    print(i)\n\n# 3. Using range() with step\nprint(\"\\nEven numbers from 2 to 10:\")\nfor i in range(2, 11, 2):\n    print(i)\n\n# 4. Looping through a string\nprint(\"\\nSpelling Python:\")\nfor char in \"Python\":\n    print(char)\n\n# 5. Using enumerate() to get index and value\nprint(\"\\nFruits with indices:\")\nfor index, fruit in enumerate(fruits):\n    print(f\"{index}: {fruit}\")\n\n# 6. Custom starting index with enumerate\nprint(\"\\nFruits numbered from 1:\")\nfor index, fruit in enumerate(fruits, start=1):\n    print(f\"{index}: {fruit}\")",
+      "explanation": "This example demonstrates different ways to use for loops in Python. It shows looping through a list, using range() to generate sequences of numbers, iterating through each character in a string, and using enumerate() to get both the index and value of items in a sequence. The enumerate() function can also start counting from a custom index using the 'start' parameter."
+    },
+    {
+      "title": "While Loops",
+      "description": "Using while loops for condition-based iteration.",
+      "code": "# 1. Basic while loop with a counter\nprint(\"Counting down:\")\ncount = 5\nwhile count > 0:\n    print(count)\n    count -= 1\nprint(\"Blast off!\")\n\n# 2. Using a while loop with user input (simulated here)\npassword = \"secret\"\nattempts = 0\nmax_attempts = 3\nsuccess = False\n\nprint(\"\\nPassword validation example:\")\nwhile attempts < max_attempts:\n    # In a real program, you would use input() here\n    # user_input = input(\"Enter password: \")\n    \n    # For this example, we'll simulate different inputs\n    if attempts == 0:\n        user_input = \"wrong\"\n    elif attempts == 1:\n        user_input = \"incorrect\"\n    else:\n        user_input = \"secret\"\n        \n    print(f\"Attempt {attempts + 1}: User entered '{user_input}'\")\n    \n    if user_input == password:\n        success = True\n        print(\"Password accepted!\")\n        break\n    else:\n        print(\"Incorrect password, try again.\")\n        attempts += 1\n\nif not success:\n    print(\"Maximum attempts reached. Account locked.\")\n\n# 3. Using a flag variable to control the loop\nprint(\"\\nFlag-controlled while loop:\")\nkeep_running = True\ncounter = 0\n\nwhile keep_running:\n    print(f\"Iteration {counter}\")\n    counter += 1\n    \n    if counter >= 5:\n        keep_running = False  # This will terminate the loop\n        \nprint(\"Loop terminated.\")",
+      "explanation": "This example shows three common ways to use while loops. The first uses a simple counter that decrements with each iteration. The second demonstrates a password validation scenario with a maximum number of attempts, illustrating how while loops are useful when you don't know exactly how many iterations you need. The third example uses a flag variable to control when the loop should terminate, which is useful when you have complex conditions for ending the loop."
+    },
+    {
+      "title": "Loop Control Statements",
+      "description": "Using break, continue, and else with loops.",
+      "code": "# 1. Using break to exit a loop early\nprint(\"Example with break:\")\nfor i in range(1, 11):\n    if i == 6:\n        print(f\"Found {i}! Breaking the loop...\")\n        break\n    print(f\"Current number: {i}\")\n\n# 2. Using continue to skip specific iterations\nprint(\"\\nExample with continue:\")\nfor i in range(1, 6):\n    if i % 2 == 0:  # If i is even\n        print(f\"Skipping even number {i}...\")\n        continue\n    print(f\"Processing odd number: {i}\")\n\n# 3. Loop with an else clause (executed when loop completes normally)\nprint(\"\\nLoop with else (completing normally):\")\nfor i in range(1, 5):\n    print(f\"Processing item {i}\")\nelse:\n    print(\"All items processed successfully!\")\n\n# 4. Loop with else and break (else won't execute)\nprint(\"\\nLoop with else and break:\")\nfor i in range(1, 5):\n    print(f\"Processing item {i}\")\n    if i == 2:\n        print(\"Found a specific condition, breaking...\")\n        break\nelse:\n    print(\"This won't print because we used break\")",
+      "explanation": "This example demonstrates the loop control statements in Python. 'break' immediately exits the loop, which is useful when you find what you're looking for. 'continue' skips the current iteration and moves to the next one, useful for filtering out values. The 'else' clause in a loop executes only if the loop completes normally (not if it's exited with 'break'). This is useful for detecting whether a loop completed all iterations or was interrupted."
+    },
+    {
+      "title": "Advanced Loop Patterns",
+      "description": "Nested loops, dictionary iteration, and list comprehensions.",
+      "code": "# 1. Nested loops\nprint(\"Multiplication table (1-3):\")\nfor i in range(1, 4):  # Outer loop: 1, 2, 3\n    for j in range(1, 4):  # Inner loop: 1, 2, 3\n        product = i * j\n        print(f\"{i} × {j} = {product}\")\n    print(\"-\" * 15)  # Separator between rows\n\n# 2. Looping through dictionaries\nstudent = {\n    'name': 'Alice',\n    'age': 22,\n    'major': 'Computer Science',\n    'gpa': 3.9\n}\n\nprint(\"\\nDictionary keys:\")\nfor key in student:\n    print(key)\n\nprint(\"\\nDictionary values:\")\nfor value in student.values():\n    print(value)\n\nprint(\"\\nDictionary key-value pairs:\")\nfor key, value in student.items():\n    print(f\"{key}: {value}\")\n\n# 3. Looping through multiple lists with zip\nnames = ['Alice', 'Bob', 'Charlie']\ngrades = [85, 92, 78]\n\nprint(\"\\nStudent grades:\")\nfor name, grade in zip(names, grades):\n    print(f\"{name}: {grade}\")\n\n# 4. List comprehensions\nnumbers = [1, 2, 3, 4, 5]\n\n# Creating a new list with squared values\nsquares = [num**2 for num in numbers]\nprint(f\"\\nOriginal numbers: {numbers}\")\nprint(f\"Squared numbers: {squares}\")\n\n# Filtering with a condition in list comprehension\neven_squares = [num**2 for num in numbers if num % 2 == 0]\nprint(f\"Even squares only: {even_squares}\")\n\n# Combining transformations\nprocessed = [f\"{num}: {'even' if num % 2 == 0 else 'odd'}\" for num in numbers]\nprint(f\"Processed numbers: {processed}\")",
+      "explanation": "This example showcases more advanced loop patterns. Nested loops are demonstrated with a multiplication table, showing how the inner loop completes all iterations for each iteration of the outer loop. The dictionary iteration shows three ways to loop through dictionaries: by keys, values, or key-value pairs. The zip() function allows parallel iteration through multiple lists. Finally, list comprehensions provide a concise way to create new lists from existing ones, with options for filtering and transforming elements."
+    }
+  ],
+  "practice_code": "# Practice with different types of loops\n\n# 1. Basic for loop with a list\ncolors = ['red', 'green', 'blue', 'yellow']\nprint(\"List of colors:\")\nfor color in colors:\n    print(color)\n\n# 2. Using range() to create a loop\nprint(\"\\nNumbers from 1 to 5:\")\nfor i in range(1, 6):\n    print(i)\n\n# 3. Working with index and value using enumerate()\nprint(\"\\nColors with indices:\")\nfor index, color in enumerate(colors):\n    print(f\"Index {index}: {color}\")\n\n# 4. Basic while loop\nprint(\"\\nCountdown:\")\ncount = 5\nwhile count > 0:\n    print(count)\n    count -= 1\nprint(\"Blast off!\")\n\n# 5. Loop control with break and continue\nprint(\"\\nProcessing numbers with break and continue:\")\nfor i in range(1, 10):\n    if i % 2 == 0:  # Skip even numbers\n        continue\n    if i > 7:       # Stop when we reach 8\n        break\n    print(i)  # Will print 1, 3, 5, 7\n\n# 6. Nested loops\nprint(\"\\nCoordinate pairs:\")\nfor x in range(1, 4):\n    for y in range(1, 3):\n        print(f\"({x}, {y})\")\n\n# 7. List comprehension\nnumbers = list(range(1, 11))\nprint(f\"\\nOriginal numbers: {numbers}\")\n\n# Create a list of squares\nsquares = [num**2 for num in numbers]\nprint(f\"Squares: {squares}\")\n\n# Create a list with only even numbers\neven_numbers = [num for num in numbers if num % 2 == 0]\nprint(f\"Even numbers: {even_numbers}\")\n\n# Try your own loop examples below\n",
+  "quiz": [
+    {
+      "question": "What will be the output of the following code? for i in range(3, 8, 2): print(i)",
+      "options": [
+        {"text": "3, 4, 5, 6, 7", "correct": false},
+        {"text": "3, 5, 7", "correct": true},
+        {"text": "3, 6", "correct": false},
+        {"text": "3, 5, 7, 9", "correct": false}
+      ]
+    },
+    {
+      "question": "Which statement is used to skip the current iteration of a loop and continue with the next one?",
+      "options": [
+        {"text": "pass", "correct": false},
+        {"text": "skip", "correct": false},
+        {"text": "continue", "correct": true},
+        {"text": "next", "correct": false}
+      ]
+    },
+    {
+      "question": "In Python, the 'else' clause of a loop executes when:",
+      "options": [
+        {"text": "The loop condition becomes False", "correct": false},
+        {"text": "The loop has completed all iterations without encountering a break", "correct": true},
+        {"text": "The loop encounters a continue statement", "correct": false},
+        {"text": "A specific condition inside the loop becomes True", "correct": false}
+      ]
+    },
+    {
+      "question": "What is the correct way to iterate through a dictionary's keys and values together?",
+      "options": [
+        {"text": "for k, v in dict:", "correct": false},
+        {"text": "for k, v in dict.pairs():", "correct": false},
+        {"text": "for k, v in dict.items():", "correct": true},
+        {"text": "for k, v in dict.iteritems():", "correct": false}
+      ]
+    },
+    {
+      "question": "What will the following list comprehension produce? [x*2 for x in range(1, 5) if x % 2 == 0]",
+      "options": [
+        {"text": "[2, 4, 6, 8]", "correct": false},
+        {"text": "[2, 6]", "correct": false},
+        {"text": "[4, 8]", "correct": true},
+        {"text": "[2, 4]", "correct": false}
+      ]
+    }
+  ],
+  "problems": [
+    {
+      "id": "sum_of_even_numbers",
+      "title": "Sum of Even Numbers",
+      "description": "Write a function that calculates the sum of all even numbers from 1 to n (inclusive).",
+      "difficulty": "Easy",
+      "starter_code": "def sum_even_numbers(n):\n    # Your code here\n    pass\n\n# Test the function\nprint(sum_even_numbers(10))  # Should return 30 (2+4+6+8+10)\nprint(sum_even_numbers(15))  # Should return 56 (2+4+6+8+10+12+14)",
+      "tests": [
+        {
+          "description": "Test with n = 1",
+          "code": "assert sum_even_numbers(1) == 0, \"There are no even numbers from 1 to 1\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test with n = 2",
+          "code": "assert sum_even_numbers(2) == 2, \"The only even number from 1 to 2 is 2\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test with n = 10",
+          "code": "assert sum_even_numbers(10) == 30, \"The sum of even numbers from 1 to 10 should be 30\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test with n = 100",
+          "code": "assert sum_even_numbers(100) == 2550, \"The sum of even numbers from 1 to 100 should be 2550\"",
+          "expected_output": ""
+        }
+      ],
+      "expected_output": "30\n56\n",
+      "solution": "def sum_even_numbers(n):\n    # Method 1: Using a loop\n    total = 0\n    for i in range(2, n+1, 2):  # Start at 2, increment by 2\n        total += i\n    return total\n    \n    # Method 2: Using sum() and range()\n    # return sum(range(2, n+1, 2))\n    \n    # Method 3: Using sum() with list comprehension\n    # return sum([i for i in range(1, n+1) if i % 2 == 0])\n\n# Test the function\nprint(sum_even_numbers(10))  # Should return 30 (2+4+6+8+10)\nprint(sum_even_numbers(15))  # Should return 56 (2+4+6+8+10+12+14)"
+    },
+    {
+      "id": "fibonacci_sequence",
+      "title": "Fibonacci Sequence",
+      "description": "Write a function that returns the first n numbers of the Fibonacci sequence. The Fibonacci sequence starts with 0 and 1, and each subsequent number is the sum of the two preceding ones (0, 1, 1, 2, 3, 5, 8, ...).",
+      "difficulty": "Medium",
+      "starter_code": "def fibonacci_sequence(n):\n    # Your code here\n    pass\n\n# Test the function\nprint(fibonacci_sequence(1))  # Should return [0]\nprint(fibonacci_sequence(5))  # Should return [0, 1, 1, 2, 3]\nprint(fibonacci_sequence(10))  # Should return [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]",
+      "tests": [
+        {
+          "description": "Test with n = 1",
+          "code": "assert fibonacci_sequence(1) == [0], \"First number in Fibonacci sequence is 0\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test with n = 2",
+          "code": "assert fibonacci_sequence(2) == [0, 1], \"First two numbers in Fibonacci sequence are 0, 1\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test with n = 7",
+          "code": "assert fibonacci_sequence(7) == [0, 1, 1, 2, 3, 5, 8], \"First 7 numbers should be correct\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test with n = 0",
+          "code": "assert fibonacci_sequence(0) == [], \"For n=0, should return an empty list\"",
+          "expected_output": ""
+        }
+      ],
+      "expected_output": "[0]\n[0, 1, 1, 2, 3]\n[0, 1, 1, 2, 3, 5, 8, 13, 21, 34]\n",
+      "solution": "def fibonacci_sequence(n):\n    # Handle edge cases\n    if n <= 0:\n        return []\n    if n == 1:\n        return [0]\n    \n    # Initialize the sequence with the first two numbers\n    sequence = [0, 1]\n    \n    # Generate the rest of the sequence\n    while len(sequence) < n:\n        next_number = sequence[-1] + sequence[-2]  # Add the last two numbers\n        sequence.append(next_number)\n    \n    return sequence\n\n# Test the function\nprint(fibonacci_sequence(1))  # Should return [0]\nprint(fibonacci_sequence(5))  # Should return [0, 1, 1, 2, 3]\nprint(fibonacci_sequence(10))  # Should return [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]"
+    },
+    {
+      "id": "prime_numbers",
+      "title": "Prime Number Generator",
+      "description": "Write a function that returns a list of all prime numbers up to a given limit n. A prime number is a natural number greater than 1 that is not divisible by any positive integer other than 1 and itself.",
+      "difficulty": "Hard",
+      "starter_code": "def get_primes(n):\n    # Your code here\n    pass\n\n# Test the function\nprint(get_primes(20))  # Should return [2, 3, 5, 7, 11, 13, 17, 19]\nprint(get_primes(10))  # Should return [2, 3, 5, 7]",
+      "tests": [
+        {
+          "description": "Test with n = 2",
+          "code": "assert get_primes(2) == [2], \"Only prime up to 2 is 2 itself\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test with n = 10",
+          "code": "assert get_primes(10) == [2, 3, 5, 7], \"Primes up to 10 should be 2, 3, 5, 7\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test with n = 20",
+          "code": "assert get_primes(20) == [2, 3, 5, 7, 11, 13, 17, 19], \"Primes up to 20 should be correct\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test with n = 1",
+          "code": "assert get_primes(1) == [], \"There are no primes less than or equal to 1\"",
+          "expected_output": ""
+        }
+      ],
+      "expected_output": "[2, 3, 5, 7, 11, 13, 17, 19]\n[2, 3, 5, 7]\n",
+      "solution": "def get_primes(n):\n    # Handle edge cases\n    if n < 2:\n        return []\n    \n    # Method 1: Simple approach checking each number\n    primes = []\n    for num in range(2, n + 1):\n        is_prime = True\n        # Check if num is divisible by any number from 2 to sqrt(num)\n        for i in range(2, int(num**0.5) + 1):\n            if num % i == 0:\n                is_prime = False\n                break\n        if is_prime:\n            primes.append(num)\n    \n    return primes\n    \n    # Method 2: Using the Sieve of Eratosthenes for better efficiency\n    # sieve = [True] * (n + 1)\n    # sieve[0] = sieve[1] = False\n    # \n    # for i in range(2, int(n**0.5) + 1):\n    #     if sieve[i]:\n    #         for j in range(i*i, n + 1, i):\n    #             sieve[j] = False\n    # \n    # return [i for i in range(2, n + 1) if sieve[i]]\n\n# Test the function\nprint(get_primes(20))  # Should return [2, 3, 5, 7, 11, 13, 17, 19]\nprint(get_primes(10))  # Should return [2, 3, 5, 7]"
+    }
+  ],
+  "next_lesson": "functions"
+}

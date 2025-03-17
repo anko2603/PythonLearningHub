@@ -1,0 +1,133 @@
+/* Custom styles for Python learning platform */
+
+/* Editor styling */
+.CodeMirror {
+  height: auto;
+  min-height: 300px;
+  border-radius: 0.25rem;
+  border: 1px solid var(--bs-border-color);
+  font-family: 'Source Code Pro', monospace;
+  font-size: 14px;
+}
+
+.output-area {
+  min-height: 100px;
+  max-height: 300px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  font-family: 'Source Code Pro', monospace;
+  font-size: 14px;
+}
+
+/* Quiz styling */
+.quiz-option {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.quiz-option:hover:not(.disabled) {
+  background-color: var(--bs-light);
+}
+
+.quiz-option.correct {
+  background-color: var(--bs-success) !important;
+  color: white;
+}
+
+.quiz-option.incorrect {
+  background-color: var(--bs-danger) !important;
+  color: white;
+}
+
+.quiz-feedback {
+  display: none;
+}
+
+/* Content styling */
+.lesson-content h1,
+.lesson-content h2,
+.lesson-content h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.lesson-content p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.lesson-content code {
+  background-color: var(--bs-dark);
+  color: var(--bs-info);
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+}
+
+.lesson-content pre {
+  background-color: var(--bs-dark);
+  border-radius: 0.25rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  overflow-x: auto;
+}
+
+/* Navigation styling */
+.sidebar {
+  position: sticky;
+  top: 1rem;
+  height: calc(100vh - 2rem);
+  overflow-y: auto;
+}
+
+/* Progress indicators */
+.track-progress {
+  height: 5px;
+  border-radius: 2.5px;
+  background-color: var(--bs-gray-800);
+}
+
+.track-progress-bar {
+  height: 100%;
+  border-radius: 2.5px;
+  background-color: var(--bs-info);
+}
+
+/* Card hover effects */
+.track-card {
+  transition: transform 0.2s ease;
+}
+
+.track-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Custom badges */
+.badge-level {
+  font-size: 0.8rem;
+  padding: 0.35em 0.65em;
+}
+
+.badge-beginner {
+  background-color: var(--bs-success);
+}
+
+.badge-intermediate {
+  background-color: var(--bs-warning);
+}
+
+.badge-advanced {
+  background-color: var(--bs-danger);
+}
+
+/* Responsive adjustments */
+@media (max-width: 767.98px) {
+  .sidebar {
+    position: static;
+    height: auto;
+    margin-bottom: 1rem;
+  }
+  
+  .CodeMirror {
+    min-height: 200px;
+  }
+}

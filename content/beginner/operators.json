@@ -1,0 +1,142 @@
+{
+  "id": "operators",
+  "title": "Python Operators",
+  "description": "Learn about different types of operators in Python and how to use them.",
+  "order": 3,
+  "duration": "25 minutes",
+  "overview": "Operators are special symbols that perform operations on variables and values. Python provides various types of operators including arithmetic, comparison, logical, assignment, bitwise, identity, and membership operators. In this lesson, you'll learn how to use these operators effectively in your Python programs.",
+  "tutorial": "<h3>Arithmetic Operators</h3><p>These operators perform common mathematical operations:</p><table class=\"table\"><thead><tr><th>Operator</th><th>Name</th><th>Example</th><th>Result</th></tr></thead><tbody><tr><td>+</td><td>Addition</td><td>5 + 3</td><td>8</td></tr><tr><td>-</td><td>Subtraction</td><td>5 - 3</td><td>2</td></tr><tr><td>*</td><td>Multiplication</td><td>5 * 3</td><td>15</td></tr><tr><td>/</td><td>Division</td><td>5 / 3</td><td>1.6666...</td></tr><tr><td>%</td><td>Modulus (Remainder)</td><td>5 % 3</td><td>2</td></tr><tr><td>**</td><td>Exponentiation (Power)</td><td>5 ** 3</td><td>125</td></tr><tr><td>//</td><td>Floor Division</td><td>5 // 3</td><td>1</td></tr></tbody></table><p>Floor division (//) always rounds down to the nearest integer, discarding any decimal part.</p><h3>Comparison Operators</h3><p>These operators compare two values and return a boolean result (True or False):</p><table class=\"table\"><thead><tr><th>Operator</th><th>Name</th><th>Example</th><th>Result</th></tr></thead><tbody><tr><td>==</td><td>Equal</td><td>5 == 3</td><td>False</td></tr><tr><td>!=</td><td>Not equal</td><td>5 != 3</td><td>True</td></tr><tr><td>></td><td>Greater than</td><td>5 > 3</td><td>True</td></tr><tr><td><</td><td>Less than</td><td>5 < 3</td><td>False</td></tr><tr><td>>=</td><td>Greater than or equal to</td><td>5 >= 5</td><td>True</td></tr><tr><td><=</td><td>Less than or equal to</td><td>5 <= 3</td><td>False</td></tr></tbody></table><h3>Logical Operators</h3><p>These operators are used to combine conditional statements:</p><table class=\"table\"><thead><tr><th>Operator</th><th>Name</th><th>Example</th><th>Description</th></tr></thead><tbody><tr><td>and</td><td>Logical AND</td><td>x > 5 and x < 10</td><td>True if both statements are true</td></tr><tr><td>or</td><td>Logical OR</td><td>x < 5 or x > 10</td><td>True if at least one statement is true</td></tr><tr><td>not</td><td>Logical NOT</td><td>not(x > 5)</td><td>True if the statement is false</td></tr></tbody></table><h3>Assignment Operators</h3><p>These operators assign values to variables:</p><table class=\"table\"><thead><tr><th>Operator</th><th>Example</th><th>Equivalent to</th></tr></thead><tbody><tr><td>=</td><td>x = 5</td><td>x = 5</td></tr><tr><td>+=</td><td>x += 5</td><td>x = x + 5</td></tr><tr><td>-=</td><td>x -= 5</td><td>x = x - 5</td></tr><tr><td>*=</td><td>x *= 5</td><td>x = x * 5</td></tr><tr><td>/=</td><td>x /= 5</td><td>x = x / 5</td></tr><tr><td>%=</td><td>x %= 5</td><td>x = x % 5</td></tr><tr><td>**=</td><td>x **= 5</td><td>x = x ** 5</td></tr><tr><td>//=</td><td>x //= 5</td><td>x = x // 5</td></tr></tbody></table><h3>Identity Operators</h3><p>These operators are used to compare the memory locations of two objects:</p><table class=\"table\"><thead><tr><th>Operator</th><th>Description</th><th>Example</th></tr></thead><tbody><tr><td>is</td><td>Returns True if both variables are the same object</td><td>x is y</td></tr><tr><td>is not</td><td>Returns True if both variables are not the same object</td><td>x is not y</td></tr></tbody></table><h3>Membership Operators</h3><p>These operators test if a sequence is present in an object:</p><table class=\"table\"><thead><tr><th>Operator</th><th>Description</th><th>Example</th></tr></thead><tbody><tr><td>in</td><td>Returns True if a sequence with the specified value is present in the object</td><td>x in y</td></tr><tr><td>not in</td><td>Returns True if a sequence with the specified value is not present in the object</td><td>x not in y</td></tr></tbody></table><h3>Operator Precedence</h3><p>Operator precedence determines the order in which operators are evaluated. Operations with higher precedence are performed before operations with lower precedence.</p><p>The general order (from highest to lowest precedence) is:</p><ol><li>Parentheses: ()</li><li>Exponentiation: **</li><li>Unary operators: +x, -x, ~x</li><li>Multiplication, Division, Floor Division, Modulus: *, /, //, %</li><li>Addition and Subtraction: +, -</li><li>Bitwise shifts: <<, >></li><li>Bitwise AND: &</li><li>Bitwise XOR: ^</li><li>Bitwise OR: |</li><li>Comparison operators: ==, !=, >, >=, <, <=</li><li>Identity operators: is, is not</li><li>Membership operators: in, not in</li><li>Logical operators: not, and, or</li></ol><p>When in doubt, use parentheses to ensure operations are performed in the desired order!</p>",
+  "examples": [
+    {
+      "title": "Arithmetic Operators",
+      "description": "Examples of arithmetic operations in Python.",
+      "code": "# Basic arithmetic operations\nx = 10\ny = 3\n\nprint(f\"x = {x}, y = {y}\")\nprint(f\"Addition: x + y = {x + y}\")\nprint(f\"Subtraction: x - y = {x - y}\")\nprint(f\"Multiplication: x * y = {x * y}\")\nprint(f\"Division: x / y = {x / y}\")\nprint(f\"Modulus (remainder): x % y = {x % y}\")\nprint(f\"Exponentiation: x ** y = {x ** y}\")\nprint(f\"Floor division: x // y = {x // y}\")\n\n# Combining operations\nresult = (x + y) * 2\nprint(f\"(x + y) * 2 = {result}\")\n\n# Working with different data types\na = 5\nb = 2.5\nprint(f\"\\na = {a} (integer), b = {b} (float)\")\nprint(f\"a + b = {a + b} (float)\")\n\n# String operations\nstring1 = \"Hello\"\nstring2 = \"World\"\nprint(f\"\\nstring1 = '{string1}', string2 = '{string2}'\")\nprint(f\"Concatenation: string1 + ' ' + string2 = '{string1 + ' ' + string2}'\")\nprint(f\"Repetition: string1 * 3 = '{string1 * 3}'\")",
+      "explanation": "This example demonstrates the use of all arithmetic operators in Python. It shows the operations on integers, mixing integers with floats, and also how some arithmetic operators work with strings (+ for concatenation and * for repetition)."
+    },
+    {
+      "title": "Comparison and Logical Operators",
+      "description": "Using comparison and logical operators for decision making.",
+      "code": "# Comparison operators\nx = 10\ny = 5\nz = 10\n\nprint(f\"x = {x}, y = {y}, z = {z}\")\nprint(f\"x == y: {x == y}\")  # Equal to\nprint(f\"x != y: {x != y}\")  # Not equal to\nprint(f\"x > y: {x > y}\")    # Greater than\nprint(f\"x < y: {x < y}\")    # Less than\nprint(f\"x >= z: {x >= z}\")  # Greater than or equal to\nprint(f\"x <= y: {x <= y}\")  # Less than or equal to\n\n# Logical operators\na = True\nb = False\n\nprint(f\"\\na = {a}, b = {b}\")\nprint(f\"a and b: {a and b}\")  # True if both are True\nprint(f\"a or b: {a or b}\")    # True if at least one is True\nprint(f\"not a: {not a}\")       # True if a is False\n\n# Combining comparison and logical operators\nage = 25\nincome = 50000\n\nprint(f\"\\nage = {age}, income = {income}\")\nprint(f\"Is person eligible for loan? {age > 18 and income >= 40000}\")\n\n# Short-circuit evaluation\nprint(f\"\\nShort-circuit examples:\")\nprint(f\"False and (1/0): {False and (1/0)}\")  # Won't raise division by zero\nprint(f\"True or (1/0): {True or (1/0)}\")      # Won't raise division by zero",
+      "explanation": "This example shows how comparison operators create boolean results, and how logical operators (and, or, not) combine these boolean values. It demonstrates real-world usage by checking eligibility based on multiple conditions. The last part shows short-circuit evaluation: when Python can determine the result without evaluating all expressions (e.g., in 'False and X', X is never evaluated)."
+    },
+    {
+      "title": "Assignment, Identity, and Membership Operators",
+      "description": "Examples of assignment shortcuts, identity comparison, and membership testing.",
+      "code": "# Assignment operators\nx = 10\nprint(f\"Initial x = {x}\")\n\nx += 5  # Same as: x = x + 5\nprint(f\"After x += 5: x = {x}\")\n\nx -= 3  # Same as: x = x - 3\nprint(f\"After x -= 3: x = {x}\")\n\nx *= 2  # Same as: x = x * 2\nprint(f\"After x *= 2: x = {x}\")\n\nx /= 4  # Same as: x = x / 4\nprint(f\"After x /= 4: x = {x}\")\n\nx = int(x)  # Convert back to integer for the next operations\nx %= 3  # Same as: x = x % 3\nprint(f\"After x %= 3: x = {x}\")\n\n# Identity operators\nlist1 = [1, 2, 3]\nlist2 = [1, 2, 3]\nlist3 = list1  # list3 references the same list as list1\n\nprint(f\"\\nlist1 = {list1}, list2 = {list2}, list3 = list3\")\nprint(f\"list1 == list2: {list1 == list2}\")  # Checks if values are equal\nprint(f\"list1 is list2: {list1 is list2}\")  # Checks if they're the same object\nprint(f\"list1 is list3: {list1 is list3}\")  # These are the same object\nprint(f\"list1 is not list2: {list1 is not list2}\")\n\n# Membership operators\nfruits = [\"apple\", \"banana\", \"cherry\"]\nprint(f\"\\nfruits = {fruits}\")\nprint(f\"'banana' in fruits: {'banana' in fruits}\")\nprint(f\"'orange' in fruits: {'orange' in fruits}\")\nprint(f\"'orange' not in fruits: {'orange' not in fruits}\")\n\n# Membership in strings\ntext = \"Hello, World!\"\nprint(f\"\\ntext = '{text}'\")\nprint(f\"'Hello' in text: {'Hello' in text}\")\nprint(f\"'Python' in text: {'Python' in text}\")",
+      "explanation": "This example demonstrates assignment operators, which provide shortcuts for updating variables. It also shows the difference between equality (==) and identity (is) operators: equality checks if values are the same, while identity checks if two variables refer to the same object in memory. Finally, it shows membership operators (in, not in) to test if elements exist within containers like lists or strings."
+    }
+  ],
+  "practice_code": "# Practice with different operators\n\n# Arithmetic operations\nnum1 = 15\nnum2 = 4\n\n# Calculate the following and print the results:\n# 1. Sum of num1 and num2\nsum_result = num1 + num2\nprint(f\"Sum: {sum_result}\")\n\n# 2. Difference between num1 and num2\ndiff_result = num1 - num2\nprint(f\"Difference: {diff_result}\")\n\n# 3. Product of num1 and num2\nproduct = num1 * num2\nprint(f\"Product: {product}\")\n\n# 4. Division of num1 by num2 (float result)\ndivision = num1 / num2\nprint(f\"Division: {division}\")\n\n# 5. Remainder when num1 is divided by num2\nremainder = num1 % num2\nprint(f\"Remainder: {remainder}\")\n\n# 6. Floor division of num1 by num2\nfloor_div = num1 // num2\nprint(f\"Floor division: {floor_div}\")\n\n# Comparison operators\nx = 10\ny = 20\n\n# Try the comparison operators and logical operators\nprint(f\"\\nx = {x}, y = {y}\")\nprint(f\"x < y: {x < y}\")\nprint(f\"x <= y: {x <= y}\")\nprint(f\"x > y: {x > y}\")\nprint(f\"x >= y: {x >= y}\")\nprint(f\"x == y: {x == y}\")\nprint(f\"x != y: {x != y}\")\n\n# Combining with logical operators\nz = 15\nprint(f\"\\nx = {x}, y = {y}, z = {z}\")\nprint(f\"x < z < y: {x < z < y}\")\nprint(f\"x < z and z < y: {x < z and z < y}\")\nprint(f\"x < z or z > y: {x < z or z > y}\")\n\n# Try more examples below - experiment with different operators\n",
+  "quiz": [
+    {
+      "question": "What is the result of 15 % 4?",
+      "options": [
+        {"text": "3", "correct": true},
+        {"text": "3.75", "correct": false},
+        {"text": "4", "correct": false},
+        {"text": "1", "correct": false}
+      ]
+    },
+    {
+      "question": "Which operator is used for floor division in Python?",
+      "options": [
+        {"text": "/", "correct": false},
+        {"text": "%", "correct": false},
+        {"text": "//", "correct": true},
+        {"text": "**", "correct": false}
+      ]
+    },
+    {
+      "question": "What is the result of True and False?",
+      "options": [
+        {"text": "True", "correct": false},
+        {"text": "False", "correct": true},
+        {"text": "None", "correct": false},
+        {"text": "Error", "correct": false}
+      ]
+    },
+    {
+      "question": "Which of the following is NOT a valid assignment operator in Python?",
+      "options": [
+        {"text": "+=", "correct": false},
+        {"text": "*=", "correct": false},
+        {"text": "**=", "correct": false},
+        {"text": "=+", "correct": true}
+      ]
+    },
+    {
+      "question": "What does the 'is' operator check for?",
+      "options": [
+        {"text": "If two values are equal", "correct": false},
+        {"text": "If two variables refer to the same object in memory", "correct": true},
+        {"text": "If a value exists in a list", "correct": false},
+        {"text": "If a variable has been defined", "correct": false}
+      ]
+    }
+  ],
+  "problems": [
+    {
+      "id": "celsius_to_fahrenheit",
+      "title": "Celsius to Fahrenheit Converter",
+      "description": "Write a function that converts a temperature from Celsius to Fahrenheit. The formula is: F = (C * 9/5) + 32",
+      "difficulty": "Easy",
+      "starter_code": "def celsius_to_fahrenheit(celsius):\n    # Your code here\n    pass\n\n# Test your function\ntemperatures = [0, 25, 100]\n\nfor temp in temperatures:\n    fahrenheit = celsius_to_fahrenheit(temp)\n    print(f\"{temp}°C = {fahrenheit}°F\")",
+      "tests": [
+        {
+          "description": "Test freezing point of water",
+          "code": "assert celsius_to_fahrenheit(0) == 32, \"0°C should be 32°F\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test room temperature",
+          "code": "assert abs(celsius_to_fahrenheit(25) - 77) < 0.01, \"25°C should be 77°F\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test boiling point of water",
+          "code": "assert celsius_to_fahrenheit(100) == 212, \"100°C should be 212°F\"",
+          "expected_output": ""
+        }
+      ],
+      "expected_output": "0°C = 32°F\n25°C = 77.0°F\n100°C = 212°F\n",
+      "solution": "def celsius_to_fahrenheit(celsius):\n    # Apply the conversion formula\n    fahrenheit = (celsius * 9/5) + 32\n    return fahrenheit\n\n# Test your function\ntemperatures = [0, 25, 100]\n\nfor temp in temperatures:\n    fahrenheit = celsius_to_fahrenheit(temp)\n    print(f\"{temp}°C = {fahrenheit}°F\")"
+    },
+    {
+      "id": "operator_calculator",
+      "title": "Simple Calculator",
+      "description": "Create a function that takes two numbers and an operator (+, -, *, /) as input and returns the result of the operation.",
+      "difficulty": "Medium",
+      "starter_code": "def calculator(num1, num2, operator):\n    # Your code here\n    pass\n\n# Test your function\nprint(calculator(10, 5, '+'))  # Should return 15\nprint(calculator(10, 5, '-'))  # Should return 5\nprint(calculator(10, 5, '*'))  # Should return 50\nprint(calculator(10, 5, '/'))  # Should return 2.0",
+      "tests": [
+        {
+          "description": "Test addition",
+          "code": "assert calculator(10, 5, '+') == 15, \"10 + 5 should be 15\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test subtraction",
+          "code": "assert calculator(10, 5, '-') == 5, \"10 - 5 should be 5\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test multiplication",
+          "code": "assert calculator(10, 5, '*') == 50, \"10 * 5 should be 50\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test division",
+          "code": "assert calculator(10, 5, '/') == 2.0, \"10 / 5 should be 2.0\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test invalid operator",
+          "code": "try:\n    calculator(10, 5, 'x')\n    assert False, \"Should raise a ValueError for invalid operator\"\nexcept ValueError:\n    pass",
+          "expected_output": ""
+        }
+      ],
+      "expected_output": "15\n5\n50\n2.0\n",
+      "solution": "def calculator(num1, num2, operator):\n    # Check the operator and perform the corresponding operation\n    if operator == '+':\n        return num1 + num2\n    elif operator == '-':\n        return num1 - num2\n    elif operator == '*':\n        return num1 * num2\n    elif operator == '/':\n        return num1 / num2\n    else:\n        raise ValueError(f\"Invalid operator: {operator}. Use '+', '-', '*', or '/'\")\n\n# Test your function\nprint(calculator(10, 5, '+'))  # Should return 15\nprint(calculator(10, 5, '-'))  # Should return 5\nprint(calculator(10, 5, '*'))  # Should return 50\nprint(calculator(10, 5, '/'))  # Should return 2.0"
+    }
+  ],
+  "next_lesson": "conditionals"
+}

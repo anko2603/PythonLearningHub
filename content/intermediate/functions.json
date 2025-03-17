@@ -1,0 +1,195 @@
+{
+  "id": "functions",
+  "title": "Functions in Python",
+  "description": "Learn how to organize code into reusable blocks using functions.",
+  "order": 2,
+  "duration": "35 minutes",
+  "overview": "Functions are one of the most important concepts in programming. They allow you to organize code into reusable blocks, improve code readability, and reduce duplication. In this lesson, you'll learn how to define and call functions, work with parameters and return values, and understand variable scope and advanced function features in Python.",
+  "tutorial": "<h3>Introduction to Functions</h3><p>A function is a block of organized, reusable code that performs a specific task. Functions help break our program into smaller, modular pieces, making it more organized and manageable.</p><h3>Defining Functions</h3><p>In Python, functions are defined using the <code>def</code> keyword, followed by the function name, a pair of parentheses <code>()</code>, and a colon <code>:</code>. The code block within the function is indented.</p><pre><code class=\"language-python\"># Basic function syntax\ndef function_name(parameters):\n    # Function body\n    # Code to be executed\n    return result  # Optional return statement</code></pre><p>For example, here's a simple function that greets a person:</p><pre><code class=\"language-python\">def greet(name):\n    \"\"\"This function greets the person passed in as a parameter.\"\"\"\n    print(f\"Hello, {name}!\")\n    \n# Call the function\ngreet(\"Alice\")</code></pre><p>The triple quotes <code>\"\"\"</code> are used to provide a documentation string (docstring) that explains what the function does.</p><h3>Parameters and Arguments</h3><p>Functions can take input values, called parameters. When you call a function and pass values, these values are called arguments.</p><pre><code class=\"language-python\">def add_numbers(a, b):\n    \"\"\"Add two numbers and return the result.\"\"\"\n    return a + b\n    \n# Call the function with arguments 5 and 3\nresult = add_numbers(5, 3)  # result = 8</code></pre><h4>Parameter Types</h4><p>Python supports several types of parameters:</p><ol><li><strong>Default Parameters</strong>: Allows you to specify a default value for a parameter.</li><li><strong>Keyword Arguments</strong>: Allows you to specify arguments by parameter name.</li><li><strong>Variable-Length Arguments</strong>: Allows a function to accept any number of arguments.</li></ol><h5>Default Parameters</h5><pre><code class=\"language-python\">def greet(name, greeting=\"Hello\"):\n    \"\"\"Greet a person with a custom or default greeting.\"\"\"\n    print(f\"{greeting}, {name}!\")\n    \n# Using the default greeting\ngreet(\"Alice\")  # Outputs: Hello, Alice!\n\n# Providing a custom greeting\ngreet(\"Bob\", \"Hi\")  # Outputs: Hi, Bob!</code></pre><h5>Keyword Arguments</h5><pre><code class=\"language-python\">def describe_person(name, age, job):\n    \"\"\"Print a description of a person.\"\"\"\n    print(f\"{name} is {age} years old and works as a {job}.\")\n    \n# Using keyword arguments (order doesn't matter)\ndescribe_person(age=30, job=\"developer\", name=\"Charlie\")</code></pre><h5>Variable-Length Arguments</h5><p>You can use <code>*args</code> to pass a variable number of non-keyword arguments and <code>**kwargs</code> to pass a variable number of keyword arguments.</p><pre><code class=\"language-python\"># *args example (tuple of positional arguments)\ndef add_all(*args):\n    \"\"\"Add any number of arguments together.\"\"\"\n    return sum(args)\n    \nprint(add_all(1, 2, 3, 4))  # 10\n\n# **kwargs example (dictionary of keyword arguments)\ndef print_info(**kwargs):\n    \"\"\"Print all keyword arguments.\"\"\"\n    for key, value in kwargs.items():\n        print(f\"{key}: {value}\")\n        \nprint_info(name=\"Alice\", age=30, job=\"engineer\")</code></pre><h3>Return Values</h3><p>Functions can return values using the <code>return</code> statement. A function can return a single value, multiple values, or nothing (returns <code>None</code> by default).</p><pre><code class=\"language-python\"># Returning a single value\ndef square(x):\n    return x * x\n    \n# Returning multiple values\ndef get_dimensions(width, height):\n    area = width * height\n    perimeter = 2 * (width + height)\n    return area, perimeter  # Returns a tuple\n    \n# Capturing multiple return values\narea, perimeter = get_dimensions(5, 3)\nprint(f\"Area: {area}, Perimeter: {perimeter}\")</code></pre><h3>Variable Scope</h3><p>The scope of a variable determines where in your program the variable can be accessed. Python has two main scopes:</p><ol><li><strong>Local Scope</strong>: Variables defined inside a function</li><li><strong>Global Scope</strong>: Variables defined outside all functions</li></ol><pre><code class=\"language-python\"># Global variable\nglobal_var = \"I'm global\"\n\ndef my_function():\n    # Local variable\n    local_var = \"I'm local\"\n    print(global_var)  # Can access global variable\n    print(local_var)   # Can access local variable\n    \nmy_function()\nprint(global_var)     # Can access global variable\n# print(local_var)    # Error! Can't access local variable outside function</code></pre><p>If you need to modify a global variable inside a function, you must use the <code>global</code> keyword:</p><pre><code class=\"language-python\">count = 0\n\ndef increment():\n    global count  # Declare that we want to use the global variable\n    count += 1\n    \nincrement()\nprint(count)  # 1</code></pre><h3>Lambda Functions</h3><p>Lambda functions are small, anonymous functions defined with the <code>lambda</code> keyword. They can have any number of arguments but only one expression.</p><pre><code class=\"language-python\"># Regular function\ndef square(x):\n    return x * x\n    \n# Equivalent lambda function\nsquare_lambda = lambda x: x * x\n\nprint(square(5))       # 25\nprint(square_lambda(5)) # 25\n\n# Lambdas are often used with functions like map(), filter(), and sort()\nnumbers = [1, 2, 3, 4, 5]\nsquared = list(map(lambda x: x * x, numbers))\nprint(squared)  # [1, 4, 9, 16, 25]</code></pre><h3>Recursion</h3><p>Recursion is when a function calls itself. It's useful for tasks that can be broken down into simpler, similar sub-tasks.</p><pre><code class=\"language-python\"># Calculate factorial using recursion\ndef factorial(n):\n    # Base case\n    if n == 0 or n == 1:\n        return 1\n    # Recursive case\n    else:\n        return n * factorial(n - 1)\n        \nprint(factorial(5))  # 5! = 5×4×3×2×1 = 120</code></pre><p>Always ensure your recursive function has a base case to prevent infinite recursion.</p><h3>Decorators</h3><p>Decorators are a way to modify or enhance functions without changing their code. They are functions that take another function as an argument and return a new function that usually extends the behavior of the original function.</p><pre><code class=\"language-python\"># A simple decorator that prints a message before and after a function call\ndef my_decorator(func):\n    def wrapper():\n        print(\"Something is happening before the function is called.\")\n        func()\n        print(\"Something is happening after the function is called.\")\n    return wrapper\n\n@my_decorator\ndef say_hello():\n    print(\"Hello!\")\n    \nsay_hello()</code></pre><p>This will output:</p><pre><code>Something is happening before the function is called.\nHello!\nSomething is happening after the function is called.</code></pre><h3>Best Practices for Functions</h3><ul><li><strong>Single Responsibility</strong>: A function should do one thing and do it well.</li><li><strong>Meaningful Names</strong>: Use descriptive names that explain what the function does.</li><li><strong>Docstrings</strong>: Add documentation explaining what the function does, its parameters, and what it returns.</li><li><strong>Return Values</strong>: Be consistent with return values and avoid unexpected side effects.</li><li><strong>Size</strong>: Keep functions small and focused. If a function gets too large, consider breaking it into smaller functions.</li></ul>",
+  "examples": [
+    {
+      "title": "Basic Function Definition and Calling",
+      "description": "Creating and using simple functions.",
+      "code": "# A simple function with no parameters\ndef say_hello():\n    \"\"\"Print a greeting message.\"\"\"\n    print(\"Hello, world!\")\n\n# Call the function\nsay_hello()\n\n# A function with parameters\ndef greet(name, time_of_day):\n    \"\"\"Greet a person with a time-appropriate message.\"\"\"\n    print(f\"Good {time_of_day}, {name}!\")\n\n# Call with positional arguments\ngreet(\"Alice\", \"morning\")\n\n# Call with keyword arguments\ngreet(time_of_day=\"evening\", name=\"Bob\")\n\n# A function that returns a value\ndef get_greeting(name):\n    \"\"\"Return a greeting string instead of printing it.\"\"\"\n    return f\"Hello, {name}!\"\n\n# Store the returned value in a variable\nmessage = get_greeting(\"Charlie\")\nprint(message)\n\n# Or use the returned value directly\nprint(get_greeting(\"David\"))",
+      "explanation": "This example shows the basics of defining and calling functions in Python. The first function has no parameters and just prints a message. The second function takes two parameters and shows how you can call a function with either positional or keyword arguments. The third function demonstrates returning a value that can then be used elsewhere in your code."
+    },
+    {
+      "title": "Default and Optional Parameters",
+      "description": "Working with default values and optional function arguments.",
+      "code": "# Function with default parameter values\ndef create_profile(name, age, occupation=\"Unknown\", location=\"Not specified\"):\n    \"\"\"Create a user profile with the given information.\"\"\"\n    profile = {\n        \"name\": name,\n        \"age\": age,\n        \"occupation\": occupation,\n        \"location\": location\n    }\n    return profile\n\n# Using all default values\nprofile1 = create_profile(\"Alice\", 30)\nprint(\"Profile 1:\")\nfor key, value in profile1.items():\n    print(f\"{key}: {value}\")\n\n# Overriding some default values\nprofile2 = create_profile(\"Bob\", 25, \"Engineer\")\nprint(\"\\nProfile 2:\")\nfor key, value in profile2.items():\n    print(f\"{key}: {value}\")\n\n# Overriding all default values\nprofile3 = create_profile(\"Charlie\", 35, \"Designer\", \"New York\")\nprint(\"\\nProfile 3:\")\nfor key, value in profile3.items():\n    print(f\"{key}: {value}\")\n\n# Using keyword arguments to skip some defaults\nprofile4 = create_profile(\"David\", 40, location=\"London\")\nprint(\"\\nProfile 4:\")\nfor key, value in profile4.items():\n    print(f\"{key}: {value}\")",
+      "explanation": "This example demonstrates how to use default parameters. When defining a function, you can specify default values for parameters, which are used when the caller doesn't provide a value for that parameter. In profile1, we only provide name and age, so occupation and location use their default values. In profile2, we override the occupation default but keep the default location. In profile3, we provide values for all parameters. In profile4, we use keyword arguments to skip the occupation parameter (keeping its default) while providing a value for location."
+    },
+    {
+      "title": "Variable-Length Arguments",
+      "description": "Handling an arbitrary number of arguments with *args and **kwargs.",
+      "code": "# Function that accepts any number of positional arguments\ndef calculate_sum(*args):\n    \"\"\"Calculate the sum of any number of arguments.\"\"\"\n    result = 0\n    for num in args:\n        result += num\n    return result\n\n# Call with different numbers of arguments\nprint(f\"Sum of no numbers: {calculate_sum()}\")\nprint(f\"Sum of 5: {calculate_sum(5)}\")\nprint(f\"Sum of 1, 2, 3: {calculate_sum(1, 2, 3)}\")\nprint(f\"Sum of 10, 20, 30, 40: {calculate_sum(10, 20, 30, 40)}\")\n\n# Function that accepts both positional and keyword arguments\ndef display_info(name, *args, **kwargs):\n    \"\"\"Display information about a person.\"\"\"\n    print(f\"Name: {name}\")\n    \n    if args:  # If there are any positional arguments\n        print(\"Additional Information:\")\n        for info in args:\n            print(f\"- {info}\")\n    \n    if kwargs:  # If there are any keyword arguments\n        print(\"Specific Details:\")\n        for key, value in kwargs.items():\n            print(f\"- {key}: {value}\")\n\n# Call with just the required name\ndisplay_info(\"Alice\")\nprint()\n\n# Call with additional positional arguments\ndisplay_info(\"Bob\", \"Software Engineer\", \"10 years experience\")\nprint()\n\n# Call with additional keyword arguments\ndisplay_info(\"Charlie\", job=\"Data Scientist\", education=\"PhD\", location=\"San Francisco\")\nprint()\n\n# Call with both additional positional and keyword arguments\ndisplay_info(\"David\", \"Marketing Manager\", \"15 years experience\", \n             company=\"ABC Corp\", salary=\"$100,000\", department=\"Marketing\")",
+      "explanation": "This example shows how to handle variable-length arguments in Python functions. The *args parameter allows a function to accept any number of positional arguments, which are then available as a tuple in the function body. The **kwargs parameter allows a function to accept any number of keyword arguments, which are available as a dictionary. The display_info function demonstrates how to use both types together with a required parameter."
+    },
+    {
+      "title": "Lambda Functions and Functional Programming",
+      "description": "Using lambda functions with map(), filter(), and sorted().",
+      "code": "# Traditional function vs. lambda function\ndef square(x):\n    return x * x\n\n# Equivalent lambda function\nsquare_lambda = lambda x: x * x\n\nnumbers = [1, 2, 3, 4, 5]\nprint(f\"Original numbers: {numbers}\")\n\n# Using map() with a regular function\nsquared_numbers = list(map(square, numbers))\nprint(f\"Squared (regular function): {squared_numbers}\")\n\n# Using map() with a lambda function\nsquared_lambda = list(map(lambda x: x * x, numbers))\nprint(f\"Squared (lambda function): {squared_lambda}\")\n\n# Using filter() with a lambda to keep only even numbers\neven_numbers = list(filter(lambda x: x % 2 == 0, numbers))\nprint(f\"Even numbers: {even_numbers}\")\n\n# Using sorted() with a custom key function\npeople = [(\"Alice\", 32), (\"Bob\", 25), (\"Charlie\", 45), (\"David\", 19)]\n\n# Sort by name (first element of each tuple)\nsorted_by_name = sorted(people)\nprint(f\"Sorted by name: {sorted_by_name}\")\n\n# Sort by age (second element of each tuple) using lambda\nsorted_by_age = sorted(people, key=lambda person: person[1])\nprint(f\"Sorted by age: {sorted_by_age}\")\n\n# Sort by name length using lambda\nsorted_by_name_length = sorted(people, key=lambda person: len(person[0]))\nprint(f\"Sorted by name length: {sorted_by_name_length}\")",
+      "explanation": "This example demonstrates lambda functions, which are small, anonymous functions defined using the lambda keyword. It shows how lambda functions can be used with higher-order functions like map() (which applies a function to each item in an iterable), filter() (which selects items from an iterable based on a function), and sorted() (which sorts an iterable using a custom key function). While you can always use regular functions instead, lambdas provide a concise way to define simple functions inline."
+    },
+    {
+      "title": "Recursion",
+      "description": "Solving problems by having a function call itself.",
+      "code": "# Factorial calculation using recursion\ndef factorial(n):\n    \"\"\"Calculate the factorial of n (n!).\n    \n    Factorial is the product of all positive integers less than or equal to n.\n    For example, 5! = 5 × 4 × 3 × 2 × 1 = 120\n    \"\"\"\n    # Base case: 0! and 1! are both 1\n    if n <= 1:\n        return 1\n    # Recursive case: n! = n × (n-1)!\n    else:\n        return n * factorial(n - 1)\n\n# Test the factorial function\nfor i in range(6):\n    print(f\"{i}! = {factorial(i)}\")\n\n# Fibonacci sequence using recursion\ndef fibonacci(n):\n    \"\"\"Return the nth Fibonacci number.\n    \n    In the Fibonacci sequence, each number is the sum of the two preceding ones.\n    The sequence starts: 0, 1, 1, 2, 3, 5, 8, 13, ...\n    \"\"\"\n    # Base cases\n    if n <= 0:\n        return 0\n    elif n == 1:\n        return 1\n    # Recursive case: F(n) = F(n-1) + F(n-2)\n    else:\n        return fibonacci(n - 1) + fibonacci(n - 2)\n\n# Test the fibonacci function\nprint(\"\\nFibonacci sequence:\")\nfor i in range(10):\n    print(f\"F({i}) = {fibonacci(i)}\")\n\n# Note: This recursive Fibonacci implementation is inefficient\n# for large values due to repeated calculations",
+      "explanation": "This example demonstrates recursion, where a function calls itself to solve a problem. It shows two classic recursive algorithms: calculating factorials and generating Fibonacci numbers. In each case, the function has one or more base cases (simple cases that don't require recursion) and a recursive case (where the function calls itself with a simpler input). It's important to note that while the recursive Fibonacci implementation is elegant, it's not efficient for large values because it recalculates the same values multiple times. For production use, dynamic programming approaches would be more efficient."
+    }
+  ],
+  "practice_code": "# Practice with functions\n\n# 1. Basic function that returns a value\ndef multiply(a, b):\n    \"\"\"Multiply two numbers and return the result.\"\"\"\n    return a * b\n\nresult = multiply(5, 3)\nprint(f\"5 × 3 = {result}\")\n\n# 2. Function with default parameters\ndef power(base, exponent=2):\n    \"\"\"Raise base to the given exponent (default is square).\"\"\"\n    return base ** exponent\n\nprint(f\"4² = {power(4)}\")\nprint(f\"2³ = {power(2, 3)}\")\n\n# 3. Function with variable number of arguments\ndef max_value(*numbers):\n    \"\"\"Return the maximum value from the given numbers.\"\"\"\n    if not numbers:  # Handle case when no arguments are provided\n        return None\n    return max(numbers)\n\nprint(f\"Max of 10, 5, 20, 15: {max_value(10, 5, 20, 15)}\")\n\n# 4. Function with docstring\ndef is_palindrome(text):\n    \"\"\"Check if a text is a palindrome.\n    \n    A palindrome reads the same backward as forward.\n    Case, spaces, and punctuation are ignored.\n    \n    Args:\n        text: The string to check\n        \n    Returns:\n        True if text is a palindrome, False otherwise\n    \"\"\"\n    # Remove spaces and convert to lowercase\n    clean_text = ''.join(char.lower() for char in text if char.isalnum())\n    return clean_text == clean_text[::-1]\n\nprint(f\"'radar' is palindrome: {is_palindrome('radar')}\")\nprint(f\"'A man, a plan, a canal: Panama' is palindrome: {is_palindrome('A man, a plan, a canal: Panama')}\")\nprint(f\"'hello' is palindrome: {is_palindrome('hello')}\")\n\n# 5. Lambda function with filter\nnumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\nodd_numbers = list(filter(lambda x: x % 2 != 0, numbers))\nprint(f\"Odd numbers from 1 to 10: {odd_numbers}\")\n\n# Try creating your own functions below\n",
+  "quiz": [
+    {
+      "question": "What is the output of the following code? def func(x, y=10): return x + y; print(func(5))",
+      "options": [
+        {"text": "5", "correct": false},
+        {"text": "10", "correct": false},
+        {"text": "15", "correct": true},
+        {"text": "Error", "correct": false}
+      ]
+    },
+    {
+      "question": "What is the purpose of the 'return' statement in a function?",
+      "options": [
+        {"text": "To end the function execution", "correct": false},
+        {"text": "To return a value from the function", "correct": true},
+        {"text": "To print a value to the console", "correct": false},
+        {"text": "To create a new variable", "correct": false}
+      ]
+    },
+    {
+      "question": "Which of the following function definitions correctly uses a variable-length argument list?",
+      "options": [
+        {"text": "def func(*all_args):", "correct": true},
+        {"text": "def func(all_args*):", "correct": false},
+        {"text": "def func(**all_args):", "correct": false},
+        {"text": "def func(+all_args):", "correct": false}
+      ]
+    },
+    {
+      "question": "What is a lambda function in Python?",
+      "options": [
+        {"text": "A built-in function that processes lists", "correct": false},
+        {"text": "A special kind of class", "correct": false},
+        {"text": "An anonymous, inline function defined with the lambda keyword", "correct": true},
+        {"text": "A function that calls itself", "correct": false}
+      ]
+    },
+    {
+      "question": "What happens when a variable is defined inside a function in Python?",
+      "options": [
+        {"text": "It is automatically global", "correct": false},
+        {"text": "It has local scope by default", "correct": true},
+        {"text": "It is only accessible by other functions", "correct": false},
+        {"text": "It is read-only", "correct": false}
+      ]
+    }
+  ],
+  "problems": [
+    {
+      "id": "word_counter",
+      "title": "Word Counter",
+      "description": "Write a function that counts the number of words in a string. A word is defined as a sequence of characters separated by spaces. Assume that multiple spaces between words should be treated as a single separator.",
+      "difficulty": "Easy",
+      "starter_code": "def count_words(text):\n    # Your code here\n    pass\n\n# Test cases\ntext1 = \"Hello world\"\ntext2 = \"Python  is  awesome\"\ntext3 = \"   Spaces   at   the   beginning and end   \"\n\nprint(count_words(text1))  # Should return 2\nprint(count_words(text2))  # Should return 3\nprint(count_words(text3))  # Should return 7",
+      "tests": [
+        {
+          "description": "Test with simple text",
+          "code": "assert count_words(\"Hello world\") == 2, \"Should count 2 words\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test with multiple spaces",
+          "code": "assert count_words(\"Python  is  awesome\") == 3, \"Should count 3 words despite extra spaces\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test with leading/trailing spaces",
+          "code": "assert count_words(\"   Spaces   at   the   beginning and end   \") == 7, \"Should handle leading/trailing spaces\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test with empty string",
+          "code": "assert count_words(\"\") == 0, \"Should return 0 for empty string\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test with only spaces",
+          "code": "assert count_words(\"    \") == 0, \"Should return 0 for string with only spaces\"",
+          "expected_output": ""
+        }
+      ],
+      "expected_output": "2\n3\n7\n",
+      "solution": "def count_words(text):\n    # Remove leading and trailing spaces, then split by any number of spaces\n    words = text.strip().split()\n    return len(words)\n\n# Test cases\ntext1 = \"Hello world\"\ntext2 = \"Python  is  awesome\"\ntext3 = \"   Spaces   at   the   beginning and end   \"\n\nprint(count_words(text1))  # Should return 2\nprint(count_words(text2))  # Should return 3\nprint(count_words(text3))  # Should return 7"
+    },
+    {
+      "id": "calculator_function",
+      "title": "Calculator Function",
+      "description": "Create a calculator function that takes two numbers and an operation as parameters and returns the result. Support addition, subtraction, multiplication, and division. If an invalid operation is provided, return None.",
+      "difficulty": "Medium",
+      "starter_code": "def calculator(num1, num2, operation):\n    # Your code here\n    pass\n\n# Test cases\nprint(calculator(5, 3, 'add'))       # Should return 8\nprint(calculator(5, 3, 'subtract'))  # Should return 2\nprint(calculator(5, 3, 'multiply'))  # Should return 15\nprint(calculator(6, 3, 'divide'))    # Should return 2.0\nprint(calculator(5, 3, 'power'))     # Should return None (invalid operation)",
+      "tests": [
+        {
+          "description": "Test addition",
+          "code": "assert calculator(5, 3, 'add') == 8, \"Addition should work correctly\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test subtraction",
+          "code": "assert calculator(5, 3, 'subtract') == 2, \"Subtraction should work correctly\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test multiplication",
+          "code": "assert calculator(5, 3, 'multiply') == 15, \"Multiplication should work correctly\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test division",
+          "code": "assert calculator(6, 3, 'divide') == 2.0, \"Division should work correctly\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test invalid operation",
+          "code": "assert calculator(5, 3, 'power') is None, \"Invalid operation should return None\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test division by zero",
+          "code": "assert calculator(5, 0, 'divide') is None, \"Division by zero should be handled\"",
+          "expected_output": ""
+        }
+      ],
+      "expected_output": "8\n2\n15\n2.0\nNone\n",
+      "solution": "def calculator(num1, num2, operation):\n    # Dictionary mapping operations to lambda functions\n    operations = {\n        'add': lambda x, y: x + y,\n        'subtract': lambda x, y: x - y,\n        'multiply': lambda x, y: x * y,\n        'divide': lambda x, y: x / y if y != 0 else None\n    }\n    \n    # Check if the operation is valid\n    if operation not in operations:\n        return None\n    \n    # Execute the operation\n    if operation == 'divide' and num2 == 0:\n        return None\n    \n    return operations[operation](num1, num2)\n\n# Alternative implementation using if-elif statements\n# def calculator(num1, num2, operation):\n#     if operation == 'add':\n#         return num1 + num2\n#     elif operation == 'subtract':\n#         return num1 - num2\n#     elif operation == 'multiply':\n#         return num1 * num2\n#     elif operation == 'divide':\n#         if num2 == 0:\n#             return None\n#         return num1 / num2\n#     else:\n#         return None\n\n# Test cases\nprint(calculator(5, 3, 'add'))       # Should return 8\nprint(calculator(5, 3, 'subtract'))  # Should return 2\nprint(calculator(5, 3, 'multiply'))  # Should return 15\nprint(calculator(6, 3, 'divide'))    # Should return 2.0\nprint(calculator(5, 3, 'power'))     # Should return None (invalid operation)"
+    },
+    {
+      "id": "function_composition",
+      "title": "Function Composition",
+      "description": "Create a compose function that takes two functions f and g as arguments and returns a new function that computes f(g(x)) for a given input x.",
+      "difficulty": "Hard",
+      "starter_code": "def compose(f, g):\n    # Your code here\n    pass\n\n# Test with example functions\ndef add_one(x):\n    return x + 1\n\ndef square(x):\n    return x ** 2\n\n# Create composed functions\nsquare_then_add_one = compose(add_one, square)\nadd_one_then_square = compose(square, add_one)\n\n# Test the composed functions\nprint(square_then_add_one(5))  # Should return 26 (5² + 1)\nprint(add_one_then_square(5))  # Should return 36 ((5 + 1)²)",
+      "tests": [
+        {
+          "description": "Test square then add one",
+          "code": "result = compose(add_one, square)(5)\nassert result == 26, \"Should return 5² + 1 = 26\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test add one then square",
+          "code": "result = compose(square, add_one)(5)\nassert result == 36, \"Should return (5 + 1)² = 36\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test with string functions",
+          "code": "def reverse(s): return s[::-1]\ndef uppercase(s): return s.upper()\nreverse_then_uppercase = compose(uppercase, reverse)\nassert reverse_then_uppercase('hello') == 'OLLEH', \"Should reverse then uppercase\"",
+          "expected_output": ""
+        }
+      ],
+      "expected_output": "26\n36\n",
+      "solution": "def compose(f, g):\n    # Return a new function that applies g first, then f\n    def composed_function(x):\n        return f(g(x))\n    return composed_function\n\n# Alternative using lambda\n# def compose(f, g):\n#     return lambda x: f(g(x))\n\n# Test with example functions\ndef add_one(x):\n    return x + 1\n\ndef square(x):\n    return x ** 2\n\n# Create composed functions\nsquare_then_add_one = compose(add_one, square)\nadd_one_then_square = compose(square, add_one)\n\n# Test the composed functions\nprint(square_then_add_one(5))  # Should return 26 (5² + 1)\nprint(add_one_then_square(5))  # Should return 36 ((5 + 1)²)"
+    }
+  ],
+  "next_lesson": "lists"
+}

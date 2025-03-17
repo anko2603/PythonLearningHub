@@ -1,0 +1,153 @@
+{
+  "id": "conditionals",
+  "title": "Conditional Statements",
+  "description": "Learn how to control the flow of your program with if, elif, and else statements.",
+  "order": 4,
+  "duration": "30 minutes",
+  "overview": "Conditional statements allow your program to make decisions and execute different code blocks based on different conditions. In Python, we use if, elif (else if), and else statements to build decision-making capabilities into our programs. This lesson will teach you how to create and use conditional statements effectively.",
+  "tutorial": "<h3>Introduction to Conditional Statements</h3><p>Conditional statements are used to perform different actions based on different conditions. They allow you to build decision-making into your programs.</p><h3>The if Statement</h3><p>The most basic conditional statement is the if statement, which executes a block of code only if a specified condition is true.</p><pre><code class=\"language-python\"># Basic if statement syntax\nif condition:\n    # Code to execute if condition is True\n    # Note: indentation is important!</code></pre><p>For example:</p><pre><code class=\"language-python\">age = 18\n\nif age >= 18:\n    print(\"You are an adult.\")</code></pre><p>In this example, the message is printed only if the age is 18 or older.</p><h3>The if-else Statement</h3><p>The if-else statement allows you to execute one block of code if the condition is true and another block if it's false.</p><pre><code class=\"language-python\"># if-else syntax\nif condition:\n    # Code to execute if condition is True\nelse:\n    # Code to execute if condition is False</code></pre><p>For example:</p><pre><code class=\"language-python\">age = 16\n\nif age >= 18:\n    print(\"You are an adult.\")\nelse:\n    print(\"You are a minor.\")</code></pre><p>Since the age is less than 18, the program will print \"You are a minor.\"</p><h3>The if-elif-else Statement</h3><p>The if-elif-else statement allows you to check multiple conditions and execute different blocks of code accordingly.</p><pre><code class=\"language-python\"># if-elif-else syntax\nif condition1:\n    # Code to execute if condition1 is True\nelif condition2:\n    # Code to execute if condition1 is False and condition2 is True\nelif condition3:\n    # Code to execute if condition1 and condition2 are False and condition3 is True\nelse:\n    # Code to execute if all conditions are False</code></pre><p>For example:</p><pre><code class=\"language-python\">score = 85\n\nif score >= 90:\n    grade = \"A\"\nelif score >= 80:\n    grade = \"B\"\nelif score >= 70:\n    grade = \"C\"\nelif score >= 60:\n    grade = \"D\"\nelse:\n    grade = \"F\"\n\nprint(f\"Your grade is {grade}\")</code></pre><p>Since the score is 85, the program will print \"Your grade is B\".</p><h3>Nested Conditional Statements</h3><p>You can nest conditional statements inside other conditional statements to create more complex decision trees.</p><pre><code class=\"language-python\">age = 20\nincome = 30000\n\nif age >= 18:\n    print(\"You are an adult.\")\n    \n    if income >= 25000:\n        print(\"You qualify for a credit card.\")\n    else:\n        print(\"You don't qualify for a credit card yet.\")\nelse:\n    print(\"You are a minor.\")</code></pre><h3>Conditional Expressions (Ternary Operator)</h3><p>Python also supports a compact way to write simple if-else statements using conditional expressions, sometimes called the ternary operator.</p><pre><code class=\"language-python\"># Regular if-else\nif condition:\n    x = value1\nelse:\n    x = value2\n\n# Equivalent conditional expression\nx = value1 if condition else value2</code></pre><p>For example:</p><pre><code class=\"language-python\">age = 20\nstatus = \"adult\" if age >= 18 else \"minor\"\nprint(status)  # Prints \"adult\"</code></pre><h3>Truthy and Falsy Values</h3><p>In Python, conditions don't have to be strictly boolean. Python evaluates certain values as False:</p><ul><li>False</li><li>None</li><li>Zero (0, 0.0)</li><li>Empty sequences and collections ('', [], {}, ())</li></ul><p>Everything else is evaluated as True. This is called \"truthiness\" and \"falsiness\".</p><pre><code class=\"language-python\"># Examples of truthy and falsy values\nif 0:\n    print(\"This won't print because 0 is falsy\")\n\nif 1:\n    print(\"This will print because 1 is truthy\")\n\nif \"\":\n    print(\"This won't print because an empty string is falsy\")\n\nif \"hello\":\n    print(\"This will print because a non-empty string is truthy\")\n\nif []:\n    print(\"This won't print because an empty list is falsy\")\n\nif [1, 2, 3]:\n    print(\"This will print because a non-empty list is truthy\")</code></pre><h3>Logical Operators in Conditions</h3><p>You can combine multiple conditions using logical operators (and, or, not):</p><pre><code class=\"language-python\">age = 25\nincome = 50000\n\nif age > 18 and income >= 40000:\n    print(\"You qualify for a loan.\")\n\nhas_criminal_record = False\nif age > 18 and income >= 40000 and not has_criminal_record:\n    print(\"You qualify for a premium loan.\")</code></pre>",
+  "examples": [
+    {
+      "title": "Simple if-else Statement",
+      "description": "Basic example of conditional logic.",
+      "code": "# Check if a number is positive or negative\nnumber = 5\n\nif number > 0:\n    print(f\"{number} is positive\")\nelif number < 0:\n    print(f\"{number} is negative\")\nelse:  # number must be 0\n    print(\"The number is zero\")\n\n# Try changing the number value to see different results\nnumber = -10\n\nif number > 0:\n    print(f\"{number} is positive\")\nelif number < 0:\n    print(f\"{number} is negative\")\nelse:\n    print(\"The number is zero\")",
+      "explanation": "This example shows how to check if a number is positive, negative, or zero using if, elif, and else statements. By changing the value of 'number', you can see how the program takes different paths based on the condition."
+    },
+    {
+      "title": "Multiple Conditions",
+      "description": "Using multiple conditions for more complex decision-making.",
+      "code": "# Determine the season based on the month\nmonth = \"July\"\n\n# Convert to lowercase to make comparison case-insensitive\nmonth = month.lower()\n\nif month in [\"december\", \"january\", \"february\"]:\n    season = \"Winter\"\nelif month in [\"march\", \"april\", \"may\"]:\n    season = \"Spring\"\nelif month in [\"june\", \"july\", \"august\"]:\n    season = \"Summer\"\nelif month in [\"september\", \"october\", \"november\"]:\n    season = \"Fall\"\nelse:\n    season = \"Invalid month\"\n\nprint(f\"{month.capitalize()} is in {season}\")\n\n# Another example: eligibility for a discount\nage = 65\nis_student = False\nis_veteran = True\n\nif age < 18:\n    print(\"Youth discount applies\")\nelif age >= 65:\n    print(\"Senior discount applies\")\nelif is_student:\n    print(\"Student discount applies\")\nelif is_veteran:\n    print(\"Veteran discount applies\")\nelse:\n    print(\"No discount applies\")\n\n# Note: only the first matching condition applies\n# Even though the person is also a veteran, the senior discount is applied first",
+      "explanation": "This example demonstrates two common use cases for conditional statements. The first determines the season based on the month name, using the 'in' operator to check if the month is in a list of months for a particular season. The second example shows how to check multiple conditions to determine discount eligibility, with each condition checked in sequence."
+    },
+    {
+      "title": "Nested Conditions",
+      "description": "Using nested if statements for hierarchical decision-making.",
+      "code": "# Determine ticket price based on age and day of the week\nage = 15\nday = \"Saturday\"\n\n# First level: check the day\nif day.lower() in [\"saturday\", \"sunday\"]:\n    print(\"Weekend pricing:\")\n    # Nested condition for weekend pricing\n    if age < 12:\n        price = 10\n    elif age >= 65:\n        price = 12\n    else:\n        price = 15\nelse:\n    print(\"Weekday pricing:\")\n    # Nested condition for weekday pricing\n    if age < 12:\n        price = 8\n    elif age >= 65:\n        price = 9\n    else:\n        price = 12\n\nprint(f\"Ticket price: ${price}\")\n\n# Using logical operators instead of nesting\nage = 15\nday = \"Saturday\"\nweekend = day.lower() in [\"saturday\", \"sunday\"]\n\nif weekend and age < 12:\n    price = 10\nelif weekend and age >= 65:\n    price = 12\nelif weekend:  # Adult on weekend\n    price = 15\nelif age < 12:  # Child on weekday\n    price = 8\nelif age >= 65:  # Senior on weekday\n    price = 9\nelse:  # Adult on weekday\n    price = 12\n\nprint(f\"Ticket price (using logical operators): ${price}\")",
+      "explanation": "This example shows two approaches to solve the same problem: determining a ticket price based on age and day of the week. The first approach uses nested if statements, checking first if it's a weekend or weekday, then checking the age category. The second approach flattens the logic using logical operators (and) to combine conditions, which can sometimes be more readable."
+    },
+    {
+      "title": "Ternary Conditional Expression",
+      "description": "Using Python's compact conditional expression syntax.",
+      "code": "# Regular if-else approach\nage = 20\n\nif age >= 18:\n    status = \"adult\"\nelse:\n    status = \"minor\"\n    \nprint(f\"Status (using if-else): {status}\")\n\n# Equivalent ternary expression\nstatus = \"adult\" if age >= 18 else \"minor\"\nprint(f\"Status (using ternary): {status}\")\n\n# Ternary expressions can be nested (though this can get hard to read)\nscore = 85\ngrade = \"A\" if score >= 90 else \"B\" if score >= 80 else \"C\" if score >= 70 else \"D\" if score >= 60 else \"F\"\nprint(f\"Grade: {grade}\")\n\n# They can be used in many contexts\nuser_name = \"admin\"\nmessage = f\"Welcome, {\"Administrator\" if user_name == 'admin' else user_name}\"\nprint(message)",
+      "explanation": "This example demonstrates Python's ternary conditional expression, which provides a compact way to write simple if-else statements. It shows both the regular if-else approach and the equivalent ternary expression. While ternary expressions can be nested, it's often better to use regular if-elif-else statements for complex conditions as they're more readable."
+    }
+  ],
+  "practice_code": "# Practice with conditional statements\n\n# 1. Simple if-else\nscore = 85\n\nif score >= 70:\n    print(\"You passed!\")\nelse:\n    print(\"You need to study more.\")\n\n# 2. Multiple conditions\nscore = 85\n\nif score >= 90:\n    grade = \"A\"\nelif score >= 80:\n    grade = \"B\"\nelif score >= 70:\n    grade = \"C\"\nelif score >= 60:\n    grade = \"D\"\nelse:\n    grade = \"F\"\n    \nprint(f\"Your grade is {grade}\")\n\n# 3. Nested conditions\nage = 25\nhas_license = True\n\nif age >= 18:\n    if has_license:\n        print(\"You can drive.\")\n    else:\n        print(\"You need to get a license first.\")\nelse:\n    print(\"You are too young to drive.\")\n\n# 4. Logical operators in conditions\ntemperature = 75\nis_sunny = True\n\nif temperature > 70 and is_sunny:\n    print(\"It's a perfect day for a picnic!\")\nelse:\n    print(\"Maybe another day for that picnic.\")\n\n# Try modifying the variables and conditions to see different results\n\n# 5. Create your own conditional statement below\n",
+  "quiz": [
+    {
+      "question": "What will the following code print? age = 17; print(\"Adult\" if age >= 18 else \"Minor\")",
+      "options": [
+        {"text": "Adult", "correct": false},
+        {"text": "Minor", "correct": true},
+        {"text": "Nothing", "correct": false},
+        {"text": "Error", "correct": false}
+      ]
+    },
+    {
+      "question": "Which of the following is NOT a valid condition in Python?",
+      "options": [
+        {"text": "if x > 0:", "correct": false},
+        {"text": "if x:", "correct": false},
+        {"text": "if x = 0:", "correct": true},
+        {"text": "if \"hello\":", "correct": false}
+      ]
+    },
+    {
+      "question": "What is the correct way to check if a variable x equals 5?",
+      "options": [
+        {"text": "if x = 5:", "correct": false},
+        {"text": "if x == 5:", "correct": true},
+        {"text": "if x === 5:", "correct": false},
+        {"text": "if x equals 5:", "correct": false}
+      ]
+    },
+    {
+      "question": "Which of the following is considered 'falsy' in Python?",
+      "options": [
+        {"text": "0", "correct": true},
+        {"text": "\"False\"", "correct": false},
+        {"text": "[0]", "correct": false},
+        {"text": "True", "correct": false}
+      ]
+    },
+    {
+      "question": "What is the output of this code? x = 10; y = 20; print(\"Both positive\" if x > 0 and y > 0 else \"At least one negative\")",
+      "options": [
+        {"text": "Both positive", "correct": true},
+        {"text": "At least one negative", "correct": false},
+        {"text": "Nothing", "correct": false},
+        {"text": "Error", "correct": false}
+      ]
+    }
+  ],
+  "problems": [
+    {
+      "id": "leap_year",
+      "title": "Leap Year Checker",
+      "description": "Write a function that determines whether a given year is a leap year. A leap year is divisible by 4, but not by 100 unless it is also divisible by 400.",
+      "difficulty": "Easy",
+      "starter_code": "def is_leap_year(year):\n    # Your code here\n    pass\n\n# Test cases\nyears = [1900, 2000, 2004, 2020, 2021, 2022, 2024]\n\nfor year in years:\n    if is_leap_year(year):\n        print(f\"{year} is a leap year\")\n    else:\n        print(f\"{year} is not a leap year\")",
+      "tests": [
+        {
+          "description": "Test divisible by 4 but not by 100",
+          "code": "assert is_leap_year(2004) == True, \"2004 should be a leap year\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test divisible by 100 but not by 400",
+          "code": "assert is_leap_year(1900) == False, \"1900 should not be a leap year\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test divisible by 400",
+          "code": "assert is_leap_year(2000) == True, \"2000 should be a leap year\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test not divisible by 4",
+          "code": "assert is_leap_year(2021) == False, \"2021 should not be a leap year\"",
+          "expected_output": ""
+        }
+      ],
+      "expected_output": "1900 is not a leap year\n2000 is a leap year\n2004 is a leap year\n2020 is a leap year\n2021 is not a leap year\n2022 is not a leap year\n2024 is a leap year\n",
+      "solution": "def is_leap_year(year):\n    # A leap year is divisible by 4\n    # But if it's divisible by 100, it's not a leap year unless it's also divisible by 400\n    if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):\n        return True\n    else:\n        return False\n    \n    # Alternative one-liner:\n    # return (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)\n\n# Test cases\nyears = [1900, 2000, 2004, 2020, 2021, 2022, 2024]\n\nfor year in years:\n    if is_leap_year(year):\n        print(f\"{year} is a leap year\")\n    else:\n        print(f\"{year} is not a leap year\")"
+    },
+    {
+      "id": "number_classifier",
+      "title": "Number Classifier",
+      "description": "Write a function that classifies a number based on various properties: whether it's positive, negative, or zero; even or odd; and prime or composite (for positive integers).",
+      "difficulty": "Medium",
+      "starter_code": "def classify_number(num):\n    # Your code here\n    # Return a string with the classification\n    pass\n\n# Test the function with different numbers\nnumbers = [-10, -3, 0, 1, 2, 4, 7, 10, 13]\n\nfor num in numbers:\n    print(f\"{num}: {classify_number(num)}\")",
+      "tests": [
+        {
+          "description": "Test negative even number",
+          "code": "result = classify_number(-10)\nassert \"negative\" in result.lower() and \"even\" in result.lower(), \"Should identify -10 as negative and even\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test negative odd number",
+          "code": "result = classify_number(-3)\nassert \"negative\" in result.lower() and \"odd\" in result.lower(), \"Should identify -3 as negative and odd\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test zero",
+          "code": "result = classify_number(0)\nassert \"zero\" in result.lower() and \"even\" in result.lower(), \"Should identify 0 as zero and even\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test prime number",
+          "code": "result = classify_number(7)\nassert \"positive\" in result.lower() and \"odd\" in result.lower() and \"prime\" in result.lower(), \"Should identify 7 as positive, odd, and prime\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test composite number",
+          "code": "result = classify_number(10)\nassert \"positive\" in result.lower() and \"even\" in result.lower() and \"composite\" in result.lower(), \"Should identify 10 as positive, even, and composite\"",
+          "expected_output": ""
+        }
+      ],
+      "expected_output": "-10: Negative, Even\n-3: Negative, Odd\n0: Zero, Even\n1: Positive, Odd, Neither Prime nor Composite\n2: Positive, Even, Prime\n4: Positive, Even, Composite\n7: Positive, Odd, Prime\n10: Positive, Even, Composite\n13: Positive, Odd, Prime\n",
+      "solution": "def classify_number(num):\n    result = []\n    \n    # Check if positive, negative, or zero\n    if num > 0:\n        result.append(\"Positive\")\n    elif num < 0:\n        result.append(\"Negative\")\n    else:\n        result.append(\"Zero\")\n    \n    # Check if even or odd\n    if num % 2 == 0:\n        result.append(\"Even\")\n    else:\n        result.append(\"Odd\")\n    \n    # Check if prime or composite (only for positive integers)\n    if num > 0:\n        if num == 1:\n            result.append(\"Neither Prime nor Composite\")\n        elif num == 2:\n            result.append(\"Prime\")\n        elif num % 2 == 0:  # Even numbers greater than 2 are composite\n            result.append(\"Composite\")\n        else:\n            # Check if num is divisible by any odd number from 3 to sqrt(num)\n            is_prime = True\n            for i in range(3, int(num**0.5) + 1, 2):\n                if num % i == 0:\n                    is_prime = False\n                    break\n            result.append(\"Prime\" if is_prime else \"Composite\")\n    \n    return \", \".join(result)\n\n# Test the function with different numbers\nnumbers = [-10, -3, 0, 1, 2, 4, 7, 10, 13]\n\nfor num in numbers:\n    print(f\"{num}: {classify_number(num)}\")"
+    }
+  ],
+  "next_lesson": "loops"
+}

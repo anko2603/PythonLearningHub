@@ -1,0 +1,113 @@
+{
+  "id": "data_types",
+  "title": "Python Data Types in Detail",
+  "description": "Explore Python's built-in data types and their operations in detail.",
+  "order": 2,
+  "duration": "30 minutes",
+  "overview": "Python comes with several built-in data types that allow you to work with different kinds of values. In this lesson, we'll explore these data types in more detail, learning how to create and manipulate them.",
+  "tutorial": "<h3>Numeric Data Types</h3><p>Python has three numeric data types:</p><ul><li><strong>int</strong>: Integer values without decimal points (e.g., 5, -10, 1000)</li><li><strong>float</strong>: Floating-point numbers with decimal points (e.g., 3.14, -0.001, 2.0)</li><li><strong>complex</strong>: Complex numbers with real and imaginary parts (e.g., 3+4j)</li></ul><pre><code class=\"language-python\"># Integer examples\nx = 10\ny = -5\nbig_num = 1_000_000  # Underscores for readability\n\n# Float examples\npi = 3.14159\nsmall = 1.0e-10  # Scientific notation\n\n# Complex examples\nz = 2 + 3j\nw = complex(1, 2)  # Creates 1+2j</code></pre><h3>String Data Type</h3><p>Strings in Python are sequences of characters enclosed in quotes (single, double, or triple quotes).</p><pre><code class=\"language-python\"># Different ways to create strings\nname = 'Alice'          # Single quotes\nmessage = \"Hello, World!\"  # Double quotes\n\n# Multi-line strings with triple quotes\ndocumentation = \"\"\"This is a multi-line\nstring that can span\nmultiple lines.\"\"\"\n\n# String operations\nfirst_name = \"John\"\nlast_name = \"Doe\"\n\n# Concatenation\nfull_name = first_name + \" \" + last_name  # \"John Doe\"\n\n# String methods\nuppercased = full_name.upper()  # \"JOHN DOE\"\nlength = len(full_name)         # 8</code></pre><h3>Boolean Data Type</h3><p>Boolean values represent truth values: True or False.</p><pre><code class=\"language-python\"># Boolean examples\nis_valid = True\nis_completed = False\n\n# Comparison operators return boolean values\nx = 5\ny = 10\nprint(x < y)    # True\nprint(x == y)   # False\nprint(x >= 5)   # True\n\n# Logical operators with booleans\nprint(True and False)  # False\nprint(True or False)   # True\nprint(not True)        # False</code></pre><h3>Sequence Types</h3><p>Python has several sequence types for storing collections of items:</p><ul><li><strong>List</strong>: Ordered, mutable collection of items</li><li><strong>Tuple</strong>: Ordered, immutable collection of items</li><li><strong>Range</strong>: Immutable sequence of numbers</li></ul><pre><code class=\"language-python\"># List example\nfriends = ['Alice', 'Bob', 'Charlie']\nprint(friends[0])       # 'Alice'\nfriends[1] = 'Benjamin'  # Lists are mutable\n\n# Tuple example\ncoordinates = (10, 20)  # Parentheses instead of brackets\n# coordinates[0] = 15   # Error: tuples are immutable\n\n# Range example\nnumbers = range(1, 6)   # Creates range from 1 to 5\nfor num in numbers:\n    print(num)          # Prints 1, 2, 3, 4, 5</code></pre><h3>Mapping Type: Dictionary</h3><p>Dictionaries store key-value pairs for efficient lookup by key.</p><pre><code class=\"language-python\"># Dictionary example\nperson = {\n    'name': 'Alice',\n    'age': 30,\n    'city': 'New York'\n}\n\n# Accessing values\nprint(person['name'])  # 'Alice'\n\n# Adding or modifying items\nperson['email'] = 'alice@example.com'  # Add new key-value pair\nperson['age'] = 31                    # Modify existing value</code></pre><h3>Set Types</h3><p>Sets are unordered collections of unique items.</p><pre><code class=\"language-python\"># Set example\nfruits = {'apple', 'banana', 'orange'}\n\n# Adding items\nfruits.add('grape')      # {'apple', 'banana', 'orange', 'grape'}\n\n# Set operations\nvegies = {'carrot', 'pepper', 'banana'}\nprint(fruits.intersection(vegies))  # {'banana'}\nprint(fruits.union(vegies))        # {'apple', 'banana', 'orange', 'grape', 'carrot', 'pepper'}</code></pre><h3>None Type</h3><p>None represents the absence of a value or a null value.</p><pre><code class=\"language-python\"># None example\nresult = None\n\n# Often used as a default value\ndef find_user(id):\n    # Search for user...\n    if not found:\n        return None\n    return user</code></pre><h3>Type Conversion</h3><p>Python provides built-in functions for converting between types:</p><pre><code class=\"language-python\"># Converting between types\nx = 10\ny = float(x)    # 10.0\nz = str(x)      # \"10\"\n\nage = \"25\"\nage_num = int(age)  # 25</code></pre>",
+  "examples": [
+    {
+      "title": "Working with Strings",
+      "description": "Strings are one of the most commonly used data types in Python.",
+      "code": "# String creation and basic operations\nmessage = \"Hello, Python!\"\n\n# Length of string\nprint(f\"Length: {len(message)}\")\n\n# Accessing characters (indexing)\nprint(f\"First character: {message[0]}\")\nprint(f\"Last character: {message[-1]}\")\n\n# Slicing\nprint(f\"First 5 characters: {message[:5]}\")\nprint(f\"Last 7 characters: {message[-7:]}\")\n\n# String methods\nprint(f\"Uppercase: {message.upper()}\")\nprint(f\"Lowercase: {message.lower()}\")\nprint(f\"Replace: {message.replace('Python', 'World')}\")\n\n# Check if substring exists\nprint(f\"Contains 'Python'? {'Python' in message}\")\n\n# String formatting\nname = \"Alice\"\nage = 30\nprint(f\"{name} is {age} years old.\")\n# Alternative formatting method\nprint(\"{} is {} years old.\".format(name, age))",
+      "explanation": "This example demonstrates various string operations, including accessing characters, slicing (getting portions of strings), and using string methods like upper(), lower(), and replace(). It also shows different ways to format strings using f-strings and the format() method."
+    },
+    {
+      "title": "Lists and List Operations",
+      "description": "Lists are ordered, mutable collections that can store items of different types.",
+      "code": "# Creating lists\nfruits = ['apple', 'banana', 'orange', 'grape']\nnumbers = [1, 2, 3, 4, 5]\nmixed = [10, 'hello', True, 3.14]\n\n# Accessing elements\nprint(f\"First fruit: {fruits[0]}\")\nprint(f\"Last number: {numbers[-1]}\")\n\n# Modifying lists\nfruits[1] = 'blueberry'  # Replace an item\nprint(f\"Modified fruits: {fruits}\")\n\n# List methods\nfruits.append('kiwi')    # Add to the end\nprint(f\"After append: {fruits}\")\n\nfruits.insert(1, 'mango')  # Insert at position\nprint(f\"After insert: {fruits}\")\n\nfruits.remove('apple')   # Remove by value\nprint(f\"After remove: {fruits}\")\n\npopped = fruits.pop()    # Remove and return last item\nprint(f\"Popped item: {popped}\")\nprint(f\"After pop: {fruits}\")\n\n# List operations\ncombined = fruits + numbers  # Concatenation\nprint(f\"Combined list: {combined}\")\n\nrepeated = numbers * 2   # Repetition\nprint(f\"Repeated list: {repeated}\")\n\n# List comprehension (advanced but very useful)\nsquares = [x**2 for x in range(1, 6)]\nprint(f\"Squares: {squares}\")",
+      "explanation": "This example shows how to create lists and perform common operations like accessing, modifying, adding, and removing elements. It also demonstrates list methods like append(), insert(), remove(), and pop(), as well as operations like concatenation and repetition. The final part introduces list comprehensions, a powerful Python feature for creating lists based on existing sequences."
+    },
+    {
+      "title": "Dictionaries for Key-Value Mapping",
+      "description": "Dictionaries store data as key-value pairs, allowing efficient lookup by key.",
+      "code": "# Creating a dictionary\nstudent = {\n    'name': 'John Smith',\n    'age': 20,\n    'courses': ['Math', 'Physics', 'Computer Science'],\n    'gpa': 3.8,\n    'is_active': True\n}\n\n# Accessing values\nprint(f\"Name: {student['name']}\")\nprint(f\"Courses: {student['courses']}\")\n\n# Alternative way to access values\nprint(f\"Age: {student.get('age')}\")\n# Using get() with a default value\nprint(f\"Address: {student.get('address', 'Not provided')}\")\n\n# Modifying dictionaries\nstudent['gpa'] = 3.9               # Update value\nstudent['email'] = 'john@example.com'  # Add new key-value pair\nprint(f\"Updated student: {student}\")\n\n# Dictionary methods\nkeys = student.keys()     # Get all keys\nprint(f\"Keys: {list(keys)}\")\n\nvalues = student.values() # Get all values\nprint(f\"Values: {list(values)}\")\n\nitems = student.items()   # Get all key-value pairs as tuples\nprint(f\"Items: {list(items)}\")\n\n# Removing items\nemail = student.pop('email')  # Remove key and return its value\nprint(f\"Removed email: {email}\")\nprint(f\"After removal: {student}\")\n\n# Check if key exists\nprint(f\"Has 'name'? {'name' in student}\")\nprint(f\"Has 'address'? {'address' in student}\")",
+      "explanation": "This example demonstrates how to create dictionaries and perform common operations such as accessing values using keys or the get() method, modifying values, adding new key-value pairs, and removing items. It also shows different dictionary methods like keys(), values(), and items(), and how to check if a key exists in a dictionary."
+    }
+  ],
+  "practice_code": "# Practice with different data types\n\n# Strings\ngreeting = \"Hello, Python learner!\"\nprint(f\"Original greeting: {greeting}\")\nprint(f\"Uppercase: {greeting.upper()}\")\nprint(f\"Character at index 7: {greeting[7]}\")\nprint(f\"First 5 characters: {greeting[:5]}\")\n\n# Lists\nnumbers = [10, 20, 30, 40, 50]\nprint(f\"\\nNumbers list: {numbers}\")\nnumbers.append(60)\nprint(f\"After append: {numbers}\")\nprint(f\"Sum of all numbers: {sum(numbers)}\")\n\n# Dictionary\nperson = {'name': 'Alice', 'age': 28, 'city': 'New York'}\nprint(f\"\\nPerson dictionary: {person}\")\nprint(f\"Person's name: {person['name']}\")\nperson['job'] = 'Developer'\nprint(f\"Updated dictionary: {person}\")\n\n# Boolean operations\nx = 5\ny = 10\nprint(f\"\\nx < y: {x < y}\")\nprint(f\"x > y: {x > y}\")\nprint(f\"x == 5 and y == 10: {x == 5 and y == 10}\")\nprint(f\"not (x == y): {not (x == y)}\")\n\n# Try experimenting with other data types and operations below\n",
+  "quiz": [
+    {
+      "question": "Which of the following is a mutable data type in Python?",
+      "options": [
+        {"text": "int", "correct": false},
+        {"text": "str", "correct": false},
+        {"text": "tuple", "correct": false},
+        {"text": "list", "correct": true}
+      ]
+    },
+    {
+      "question": "What will be the output of the following code: len(\"Python\")",
+      "options": [
+        {"text": "5", "correct": false},
+        {"text": "6", "correct": true},
+        {"text": "7", "correct": false},
+        {"text": "Error", "correct": false}
+      ]
+    },
+    {
+      "question": "Which method can be used to add an element to the end of a list?",
+      "options": [
+        {"text": "add()", "correct": false},
+        {"text": "insert()", "correct": false},
+        {"text": "append()", "correct": true},
+        {"text": "extend()", "correct": false}
+      ]
+    },
+    {
+      "question": "What is the correct way to access the value for 'name' in a dictionary called person?",
+      "options": [
+        {"text": "person.name", "correct": false},
+        {"text": "person['name']", "correct": true},
+        {"text": "person(name)", "correct": false},
+        {"text": "person.get.name", "correct": false}
+      ]
+    }
+  ],
+  "problems": [
+    {
+      "id": "string_reversal",
+      "title": "String Reversal",
+      "description": "Write a function that takes a string as input and returns the string reversed.",
+      "difficulty": "Easy",
+      "starter_code": "def reverse_string(text):\n    # Your code here\n    pass\n\n# Test your function\ntext = \"Python is amazing\"\nreversed_text = reverse_string(text)\nprint(f\"Original: {text}\")\nprint(f\"Reversed: {reversed_text}\")",
+      "tests": [
+        {
+          "description": "Test with a simple string",
+          "code": "assert reverse_string(\"hello\") == \"olleh\", \"Failed on simple string\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test with a longer phrase",
+          "code": "assert reverse_string(\"Python Programming\") == \"gnimmargorP nohtyP\", \"Failed on longer phrase\"",
+          "expected_output": ""
+        }
+      ],
+      "expected_output": "Original: Python is amazing\nReversed: gnizama si nohtyP\n",
+      "solution": "def reverse_string(text):\n    # Method 1: Using slicing\n    return text[::-1]\n    \n    # Method 2: Using a loop (alternative solution)\n    # reversed_text = \"\"\n    # for char in text:\n    #     reversed_text = char + reversed_text\n    # return reversed_text\n    \n    # Method 3: Using reversed() function (another alternative)\n    # return \"\".join(reversed(text))\n\n# Test your function\ntext = \"Python is amazing\"\nreversed_text = reverse_string(text)\nprint(f\"Original: {text}\")\nprint(f\"Reversed: {reversed_text}\")"
+    },
+    {
+      "id": "dict_manipulation",
+      "title": "Dictionary Manipulation",
+      "description": "Create a function that counts the frequency of each character in a string and returns a dictionary where the keys are the characters and the values are their frequencies.",
+      "difficulty": "Medium",
+      "starter_code": "def char_frequency(text):\n    # Your code here\n    pass\n\n# Test your function\nsample_text = \"hello world\"\nresult = char_frequency(sample_text)\nprint(result)",
+      "tests": [
+        {
+          "description": "Test with a simple string",
+          "code": "result = char_frequency(\"hello\")\nassert result['h'] == 1 and result['e'] == 1 and result['l'] == 2 and result['o'] == 1, \"Failed on simple string\"",
+          "expected_output": ""
+        },
+        {
+          "description": "Test with spaces and mixed case",
+          "code": "result = char_frequency(\"Hello World\")\nassert result['H'] == 1 and result['e'] == 1 and result['l'] == 3 and result['o'] == 2 and result[' '] == 1 and result['W'] == 1 and result['r'] == 1 and result['d'] == 1, \"Failed on string with spaces and mixed case\"",
+          "expected_output": ""
+        }
+      ],
+      "expected_output": "{'h': 1, 'e': 1, 'l': 3, 'o': 2, ' ': 1, 'w': 1, 'r': 1, 'd': 1}\n",
+      "solution": "def char_frequency(text):\n    # Create an empty dictionary\n    freq = {}\n    \n    # Count each character\n    for char in text:\n        if char in freq:\n            freq[char] += 1\n        else:\n            freq[char] = 1\n    \n    # Alternative using get() method\n    # for char in text:\n    #     freq[char] = freq.get(char, 0) + 1\n    \n    return freq\n\n# Test your function\nsample_text = \"hello world\"\nresult = char_frequency(sample_text)\nprint(result)"
+    }
+  ],
+  "next_lesson": "operators"
+}

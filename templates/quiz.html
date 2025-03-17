@@ -1,0 +1,88 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{ quiz.title }} - Python Quiz{% endblock %}
+
+{% block content %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{ url_for('quizzes', level=quiz.level) }}">{{ quiz.level|capitalize }} Quizzes</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ quiz.title }}</li>
+    </ol>
+</nav>
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="mb-3">{{ quiz.title }}</h1>
+        <div class="mb-3">
+            <span class="badge bg-{{ quiz.level == 'beginner' and 'success' or (quiz.level == 'intermediate' and 'warning' or 'danger') }}">
+                {{ quiz.level|capitalize }}
+            </span>
+            <span class="ms-2 text-muted"><i class="far fa-question-circle me-1"></i>{{ quiz.questions|length }} Questions</span>
+            <span class="ms-2 text-muted"><i class="far fa-clock me-1"></i>{{ quiz.time_limit|default(10) }} min</span>
+        </div>
+        
+        <div class="alert alert-info">
+            <strong><i class="fas fa-info-circle me-2"></i>Instructions:</strong> Select the correct answer for each question. You can review your answers before submitting.
+        </div>
+        
+        <div id="quiz-message" style="display: none;"></div>
+        
+        <form id="quiz-form">
+            <input type="hidden" id="quiz-id" value="{{ quiz.id }}">
+            
+            {% for question in quiz.questions %}
+            <div class="card mb-4 quiz-question">
+                <div class="card-header">
+                    <h5 class="mb-0">Question {{ loop.index }}: {{ question.question }}</h5>
+                </div>
+                <div class="card-body">
+                    {% if question.code %}
+                    <pre><code class="language-python">{{ question.code }}</code></pre>
+                    {% endif %}
+                    
+                    <input type="hidden" name="answer-{{ question.id }}" value="">
+                    
+                    {% for option in question.options %}
+                    <div class="quiz-option" data-question-id="{{ question.id }}" data-option-value="{{ option.value }}">
+                        <strong>{{ option.label }}:</strong> {{ option.text }}
+                    </div>
+                    {% endfor %}
+                    
+                    {% if question.explanation %}
+                    <div class="explanation mt-3" style="display: none;">
+                        <hr>
+                        <h6><i class="fas fa-lightbulb me-2"></i>Explanation:</h6>
+                        <p>{{ question.explanation }}</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+            
+            <div class="d-flex justify-content-between align-items-center mt-4 mb-5">
+                <button type="button" class="btn btn-primary" id="quiz-submit">
+                    <i class="fas fa-paper-plane me-2"></i>Submit Answers
+                </button>
+                <div class="loader"></div>
+            </div>
+        </form>
+        
+        <div id="quiz-result" class="mb-5"></div>
+        
+        <div class="d-flex justify-content-between mt-5">
+            <a href="{{ url_for('quizzes', level=quiz.level) }}" class="btn btn-outline-secondary">
+                <i class="fas fa-list me-2"></i>Back to Quizzes
+            </a>
+            
+            <a href="{{ url_for('index') }}" class="btn btn-primary">
+                Continue Learning<i class="fas fa-graduation-cap ms-2"></i>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/quiz.js') }}"></script>
+{% endblock %}
