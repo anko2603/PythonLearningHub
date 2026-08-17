@@ -1,7 +1,17 @@
 import os
+import sys
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+if BASE_DIR not in sys.path:
+    sys.path.insert(0, BASE_DIR)
+
 from flask import Flask
 
-app = Flask(__name__)
+app = Flask(
+    __name__,
+    static_folder=os.path.join(BASE_DIR, 'static'),
+    template_folder=os.path.join(BASE_DIR, 'templates')
+)
 app.secret_key = os.environ.get("SESSION_SECRET", "python-learning-hub-secret-key-2026")
 
 from routes.main_routes import main_bp

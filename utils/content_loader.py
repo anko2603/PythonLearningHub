@@ -2,10 +2,14 @@ import os
 import json
 import logging
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CONTENT_DIR = os.path.join(BASE_DIR, 'content')
+
 def load_tracks():
     """Load all learning tracks from the tracks.json file."""
     try:
-        with open('content/tracks.json', 'r', encoding='utf-8') as f:
+        tracks_file = os.path.join(CONTENT_DIR, 'tracks.json')
+        with open(tracks_file, 'r', encoding='utf-8') as f:
             return json.load(f)
     except FileNotFoundError:
         default_tracks = [
@@ -28,8 +32,8 @@ def load_tracks():
                 "icon": "braces"
             }
         ]
-        os.makedirs('content', exist_ok=True)
-        with open('content/tracks.json', 'w', encoding='utf-8') as f:
+        os.makedirs(CONTENT_DIR, exist_ok=True)
+        with open(os.path.join(CONTENT_DIR, 'tracks.json'), 'w', encoding='utf-8') as f:
             json.dump(default_tracks, f, indent=2)
         return default_tracks
     except Exception as e:
@@ -39,7 +43,7 @@ def load_tracks():
 def load_track_lessons(track_id):
     """Load all lessons for a specific track."""
     lessons = []
-    track_dir = f'content/{track_id}'
+    track_dir = os.path.join(CONTENT_DIR, track_id)
     try:
         if not os.path.exists(track_dir):
             os.makedirs(track_dir, exist_ok=True)
@@ -65,7 +69,7 @@ def load_track_lessons(track_id):
 def load_lesson(track_id, lesson_id):
     """Load a specific lesson's content."""
     try:
-        lesson_path = f'content/{track_id}/{lesson_id}.json'
+        lesson_path = os.path.join(CONTENT_DIR, track_id, f'{lesson_id}.json')
         if not os.path.exists(lesson_path):
             return None
         with open(lesson_path, 'r', encoding='utf-8') as f:
@@ -77,7 +81,8 @@ def load_lesson(track_id, lesson_id):
 def load_arena_problems():
     """Load all LeetCode / HackerRank problems from arena_problems.json."""
     try:
-        with open('content/arena_problems.json', 'r', encoding='utf-8') as f:
+        arena_file = os.path.join(CONTENT_DIR, 'arena_problems.json')
+        with open(arena_file, 'r', encoding='utf-8') as f:
             return json.load(f)
     except Exception as e:
         logging.error(f"Error loading arena problems: {str(e)}")
@@ -91,7 +96,8 @@ def load_arena_problem(problem_id):
 def load_quizzes():
     """Load all interactive quizzes."""
     try:
-        with open('content/quizzes.json', 'r', encoding='utf-8') as f:
+        quizzes_file = os.path.join(CONTENT_DIR, 'quizzes.json')
+        with open(quizzes_file, 'r', encoding='utf-8') as f:
             return json.load(f)
     except Exception as e:
         logging.error(f"Error loading quizzes: {str(e)}")
