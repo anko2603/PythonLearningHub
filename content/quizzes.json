@@ -1,0 +1,185 @@
+[
+  {
+    "id": "python-fundamentals",
+    "title": "Python Core & Syntax Mastery",
+    "difficulty": "Easy",
+    "description": "Test your grasp on Python basics, mutable vs immutable types, list slicing, and operators.",
+    "icon": "lightning-charge-fill",
+    "xp": 150,
+    "questions": [
+      {
+        "id": 1,
+        "question": "What will be the output of the following Python code?",
+        "code": "a = [1, 2, 3]\nb = a\nb.append(4)\nprint(len(a))",
+        "options": [
+          "3",
+          "4",
+          "Error",
+          "None"
+        ],
+        "correct_answer": 1,
+        "explanation": "Lists in Python are mutable objects. `b = a` creates a reference to the same list in memory. Modifying `b` also modifies `a`, so `len(a)` is 4."
+      },
+      {
+        "id": 2,
+        "question": "What does the expression `bool([])` evaluate to in Python?",
+        "code": "print(bool([]), bool([0]))",
+        "options": [
+          "True True",
+          "False False",
+          "False True",
+          "True False"
+        ],
+        "correct_answer": 2,
+        "explanation": "An empty container (like `[]`, `{}`, `\"\"`) is falsy in Python (`bool([]) == False`). However, `[0]` is a non-empty list containing one element `0`, which is truthy (`bool([0]) == True`)."
+      },
+      {
+        "id": 3,
+        "question": "What is the result of `\"hello\"[1:4]`?",
+        "code": "s = \"hello\"\nprint(s[1:4])",
+        "options": [
+          "\"ell\"",
+          "\"ello\"",
+          "\"hel\"",
+          "\"he\""
+        ],
+        "correct_answer": 0,
+        "explanation": "Slice `[1:4]` takes characters starting at index 1 ('e') up to (but not including) index 4 ('o'). Result: 'ell'."
+      },
+      {
+        "id": 4,
+        "question": "Which of the following is an IMMUTABLE data type in Python?",
+        "options": [
+          "List",
+          "Dictionary",
+          "Set",
+          "Tuple"
+        ],
+        "correct_answer": 3,
+        "explanation": "Tuples, Strings, Integers, and Floats are immutable in Python. Lists, Dictionaries, and Sets are mutable."
+      },
+      {
+        "id": 5,
+        "question": "What is the output of `2 ** 3 ** 2` in Python?",
+        "code": "print(2 ** 3 ** 2)",
+        "options": [
+          "64",
+          "512",
+          "36",
+          "SyntaxError"
+        ],
+        "correct_answer": 1,
+        "explanation": "The exponentiation operator `**` has right-to-left associativity. So `2 ** 3 ** 2` is evaluated as `2 ** (3 ** 2) = 2 ** 9 = 512`."
+      }
+    ]
+  },
+  {
+    "id": "ds-algorithms-quiz",
+    "title": "Data Structures & Big-O Complexity",
+    "difficulty": "Medium",
+    "description": "Challenge yourself on time complexity, dict lookups, sets, and algorithmic efficiency.",
+    "icon": "cpu-fill",
+    "xp": 250,
+    "questions": [
+      {
+        "id": 1,
+        "question": "What is the average time complexity of checking if a key exists in a Python dictionary?",
+        "code": "if key in my_dict:\n    ...",
+        "options": [
+          "O(n)",
+          "O(log n)",
+          "O(1)",
+          "O(n log n)"
+        ],
+        "correct_answer": 2,
+        "explanation": "Python dictionaries are implemented using Hash Tables, offering average-case O(1) time complexity for key lookup, insertion, and deletion."
+      },
+      {
+        "id": 2,
+        "question": "What is the time complexity of the built-in `list.sort()` (Timsort) in Python?",
+        "options": [
+          "O(n^2)",
+          "O(n log n)",
+          "O(n)",
+          "O(log n)"
+        ],
+        "correct_answer": 1,
+        "explanation": "Python uses Timsort (a hybrid of Merge Sort and Insertion Sort), which has an optimal worst and average time complexity of O(n log n) and best-case O(n) on already sorted data."
+      },
+      {
+        "id": 3,
+        "question": "What is the output of this set comprehension?",
+        "code": "s = {x % 3 for x in range(10)}\nprint(sorted(list(s)))",
+        "options": [
+          "[0, 1, 2]",
+          "[0, 1, 2, 3]",
+          "[0, 1, 2, 0, 1, 2, 0, 1, 2, 0]",
+          "[1, 2, 3]"
+        ],
+        "correct_answer": 0,
+        "explanation": "`range(10)` modulo 3 yields 0, 1, 2 repeating. Since sets only store unique elements, `s` contains `{0, 1, 2}`."
+      },
+      {
+        "id": 4,
+        "question": "Which data structure in Python `collections` module provides O(1) append and pop from both ends?",
+        "options": [
+          "collections.Counter",
+          "collections.deque",
+          "collections.OrderedDict",
+          "collections.defaultdict"
+        ],
+        "correct_answer": 1,
+        "explanation": "`deque` (Double-Ended Queue) provides O(1) time complexity for appending and popping from both the left and right ends."
+      }
+    ]
+  },
+  {
+    "id": "tricky-python-gotchas",
+    "title": "Tricky Python Quirks & Gotchas",
+    "difficulty": "Hard",
+    "description": "Think like a senior engineer! Test your knowledge on closures, default mutable arguments, and scope.",
+    "icon": "fire",
+    "xp": 350,
+    "questions": [
+      {
+        "id": 1,
+        "question": "What will calling `f()` twice print?",
+        "code": "def f(val, items=[]):\n    items.append(val)\n    return items\n\nprint(f(1))\nprint(f(2))",
+        "options": [
+          "[1] and [2]",
+          "[1] and [1, 2]",
+          "[1] and [2, 2]",
+          "RuntimeError"
+        ],
+        "correct_answer": 1,
+        "explanation": "Default argument expressions in Python are evaluated once when the function is defined, NOT each time the function is called. The list `items` is shared across calls."
+      },
+      {
+        "id": 2,
+        "question": "What is the output of this lambda closure inside a list comprehension?",
+        "code": "funcs = [lambda x: x + i for i in range(3)]\nprint([f(10) for f in funcs])",
+        "options": [
+          "[10, 11, 12]",
+          "[12, 12, 12]",
+          "[10, 10, 10]",
+          "[11, 12, 13]"
+        ],
+        "correct_answer": 1,
+        "explanation": "Python lambdas capture variables by reference (late binding). When the lambdas are called, `i` has reached its final value of 2. So `10 + 2 = 12` for each function."
+      },
+      {
+        "id": 3,
+        "question": "What is the output of `is` comparison between small vs large integers in CPython?",
+        "code": "a = 256; b = 256\nc = 300; d = 300\nprint(a is b, c is d)",
+        "options": [
+          "True True",
+          "False False",
+          "True False (in standard REPL/interactive)",
+          "False True"
+        ],
+        "correct_answer": 2,
+        "explanation": "CPython pre-allocates and caches integers in the range [-5, 256] (integer interning). Numbers outside this range are separate objects unless compiled in the same code block."
+      }
+    ]
+  }
+]

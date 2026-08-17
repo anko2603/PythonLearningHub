@@ -3,196 +3,159 @@
 {% block title %}{{ lesson.title }} - Python Learning Hub{% endblock %}
 
 {% block content %}
-<div class="row">
-    <div class="col-md-3">
-        <div class="sidebar">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item"><a href="/track/{{ track.id }}">{{ track.title }}</a></li>
-                    <li class="breadcrumb-item active">{{ lesson.title }}</li>
-                </ol>
-            </nav>
-            
-            <div class="card bg-dark border-0 shadow-sm mb-4">
-                <div class="card-header">
-                    <h5 class="mb-0">Lesson Navigation</h5>
+<div class="container py-4">
+    <!-- Breadcrumbs -->
+    <nav class="mb-4">
+        <ol class="breadcrumb small">
+            <li class="breadcrumb-item"><a href="/" class="text-muted text-decoration-none"><i class="bi bi-house me-1"></i>Home</a></li>
+            <li class="breadcrumb-item"><a href="/track/{{ track.id }}" class="text-muted text-decoration-none">{{ track.title }}</a></li>
+            <li class="breadcrumb-item active text-white fw-semibold">{{ lesson.title }}</li>
+        </ol>
+    </nav>
+
+    <div class="row g-4">
+        <!-- Sidebar Navigation -->
+        <div class="col-lg-3 d-none d-lg-block">
+            <div class="sticky-sidebar">
+                <div class="v-card p-3 mb-3">
+                    <h6 class="text-white fw-bold mb-3 d-flex align-items-center gap-2">
+                        <i class="bi bi-list-nested text-info"></i> Lesson Outline
+                    </h6>
+                    <div class="d-flex flex-column gap-1 small">
+                        <a href="#overview" class="p-2 rounded text-muted text-decoration-none hover-white">
+                            <i class="bi bi-card-text me-2"></i>Overview
+                        </a>
+                        <a href="#tutorial" class="p-2 rounded text-muted text-decoration-none hover-white">
+                            <i class="bi bi-book me-2"></i>Tutorial & Concepts
+                        </a>
+                        <a href="#examples" class="p-2 rounded text-muted text-decoration-none hover-white">
+                            <i class="bi bi-code-square me-2"></i>Code Examples
+                        </a>
+                        <a href="#practice" class="p-2 rounded text-muted text-decoration-none hover-white">
+                            <i class="bi bi-terminal me-2"></i>Interactive Practice
+                        </a>
+                        <a href="/arena" class="p-2 rounded text-muted text-decoration-none hover-white">
+                            <i class="bi bi-lightning-charge me-2 text-warning"></i>LeetCode Challenges
+                        </a>
+                    </div>
                 </div>
-                <div class="card-body p-0">
-                    <ul class="list-group list-group-flush bg-transparent">
-                        <li class="list-group-item bg-transparent">
-                            <a href="#overview" class="text-decoration-none d-block">Overview</a>
-                        </li>
-                        <li class="list-group-item bg-transparent">
-                            <a href="#tutorial" class="text-decoration-none d-block">Tutorial</a>
-                        </li>
-                        <li class="list-group-item bg-transparent">
-                            <a href="#examples" class="text-decoration-none d-block">Examples</a>
-                        </li>
-                        <li class="list-group-item bg-transparent">
-                            <a href="#practice" class="text-decoration-none d-block">Practice</a>
-                        </li>
-                        <li class="list-group-item bg-transparent">
-                            <a href="#quiz" class="text-decoration-none d-block">Quiz</a>
-                        </li>
-                        <li class="list-group-item bg-transparent">
-                            <a href="#problems" class="text-decoration-none d-block">Problems</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="card bg-dark border-0 shadow-sm">
-                <div class="card-header">
-                    <h5 class="mb-0">Lesson Info</h5>
-                </div>
-                <div class="card-body">
-                    <ul class="list-group list-group-flush bg-transparent">
-                        <li class="list-group-item bg-transparent d-flex justify-content-between">
-                            <span>Track:</span>
-                            <span>
-                                <span class="badge badge-level badge-{{ track.id }}">{{ track.id|title }}</span>
-                            </span>
-                        </li>
-                        <li class="list-group-item bg-transparent d-flex justify-content-between">
-                            <span>Estimated time:</span>
-                            <span>{{ lesson.duration|default('30 minutes') }}</span>
-                        </li>
-                    </ul>
+
+                <div class="v-card p-3">
+                    <h6 class="text-white fw-bold mb-3">Module Info</h6>
+                    <div class="d-flex justify-content-between py-1 border-bottom border-dark small">
+                        <span class="text-muted">Track:</span>
+                        <span class="text-info fw-semibold">{{ track.title }}</span>
+                    </div>
+                    <div class="d-flex justify-content-between py-1 small">
+                        <span class="text-muted">Est. Reading:</span>
+                        <span class="text-white font-monospace">15 mins</span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    
-    <div class="col-md-9">
-        <div class="card bg-dark border-0 shadow-sm mb-4">
-            <div class="card-body">
-                <h1 class="mb-3">{{ lesson.title }}</h1>
-                <p class="lead">{{ lesson.description }}</p>
-                
-                <hr>
-                
-                <div class="lesson-content">
-                    <section id="overview" class="mb-5">
-                        <h2>Overview</h2>
-                        <p>{{ lesson.overview|default('In this lesson, you will learn about ' + lesson.title + '. This is a fundamental concept in Python programming that will help you build more complex applications.') }}</p>
-                    </section>
-                    
-                    <section id="tutorial" class="mb-5">
-                        <h2>Tutorial</h2>
-                        <div class="mb-4">
-                            {{ lesson.tutorial|default('<p>Tutorial content for this lesson is being developed.</p>')|safe }}
-                        </div>
-                    </section>
-                    
-                    <section id="examples" class="mb-5">
-                        <h2>Examples</h2>
-                        <div class="mb-4">
-                            {% if lesson.examples %}
-                                {% for example in lesson.examples %}
-                                <div class="card bg-dark mb-4">
-                                    <div class="card-header">
-                                        <h5 class="mb-0">{{ example.title }}</h5>
-                                    </div>
-                                    <div class="card-body">
-                                        <p>{{ example.description }}</p>
-                                        <pre><code class="language-python">{{ example.code }}</code></pre>
-                                        {% if example.explanation %}
-                                        <div class="alert alert-info mt-3">
-                                            <h6>Explanation:</h6>
-                                            <p class="mb-0">{{ example.explanation }}</p>
-                                        </div>
-                                        {% endif %}
-                                    </div>
-                                </div>
-                                {% endfor %}
-                            {% else %}
-                                <p>Examples for this lesson are being developed.</p>
-                            {% endif %}
-                        </div>
-                    </section>
-                    
-                    <section id="practice" class="mb-5">
-                        <h2>Practice</h2>
-                        <p>Try running and modifying the code below to solidify your understanding.</p>
-                        
-                        <div class="card bg-dark mb-4">
-                            <div class="card-body">
-                                <textarea id="practice-editor" class="form-control mb-3">{{ lesson.practice_code|default('# Practice code\nprint("Hello, Python!")') }}</textarea>
-                                <div class="d-grid">
-                                    <button id="practice-run-btn" class="btn btn-primary">
-                                        <i class="bi bi-play-fill me-2"></i>Run Code
-                                    </button>
-                                </div>
-                                <div id="practice-output" class="mt-3"></div>
-                            </div>
-                        </div>
-                    </section>
-                    
-                    <section id="quiz" class="mb-5">
-                        <h2>Quiz</h2>
-                        <p>Test your understanding with these multiple-choice questions.</p>
-                        
-                        {% if lesson.quiz %}
-                            {% for quiz in lesson.quiz %}
-                            <div class="card bg-dark mb-4 quiz-container">
-                                <div class="card-header">
-                                    <h5 class="mb-0">Question {{ loop.index }}</h5>
-                                </div>
-                                <div class="card-body">
-                                    <p class="mb-3">{{ quiz.question }}</p>
-                                    
-                                    <div class="list-group mb-3">
-                                        {% for option in quiz.options %}
-                                        <button class="list-group-item list-group-item-action bg-transparent quiz-option" data-correct="{{ option.correct|default(False)|string|lower }}">
-                                            {{ option.text }}
-                                        </button>
-                                        {% endfor %}
-                                    </div>
-                                    
-                                    <div class="quiz-feedback"></div>
-                                </div>
-                            </div>
-                            {% endfor %}
-                        {% else %}
-                            <p>Quiz questions for this lesson are being developed.</p>
-                        {% endif %}
-                    </section>
-                    
-                    <section id="problems" class="mb-5">
-                        <h2>Practice Problems</h2>
-                        <p>Apply what you've learned by solving these problems.</p>
-                        
-                        {% if lesson.problems %}
-                            <div class="list-group mb-4">
-                                {% for problem in lesson.problems %}
-                                <a href="/problem/{{ track.id }}/{{ lesson.id }}/{{ problem.id }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center bg-transparent">
-                                    <div>
-                                        <h5 class="mb-1">{{ problem.title }}</h5>
-                                        <p class="mb-0 text-muted">{{ problem.description|truncate(100) }}</p>
-                                    </div>
-                                    <span class="badge bg-info">{{ problem.difficulty|default('Easy') }}</span>
-                                </a>
-                                {% endfor %}
-                            </div>
-                        {% else %}
-                            <p>Practice problems for this lesson are being developed.</p>
-                        {% endif %}
-                    </section>
+
+        <!-- Main Lesson Body -->
+        <div class="col-lg-9">
+            <div class="v-card p-4 p-md-5 mb-4">
+                <!-- Title & Badge -->
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <span class="badge bg-secondary bg-opacity-25 text-info border border-secondary">
+                        Lesson Module
+                    </span>
+                    <a href="/track/{{ track.id }}" class="text-muted text-decoration-none small">
+                        <i class="bi bi-arrow-left me-1"></i>Track Roadmap
+                    </a>
                 </div>
+
+                <h1 class="display-6 fw-bolder text-white mb-3">{{ lesson.title }}</h1>
+                <p class="lead text-muted mb-4 content-text">{{ lesson.description }}</p>
+
+                <hr class="border-dark my-4">
+
+                <!-- Overview Section -->
+                <section id="overview" class="mb-5">
+                    <h3 class="text-white fw-bold mb-3 d-flex align-items-center gap-2">
+                        <i class="bi bi-card-text text-primary"></i> Overview
+                    </h3>
+                    <div class="content-text">
+                        {{ lesson.overview|default('In this comprehensive lesson, you will learn the core concepts of ' + lesson.title + '. You will gain hands-on intuition through structured explanations, executable examples, and practice challenges.') }}
+                    </div>
+                </section>
+
+                <!-- Tutorial Content Section -->
+                <section id="tutorial" class="mb-5">
+                    <h3 class="text-white fw-bold mb-3 d-flex align-items-center gap-2">
+                        <i class="bi bi-book text-success"></i> Deep Dive & Key Concepts
+                    </h3>
+                    <div class="content-text">
+                        {{ lesson.tutorial|default('<p>Tutorial content for this lesson is active and ready for exploration.</p>')|safe }}
+                    </div>
+                </section>
+
+                <!-- Examples Section -->
+                <section id="examples" class="mb-5">
+                    <h3 class="text-white fw-bold mb-3 d-flex align-items-center gap-2">
+                        <i class="bi bi-code-square text-warning"></i> Code Examples
+                    </h3>
+                    {% if lesson.examples %}
+                        {% for example in lesson.examples %}
+                        <div class="v-card p-0 mb-4 border border-secondary border-opacity-25">
+                            <div class="panel-header">
+                                <span class="fw-bold text-white small font-monospace">{{ example.title }}</span>
+                                <span class="badge bg-dark text-muted font-monospace small">Python</span>
+                            </div>
+                            <div class="p-3">
+                                <p class="text-muted small mb-2 content-text">{{ example.description }}</p>
+                                <pre class="p-3 bg-black border border-dark rounded text-light font-monospace small mb-0" style="overflow-x: auto;"><code>{{ example.code }}</code></pre>
+                                {% if example.explanation %}
+                                <div class="p-3 mt-3 bg-dark border border-secondary border-opacity-25 rounded small text-light content-text">
+                                    <strong class="text-info">Explanation:</strong> {{ example.explanation }}
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="p-3 bg-dark rounded text-muted small">Examples available in interactive practice below.</div>
+                    {% endif %}
+                </section>
+
+                <!-- Interactive Practice Section -->
+                <section id="practice" class="mb-5">
+                    <h3 class="text-white fw-bold mb-3 d-flex align-items-center gap-2">
+                        <i class="bi bi-terminal text-info"></i> Interactive Sandbox Practice
+                    </h3>
+                    <p class="text-muted small mb-3 content-text">
+                        Test and modify the code below in real-time to solidify your intuition.
+                    </p>
+
+                    <div class="v-card p-0 border border-secondary border-opacity-25">
+                        <div class="panel-header">
+                            <span class="small font-monospace text-muted">practice_sandbox.py</span>
+                            <button id="practice-run-btn" class="v-btn-success py-1 px-3 fs-6 small">
+                                <i class="bi bi-play-fill me-1"></i>Run Code
+                            </button>
+                        </div>
+                        <div style="height: 220px;">
+                            <textarea id="practice-editor">{{ lesson.practice_code|default('# Interactive Practice\n# Try writing and experimenting with Python code here\nx = 10\ny = 20\nprint(f"Sum of {x} and {y} is {x + y}")') }}</textarea>
+                        </div>
+                        <div class="p-3 bg-black border-top border-dark">
+                            <div class="small font-monospace text-muted mb-1">OUTPUT</div>
+                            <div id="practice-output" class="terminal-output" style="max-height: 120px;">Click 'Run Code' to execute...</div>
+                        </div>
+                    </div>
+                </section>
             </div>
-        </div>
-        
-        <div class="d-flex justify-content-between">
-            <a href="/track/{{ track.id }}" class="btn btn-outline-secondary">
-                <i class="bi bi-arrow-left me-2"></i>Back to Track
-            </a>
-            
-            {% if lesson.next_lesson %}
-            <a href="/lesson/{{ track.id }}/{{ lesson.next_lesson }}" class="btn btn-primary">
-                Next Lesson<i class="bi bi-arrow-right ms-2"></i>
-            </a>
-            {% endif %}
+
+            <!-- Navigation Footer between lessons -->
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="/track/{{ track.id }}" class="v-btn-secondary">
+                    <i class="bi bi-arrow-left me-2"></i>Back to Roadmap
+                </a>
+                <a href="/arena" class="v-btn-primary">
+                    Solve LeetCode Challenges <i class="bi bi-arrow-right ms-2"></i>
+                </a>
+            </div>
         </div>
     </div>
 </div>
@@ -200,9 +163,41 @@
 
 {% block extra_js %}
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize the practice editor
-    const practiceEditor = initializeEditor('practice-editor', 'practice-output', 'practice-run-btn');
+document.addEventListener('DOMContentLoaded', () => {
+    const editorEl = document.getElementById('practice-editor');
+    if (!editorEl) return;
+
+    const editor = CodeMirror.fromTextArea(editorEl, {
+        mode: 'python',
+        theme: 'dracula',
+        lineNumbers: true,
+        indentUnit: 4,
+        tabSize: 4
+    });
+
+    const runBtn = document.getElementById('practice-run-btn');
+    const outputEl = document.getElementById('practice-output');
+
+    runBtn.addEventListener('click', async () => {
+        runBtn.disabled = true;
+        runBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span>Running...';
+        outputEl.textContent = 'Executing code...';
+
+        try {
+            const res = await fetch('/api/playground/run', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ code: editor.getValue() })
+            });
+            const data = await res.json();
+            outputEl.textContent = data.output || data.error || 'Code executed with no output.';
+        } catch (e) {
+            outputEl.textContent = 'Error: ' + e.message;
+        } finally {
+            runBtn.disabled = false;
+            runBtn.innerHTML = '<i class="bi bi-play-fill me-1"></i>Run Code';
+        }
+    });
 });
 </script>
 {% endblock %}

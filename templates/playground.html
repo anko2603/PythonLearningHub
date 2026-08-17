@@ -1,0 +1,202 @@
+{% extends 'base.html' %}
+
+{% block title %}Python Interactive Playground & Sandbox{% endblock %}
+
+{% block content %}
+<div class="container-fluid px-3 px-lg-4 py-3">
+    <!-- Header -->
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-2 mb-3 pb-2 border-bottom border-dark">
+        <div>
+            <h2 class="fs-4 fw-bolder text-white mb-0">Python 3.12 Sandbox & Playground</h2>
+            <p class="text-muted small mb-0">Run arbitrary Python code in real-time, experiment with data structures, and test algorithms.</p>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+            <span class="text-muted small">Templates:</span>
+            <button class="btn btn-sm btn-dark border border-secondary text-light template-btn" data-template="ds">
+                Data Structures
+            </button>
+            <button class="btn btn-sm btn-dark border border-secondary text-light template-btn" data-template="oop">
+                OOP & Classes
+            </button>
+            <button class="btn btn-sm btn-dark border border-secondary text-light template-btn" data-template="algo">
+                Binary Search
+            </button>
+            <button class="btn btn-sm btn-dark border border-secondary text-light template-btn" data-template="fib">
+                Memoized Fib
+            </button>
+        </div>
+    </div>
+
+    <!-- Playground Workspace -->
+    <div class="row g-3" style="height: calc(100vh - 170px); min-height: 520px;">
+        <!-- Code Editor Pane -->
+        <div class="col-lg-7 d-flex flex-column h-100">
+            <div class="v-card p-0 h-100 d-flex flex-column">
+                <div class="panel-header">
+                    <div class="d-flex align-items-center gap-2 text-white small font-monospace">
+                        <i class="bi bi-file-earmark-code text-info"></i>main.py
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button id="btn-pg-clear" class="btn btn-sm btn-outline-secondary py-0 px-2" title="Clear Code">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                        <button id="btn-pg-copy" class="btn btn-sm btn-outline-secondary py-0 px-2" title="Copy Code">
+                            <i class="bi bi-clipboard"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="flex-grow-1" style="min-height: 300px;">
+                    <textarea id="pg-editor"># Python 3.12 Playground
+import math
+
+def calculate_primes(limit: int) -> list[int]:
+    """Sieve of Eratosthenes algorithm to generate prime numbers."""
+    if limit < 2:
+        return []
+    is_prime = [True] * (limit + 1)
+    is_prime[0] = is_prime[1] = False
+    
+    for p in range(2, int(math.isqrt(limit)) + 1):
+        if is_prime[p]:
+            for multiple in range(p * p, limit + 1, p):
+                is_prime[multiple] = False
+                
+    return [i for i, prime in enumerate(is_prime) if prime]
+
+primes_up_to_50 = calculate_primes(50)
+print("Primes up to 50:")
+print(primes_up_to_50)
+print(f"Total count: {len(primes_up_to_50)}")
+</textarea>
+                </div>
+                <div class="p-2 px-3 border-top border-dark bg-elevated d-flex justify-content-between align-items-center">
+                    <span class="text-muted small font-monospace">Lines: <span id="pg-line-count">20</span></span>
+                    <button id="btn-pg-run" class="v-btn-primary py-1 px-4 fs-6">
+                        <i class="bi bi-play-fill me-1"></i>Run Code
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Terminal Output Pane -->
+        <div class="col-lg-5 d-flex flex-column h-100">
+            <div class="v-card p-0 h-100 d-flex flex-column">
+                <div class="panel-header">
+                    <div class="d-flex align-items-center gap-2 text-white small font-monospace">
+                        <i class="bi bi-terminal text-success"></i>Interactive Terminal
+                    </div>
+                    <span id="pg-runtime-badge" class="badge bg-dark border border-secondary text-muted font-monospace">
+                        0 ms
+                    </span>
+                </div>
+                <div class="p-3 flex-grow-1 overflow-y-auto bg-black font-monospace" style="min-height: 300px;">
+                    <div id="pg-terminal-out" class="terminal-output border-0 p-0 text-light" style="max-height: 100%; height: 100%;">
+Click 'Run Code' to execute your Python script...
+                    </div>
+                </div>
+                <div class="p-2 px-3 border-top border-dark bg-elevated d-flex justify-content-between text-muted small">
+                    <span>Status: <span id="pg-status" class="text-success">Ready</span></span>
+                    <span>Python 3.12 Engine</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const editorEl = document.getElementById('pg-editor');
+    if (!editorEl) return;
+
+    const editor = CodeMirror.fromTextArea(editorEl, {
+        mode: 'python',
+        theme: 'dracula',
+        lineNumbers: true,
+        indentUnit: 4,
+        tabSize: 4,
+        autoCloseBrackets: true,
+        matchBrackets: true
+    });
+
+    const runBtn = document.getElementById('btn-pg-run');
+    const termOut = document.getElementById('pg-terminal-out');
+    const runtimeBadge = document.getElementById('pg-runtime-badge');
+    const statusEl = document.getElementById('pg-status');
+    const lineCountEl = document.getElementById('pg-line-count');
+
+    editor.on('change', () => {
+        lineCountEl.textContent = editor.lineCount();
+    });
+
+    const templates = {
+        ds: `# Python Dictionary and Set operations\nstudent_scores = {\n    "Alice": 92,\n    "Bob": 85,\n    "Charlie": 98,\n    "Diana": 78\n}\n\n# Filter students above 85\ntop_students = {k: v for k, v in student_scores.items() if v > 85}\nprint("Top Students:", top_students)\n\n# Set Operations\nset_a = {1, 2, 3, 4, 5}\nset_b = {4, 5, 6, 7, 8}\nprint("Intersection:", set_a & set_b)\nprint("Union:", set_a | set_b)\n`,
+        oop: `# Object-Oriented Programming (OOP) in Python\nclass BankAccount:\n    def __init__(self, owner: str, balance: float = 0.0):\n        self.owner = owner\n        self.balance = balance\n        \n    def deposit(self, amount: float):\n        if amount > 0:\n            self.balance += amount\n            print(f"Deposited \${amount}. New Balance: \${self.balance}")\n            \n    def withdraw(self, amount: float):\n        if 0 < amount <= self.balance:\n            self.balance -= amount\n            print(f"Withdrew \${amount}. Remaining: \${self.balance}")\n        else:\n            print("Insufficient funds!")\n\nacc = BankAccount("Alex", 500)\nacc.deposit(250)\nacc.withdraw(100)\n`,
+        algo: `# Binary Search Algorithm - O(log n)\ndef binary_search(arr: list[int], target: int) -> int:\n    low, high = 0, len(arr) - 1\n    while low <= high:\n        mid = (low + high) // 2\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            low = mid + 1\n        else:\n            high = mid - 1\n    return -1\n\nnumbers = [2, 5, 8, 12, 16, 23, 38, 56, 72, 91]\ntarget = 23\nresult = binary_search(numbers, target)\nprint(f"Index of {target} in sorted array: {result}")\n`,
+        fib: `# Memoized Fibonacci using lru_cache\nfrom functools import lru_cache\n\n@lru_cache(maxsize=None)\ndef fibonacci(n: int) -> int:\n    if n <= 1:\n        return n\n    return fibonacci(n - 1) + fibonacci(n - 2)\n\nprint("Fibonacci Sequence (first 15 terms):")\nprint([fibonacci(i) for i in range(15)])\nprint(f"50th Fibonacci number: {fibonacci(50)}")\n`
+    };
+
+    document.querySelectorAll('.template-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const tmpl = btn.getAttribute('data-template');
+            if (templates[tmpl]) {
+                editor.setValue(templates[tmpl]);
+            }
+        });
+    });
+
+    document.getElementById('btn-pg-clear')?.addEventListener('click', () => {
+        editor.setValue('');
+    });
+
+    document.getElementById('btn-pg-copy')?.addEventListener('click', () => {
+        navigator.clipboard.writeText(editor.getValue());
+        alert('Code copied to clipboard!');
+    });
+
+    runBtn.addEventListener('click', async () => {
+        const code = editor.getValue().trim();
+        if (!code) {
+            termOut.textContent = 'Please write some Python code to execute.';
+            return;
+        }
+
+        runBtn.disabled = true;
+        runBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span>Running...';
+        termOut.textContent = 'Executing code...';
+        statusEl.textContent = 'Running...';
+        statusEl.className = 'text-warning';
+
+        try {
+            const res = await fetch('/api/playground/run', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ code })
+            });
+            const data = await res.json();
+
+            if (data.success) {
+                termOut.textContent = data.output || 'Code executed successfully with no output.';
+                termOut.className = 'terminal-output border-0 p-0 text-light';
+                statusEl.textContent = 'Success';
+                statusEl.className = 'text-success';
+            } else {
+                termOut.textContent = data.error || 'Execution error occurred.';
+                termOut.className = 'terminal-output border-0 p-0 text-danger';
+                statusEl.textContent = 'Runtime Error';
+                statusEl.className = 'text-danger';
+            }
+            runtimeBadge.textContent = `${data.runtime_ms || 0} ms`;
+        } catch (e) {
+            termOut.textContent = 'Error: ' + e.message;
+            statusEl.textContent = 'Error';
+            statusEl.className = 'text-danger';
+        } finally {
+            runBtn.disabled = false;
+            runBtn.innerHTML = '<i class="bi bi-play-fill me-1"></i>Run Code';
+        }
+    });
+});
+</script>
+{% endblock %}

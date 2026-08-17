@@ -1,133 +1,668 @@
-/* Custom styles for Python learning platform */
+/* ==========================================================================
+   Python Learning Hub - Vercel Dark Theme Design System
+   ========================================================================== */
 
-/* Editor styling */
-.CodeMirror {
-  height: auto;
-  min-height: 300px;
-  border-radius: 0.25rem;
-  border: 1px solid var(--bs-border-color);
-  font-family: 'Source Code Pro', monospace;
-  font-size: 14px;
+:root {
+  --bg-main: #000000;
+  --bg-card: #0c0c0e;
+  --bg-card-hover: #121216;
+  --bg-elevated: #18181b;
+  --bg-subtle: #27272a;
+  
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-color-hover: rgba(255, 255, 255, 0.2);
+  --border-glow: rgba(0, 112, 243, 0.4);
+  
+  --text-main: #ededed;
+  --text-muted: #888888;
+  --text-dim: #555555;
+  
+  --accent-primary: #0070f3;
+  --accent-primary-gradient: linear-gradient(135deg, #0070f3 0%, #00dfd8 100%);
+  --accent-purple: #7928ca;
+  --accent-purple-gradient: linear-gradient(135deg, #ff0080 0%, #7928ca 100%);
+  
+  --easy-color: #10b981;
+  --easy-bg: rgba(16, 185, 129, 0.1);
+  --easy-border: rgba(16, 185, 129, 0.3);
+  
+  --medium-color: #f59e0b;
+  --medium-bg: rgba(245, 158, 11, 0.1);
+  --medium-border: rgba(245, 158, 11, 0.3);
+  
+  --hard-color: #ef4444;
+  --hard-bg: rgba(239, 68, 68, 0.1);
+  --hard-border: rgba(239, 68, 68, 0.3);
+  
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 }
 
-.output-area {
-  min-height: 100px;
-  max-height: 300px;
-  overflow-y: auto;
-  white-space: pre-wrap;
-  font-family: 'Source Code Pro', monospace;
-  font-size: 14px;
+body {
+  background-color: var(--bg-main) !important;
+  color: var(--text-main) !important;
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  letter-spacing: -0.01em;
+  overflow-x: hidden;
 }
 
-/* Quiz styling */
-.quiz-option {
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+}
+
+.text-gradient {
+  background: var(--accent-primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-purple {
+  background: var(--accent-purple-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-muted {
+  color: var(--text-muted) !important;
+}
+
+.text-justify {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+/* Content typography & readability */
+.content-text {
+  text-align: justify;
+  text-justify: inter-word;
+  line-height: 1.8;
+  font-size: 0.98rem;
+  color: #d4d4d8;
+}
+
+.content-text p {
+  margin-bottom: 1.25rem;
+}
+
+/* Glassmorphism Navbar */
+.vercel-nav {
+  background: rgba(0, 0, 0, 0.85) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 1050;
+  transition: all 0.2s ease;
+}
+
+.navbar-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.15rem;
+  white-space: nowrap;
+}
+
+.brand-icon {
+  width: 28px;
+  height: 28px;
+  background: #ffffff;
+  color: #000000;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 0.85rem;
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
+}
+
+.nav-link {
+  color: #a1a1aa !important;
+  font-size: 0.88rem;
+  font-weight: 500;
+  padding: 0.5rem 0.85rem !important;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.brand-badge {
+  font-size: 0.65rem;
+  background: rgba(0, 112, 243, 0.15);
+  color: #0070f3;
+  border: 1px solid rgba(0, 112, 243, 0.3);
+  padding: 2px 7px;
+  border-radius: 9999px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-left: 4px;
+}
+
+/* Search Bar trigger */
+.search-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  border-radius: 8px;
+  padding: 0.4rem 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.search-btn:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: var(--border-color-hover);
+  color: #ffffff;
+}
+
+.kbd-shortcut {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 0.68rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+}
+
+/* Mobile Navbar Toggle Button */
+.navbar-toggler-custom {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-color);
+  color: #ffffff;
+  padding: 0.4rem 0.65rem;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.quiz-option:hover:not(.disabled) {
-  background-color: var(--bs-light);
+.navbar-toggler-custom:hover, .navbar-toggler-custom:focus {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--border-color-hover);
+  color: #ffffff;
+  outline: none;
+  box-shadow: none;
 }
 
-.quiz-option.correct {
-  background-color: var(--bs-success) !important;
-  color: white;
+/* Mobile Collapse Menu Styling */
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    background: #09090b;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-top: 0.75rem;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8);
+  }
+  
+  .navbar-nav {
+    gap: 0.4rem;
+    margin-bottom: 1rem !important;
+  }
+  
+  .navbar-nav .nav-link {
+    padding: 0.65rem 1rem !important;
+    font-size: 0.95rem;
+    border-radius: 8px;
+    width: 100%;
+  }
+
+  .search-btn-mobile {
+    width: 100%;
+    margin-bottom: 0.75rem;
+    justify-content: space-between;
+  }
 }
 
-.quiz-option.incorrect {
-  background-color: var(--bs-danger) !important;
-  color: white;
+/* Cards (Vercel Style) */
+.v-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
 }
 
-.quiz-feedback {
-  display: none;
+.v-card:hover {
+  border-color: var(--border-color-hover);
+  background: var(--bg-card-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
 }
 
-/* Content styling */
-.lesson-content h1,
-.lesson-content h2,
-.lesson-content h3 {
-  margin-top: 1.5rem;
-  margin-bottom: 1rem;
+.v-card-glow:hover {
+  border-color: rgba(0, 112, 243, 0.5);
+  box-shadow: 0 0 25px rgba(0, 112, 243, 0.15);
 }
 
-.lesson-content p {
-  margin-bottom: 1rem;
-  line-height: 1.6;
+/* Badges */
+.badge-easy {
+  background: var(--easy-bg);
+  color: var(--easy-color);
+  border: 1px solid var(--easy-border);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.6rem;
+  border-radius: 9999px;
 }
 
-.lesson-content code {
-  background-color: var(--bs-dark);
-  color: var(--bs-info);
-  padding: 0.2rem 0.4rem;
-  border-radius: 0.25rem;
+.badge-medium {
+  background: var(--medium-bg);
+  color: var(--medium-color);
+  border: 1px solid var(--medium-border);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.6rem;
+  border-radius: 9999px;
 }
 
-.lesson-content pre {
-  background-color: var(--bs-dark);
-  border-radius: 0.25rem;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  overflow-x: auto;
+.badge-hard {
+  background: var(--hard-bg);
+  color: var(--hard-color);
+  border: 1px solid var(--hard-border);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.6rem;
+  border-radius: 9999px;
 }
 
-/* Navigation styling */
-.sidebar {
+.badge-topic {
+  background: rgba(255, 255, 255, 0.05);
+  color: #a1a1aa;
+  border: 1px solid var(--border-color);
+  font-size: 0.72rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+}
+
+/* Buttons */
+.v-btn-primary {
+  background: #ffffff;
+  color: #000000;
+  font-weight: 600;
+  font-size: 0.88rem;
+  border-radius: 8px;
+  padding: 0.55rem 1.15rem;
+  border: none;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.v-btn-primary:hover {
+  background: #eaeaea;
+  transform: translateY(-1px);
+  color: #000000;
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+}
+
+.v-btn-secondary {
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 0.88rem;
+  border-radius: 8px;
+  padding: 0.55rem 1.15rem;
+  border: 1px solid var(--border-color);
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.v-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--border-color-hover);
+  color: #ffffff;
+}
+
+.v-btn-success {
+  background: #10b981;
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.v-btn-success:hover {
+  background: #059669;
+  color: #ffffff;
+}
+
+/* Sticky Lesson Sidebar */
+.sticky-sidebar {
   position: sticky;
-  top: 1rem;
-  height: calc(100vh - 2rem);
+  top: 80px;
+}
+
+/* LeetCode Split-Screen Workspace */
+.arena-workspace {
+  display: flex;
+  height: calc(100vh - 120px);
+  min-height: 600px;
+  gap: 8px;
+  padding: 8px 0;
+}
+
+.arena-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.arena-left {
+  flex: 1 1 45%;
+  min-width: 320px;
+}
+
+.arena-right {
+  flex: 1 1 55%;
+  min-width: 380px;
+}
+
+.panel-header {
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border-color);
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 44px;
+}
+
+.panel-tabs {
+  display: flex;
+  gap: 4px;
+}
+
+.panel-tab {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.panel-tab:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.panel-tab.active {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  font-weight: 600;
+}
+
+.panel-content {
+  flex: 1;
   overflow-y: auto;
+  padding: 1.25rem;
 }
 
-/* Progress indicators */
-.track-progress {
-  height: 5px;
-  border-radius: 2.5px;
-  background-color: var(--bs-gray-800);
+/* LeetCode Example Blocks */
+.example-box {
+  background: #000000;
+  border-left: 3px solid var(--accent-primary);
+  border-radius: 0 8px 8px 0;
+  padding: 1rem;
+  margin-bottom: 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
 }
 
-.track-progress-bar {
-  height: 100%;
-  border-radius: 2.5px;
-  background-color: var(--bs-info);
+.example-box pre {
+  margin: 0;
+  white-space: pre-wrap;
 }
 
-/* Card hover effects */
-.track-card {
-  transition: transform 0.2s ease;
+.code-inline {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  color: #00dfd8;
 }
 
-.track-card:hover {
-  transform: translateY(-5px);
+/* CodeMirror Customization */
+.CodeMirror {
+  font-family: var(--font-mono) !important;
+  font-size: 14px !important;
+  height: 100% !important;
+  background: #000000 !important;
 }
 
-/* Custom badges */
-.badge-level {
+.cm-s-dracula.CodeMirror {
+  background: #000000 !important;
+}
+
+.cm-s-dracula .CodeMirror-gutters {
+  background: #050507 !important;
+  border-right: 1px solid var(--border-color) !important;
+}
+
+.CodeMirror-linenumber {
+  color: #444444 !important;
+}
+
+/* Terminal Console Output */
+.terminal-output {
+  background: #000000;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  max-height: 220px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  line-height: 1.5;
+}
+
+.test-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+}
+
+.test-badge.pass {
+  background: var(--easy-bg);
+  color: var(--easy-color);
+  border: 1px solid var(--easy-border);
+}
+
+.test-badge.fail {
+  background: var(--hard-bg);
+  color: var(--hard-color);
+  border: 1px solid var(--hard-border);
+}
+
+/* Gamified Quizzes */
+.quiz-option-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.quiz-option-card:hover {
+  background: var(--bg-card-hover);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateX(4px);
+}
+
+.quiz-option-card.selected {
+  border-color: var(--accent-primary);
+  background: rgba(0, 112, 243, 0.08);
+}
+
+.quiz-option-card.correct {
+  border-color: var(--easy-color) !important;
+  background: var(--easy-bg) !important;
+}
+
+.quiz-option-card.incorrect {
+  border-color: var(--hard-color) !important;
+  background: var(--hard-bg) !important;
+}
+
+.option-marker {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
   font-size: 0.8rem;
-  padding: 0.35em 0.65em;
+  flex-shrink: 0;
 }
 
-.badge-beginner {
-  background-color: var(--bs-success);
+.quiz-option-card.correct .option-marker {
+  background: var(--easy-color);
+  color: #ffffff;
+  border-color: var(--easy-color);
 }
 
-.badge-intermediate {
-  background-color: var(--bs-warning);
+.quiz-option-card.incorrect .option-marker {
+  background: var(--hard-color);
+  color: #ffffff;
+  border-color: var(--hard-color);
 }
 
-.badge-advanced {
-  background-color: var(--bs-danger);
+.streak-flame {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #f97316;
+  font-weight: 700;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+/* Command Palette Modal */
+.cmd-modal-dialog {
+  max-width: 580px;
+}
+
+.cmd-modal-content {
+  background: #0c0c0e;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
+  overflow: hidden;
+}
+
+.cmd-search-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border-color);
+  color: #ffffff;
+  font-size: 1.05rem;
+  padding: 1rem 1.25rem;
+  width: 100%;
+  outline: none;
+}
+
+.cmd-item {
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #d4d4d8;
+  text-decoration: none;
+  border-radius: 8px;
+  margin: 0 0.5rem;
+  transition: all 0.15s ease;
+}
+
+.cmd-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
 }
 
 /* Responsive adjustments */
-@media (max-width: 767.98px) {
-  .sidebar {
-    position: static;
+@media (max-width: 992px) {
+  .arena-workspace {
+    flex-direction: column;
     height: auto;
-    margin-bottom: 1rem;
   }
   
-  .CodeMirror {
-    min-height: 200px;
+  .arena-left, .arena-right {
+    min-height: 480px;
+    width: 100%;
   }
 }
